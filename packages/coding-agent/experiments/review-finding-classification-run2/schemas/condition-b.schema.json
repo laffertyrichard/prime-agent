@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "condition",
+    "classifications",
+    "pairs"
+  ],
+  "properties": {
+    "condition": {
+      "const": "B"
+    },
+    "classifications": {
+      "type": "array",
+      "minItems": 25,
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "findingId",
+          "rootClass",
+          "affectedAbstraction",
+          "confidence",
+          "conciseRationale"
+        ],
+        "properties": {
+          "findingId": {
+            "type": "string",
+            "pattern": "^F[0-9]{2}$"
+          },
+          "rootClass": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]*$"
+          },
+          "affectedAbstraction": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "conciseRationale": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        }
+      }
+    },
+    "pairs": {
+      "type": "array",
+      "minItems": 28,
+      "maxItems": 28,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pairId",
+          "decision",
+          "confidence",
+          "conciseRationale"
+        ],
+        "properties": {
+          "pairId": {
+            "type": "string",
+            "pattern": "^P[0-9]{2}$"
+          },
+          "decision": {
+            "enum": [
+              "SAME_ROOT",
+              "DIFFERENT_ROOT",
+              "AMBIGUOUS"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "conciseRationale": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        }
+      }
+    }
+  }
+}

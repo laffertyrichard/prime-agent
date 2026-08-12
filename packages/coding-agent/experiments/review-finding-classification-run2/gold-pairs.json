@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "corpusVersion": "run2-corpus-v1",
+  "adjudication": {
+    "frozenBeforeReviewerExecution": true,
+    "method": "Operator adjudication against the complete source reviews and exact reviewed code. SAME_ROOT means one architectural remediation would plausibly address both manifestations; DIFFERENT_ROOT means it would not; AMBIGUOUS marks mixed or boundary-dependent cases.",
+    "limitation": "No second human adjudicator was available; AMBIGUOUS is used rather than forcing disputed boundaries."
+  },
+  "pairCount": 28,
+  "pairs": [
+    {
+      "pairId": "P01",
+      "leftFindingId": "F05",
+      "rightFindingId": "F13",
+      "goldRelation": "SAME_ROOT",
+      "adjudicationRationale": "Both report non-activating output truncation whose only practical effect is a runtime import and test mock."
+    },
+    {
+      "pairId": "P02",
+      "leftFindingId": "F11",
+      "rightFindingId": "F12",
+      "goldRelation": "SAME_ROOT",
+      "adjudicationRationale": "Both report recurrence clustering and remediation using inconsistent identity boundaries."
+    },
+    {
+      "pairId": "P03",
+      "leftFindingId": "F14",
+      "rightFindingId": "F22",
+      "goldRelation": "SAME_ROOT",
+      "adjudicationRationale": "Both report an extension export surface created for tests rather than consumers."
+    },
+    {
+      "pairId": "P04",
+      "leftFindingId": "F16",
+      "rightFindingId": "F19",
+      "goldRelation": "SAME_ROOT",
+      "adjudicationRationale": "Both report a checkpoint in one root class globally blocking remediation for unrelated classes."
+    },
+    {
+      "pairId": "P05",
+      "leftFindingId": "F09",
+      "rightFindingId": "F24",
+      "goldRelation": "SAME_ROOT",
+      "adjudicationRationale": "Both report record transitions treating an event SHA as the assessment head."
+    },
+    {
+      "pairId": "P06",
+      "leftFindingId": "F04",
+      "rightFindingId": "F25",
+      "goldRelation": "SAME_ROOT",
+      "adjudicationRationale": "Both report a whole-package mock hiding failures in the real runtime import surface."
+    },
+    {
+      "pairId": "P07",
+      "leftFindingId": "F01",
+      "rightFindingId": "F16",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "A checkpoint lacking a resolution lifecycle is distinct from a checkpoint applying at excessive scope."
+    },
+    {
+      "pairId": "P08",
+      "leftFindingId": "F02",
+      "rightFindingId": "F11",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Unstable reviewer-supplied classification text is distinct from inconsistent identity keys inside recurrence operations."
+    },
+    {
+      "pairId": "P09",
+      "leftFindingId": "F05",
+      "rightFindingId": "F14",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Dead output truncation is distinct from an unnecessarily broad export surface."
+    },
+    {
+      "pairId": "P10",
+      "leftFindingId": "F06",
+      "rightFindingId": "F17",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "An inert severity variant is distinct from ordering recurrence by insertion rather than commit ancestry."
+    },
+    {
+      "pairId": "P11",
+      "leftFindingId": "F08",
+      "rightFindingId": "F10",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Tuple serialization as a map key is distinct from quadratic cloning on append."
+    },
+    {
+      "pairId": "P12",
+      "leftFindingId": "F15",
+      "rightFindingId": "F09",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Misnaming older open findings as stale is distinct from using event SHAs as head SHAs."
+    },
+    {
+      "pairId": "P13",
+      "leftFindingId": "F17",
+      "rightFindingId": "F21",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Ordering events without ancestry is distinct from choosing event-log persistence where a snapshot suffices."
+    },
+    {
+      "pairId": "P14",
+      "leftFindingId": "F18",
+      "rightFindingId": "F14",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Unbounded display aggregation is distinct from module export leakage."
+    },
+    {
+      "pairId": "P15",
+      "leftFindingId": "F01",
+      "rightFindingId": "F03",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Missing lifecycle resolution is distinct from coupling persisted replay to mutable validation rules."
+    },
+    {
+      "pairId": "P16",
+      "leftFindingId": "F02",
+      "rightFindingId": "F05",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Unstable semantic identity labels are distinct from unreachable output truncation."
+    },
+    {
+      "pairId": "P17",
+      "leftFindingId": "F04",
+      "rightFindingId": "F22",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "A missing honest test seam is distinct from exposing test-only APIs to consumers."
+    },
+    {
+      "pairId": "P18",
+      "leftFindingId": "F07",
+      "rightFindingId": "F15",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Reporting only one qualifying cluster is distinct from misclassifying older open findings as stale."
+    },
+    {
+      "pairId": "P19",
+      "leftFindingId": "F10",
+      "rightFindingId": "F21",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Quadratic event cloning is distinct from the architectural choice of event-log persistence."
+    },
+    {
+      "pairId": "P20",
+      "leftFindingId": "F18",
+      "rightFindingId": "F24",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Unbounded abstraction display joining is distinct from assessment head identity."
+    },
+    {
+      "pairId": "P21",
+      "leftFindingId": "F06",
+      "rightFindingId": "F08",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "An inert schema branch is distinct from a serialized compound map key."
+    },
+    {
+      "pairId": "P22",
+      "leftFindingId": "F15",
+      "rightFindingId": "F16",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Finding-state terminology is distinct from global checkpoint scope."
+    },
+    {
+      "pairId": "P23",
+      "leftFindingId": "F17",
+      "rightFindingId": "F23",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Insertion-order recurrence is distinct from an inconsistently scoped SHA-reuse guard."
+    },
+    {
+      "pairId": "P24",
+      "leftFindingId": "F01",
+      "rightFindingId": "F14",
+      "goldRelation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "Checkpoint lifecycle is distinct from module export surface."
+    },
+    {
+      "pairId": "P25",
+      "leftFindingId": "F03",
+      "rightFindingId": "F20",
+      "goldRelation": "AMBIGUOUS",
+      "adjudicationRationale": "Both concern replay validation, but one is persistence compatibility and the other is redundant implementation; whether one remediation addresses both depends on the chosen replay boundary."
+    },
+    {
+      "pairId": "P26",
+      "leftFindingId": "F03",
+      "rightFindingId": "F21",
+      "goldRelation": "AMBIGUOUS",
+      "adjudicationRationale": "Both concern strict replay, but mutable-rule coupling and choosing an event log over a snapshot may require different architectural changes."
+    },
+    {
+      "pairId": "P27",
+      "leftFindingId": "F07",
+      "rightFindingId": "F19",
+      "goldRelation": "AMBIGUOUS",
+      "adjudicationRationale": "F19 contains both global checkpoint scope and single-cluster visibility, so it partially overlaps F07 but is not a clean atomic root."
+    },
+    {
+      "pairId": "P28",
+      "leftFindingId": "F11",
+      "rightFindingId": "F23",
+      "goldRelation": "AMBIGUOUS",
+      "adjudicationRationale": "Both expose inconsistent identity scope, but one concerns root/abstraction identity and the other review/remediation SHA validity."
+    }
+  ]
+}

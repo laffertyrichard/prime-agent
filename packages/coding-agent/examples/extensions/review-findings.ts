@@ -85,7 +85,6 @@ export interface ArchitectureCheckpoint {
 
 export interface ReviewState {
 	events: ReviewEvent[];
-	architectureCheckpoint?: ArchitectureCheckpoint;
 }
 
 export interface ReviewAssessment {
@@ -254,9 +253,7 @@ function checkpointForState(state: ReviewState): ArchitectureCheckpoint | undefi
 }
 
 function stateWithEvents(events: ReviewEvent[]): ReviewState {
-	const state: ReviewState = { events: events.map(cloneEvent) };
-	const architectureCheckpoint = checkpointForState(state);
-	return architectureCheckpoint ? { ...state, architectureCheckpoint } : state;
+	return { events: events.map(cloneEvent) };
 }
 
 export function assessReviewState(state: ReviewState, headSha: string): ReviewAssessment {
@@ -271,16 +268,17 @@ export function assessReviewState(state: ReviewState, headSha: string): ReviewAs
 		else if (finding.reviewSha === exactHeadSha) currentHeadFindings.push(finding);
 		else staleFindings.push(finding);
 	}
+	const checkpoint = checkpointForState(state);
 	return {
-		status: state.architectureCheckpoint ? "ARCHITECTURE_CHECKPOINT" : "NO_ARCHITECTURE_ESCALATION",
-		implementationRecommendation: state.architectureCheckpoint ? "PAUSE_LOCAL_REMEDIATION" : "CONTINUE_REVIEW",
+		status: checkpoint ? "ARCHITECTURE_CHECKPOINT" : "NO_ARCHITECTURE_ESCALATION",
+		implementationRecommendation: checkpoint ? "PAUSE_LOCAL_REMEDIATION" : "CONTINUE_REVIEW",
 		headSha: exactHeadSha,
 		currentHeadFindings,
 		staleFindings,
 		remediatedFindings,
 		rejectedFindings,
 		clusters: clusterFindings(state),
-		...(state.architectureCheckpoint ? { checkpoint: state.architectureCheckpoint } : {}),
+		...(checkpoint ? { checkpoint } : {}),
 	};
 }
 
@@ -318,30 +316,42 @@ export function recordFinding(state: ReviewState, input: RecordFindingInput): Re
 }
 
 export function recordRemediation(state: ReviewState, input: RecordRemediationInput): ReviewTransition {
-	if (state.architectureCheckpoint) {
+	if (checkpointForState(state)) {
 		throw new Error("Architecture checkpoint active: PAUSE_LOCAL_REMEDIATION");
 	}
 	const rootClass = normalizedRootClass(input.rootClass);
 	const affectedAbstraction = normalizedText(input.affectedAbstraction, "affectedAbstraction");
 	const remediationSha = exactSha(input.remediationSha, "remediationSha");
-	const findingIds = materializedFindings(state)
-		.filter(
-			(finding) =>
-				finding.rootClass === rootClass &&
-				finding.affectedAbstraction === affectedAbstraction &&
-				finding.severity === "blocking" &&
-				finding.disposition === "confirmed",
+	if (
+		state.events.some(
+			(event) =>
+				event.type === "remediation" &&
+				event.rootClass === rootClass &&
+				event.affectedAbstraction === affectedAbstraction &&
+				event.remediationSha === remediationSha,
 		)
-		.map((finding) => finding.id);
-	if (findingIds.length === 0) {
+	) {
+		throw new Error("This remediation SHA is already recorded for the cluster");
+	}
+	const findings = materializedFindings(state).filter(
+		(finding) =>
+			finding.rootClass === rootClass &&
+			finding.affectedAbstraction === affectedAbstraction &&
+			finding.severity === "blocking" &&
+			finding.disposition === "confirmed",
+	);
+	if (findings.length === 0) {
 		throw new Error("No confirmed blocking findings in this cluster require remediation");
+	}
+	if (findings.some((finding) => finding.reviewSha === remediationSha)) {
+		throw new Error("remediationSha must differ from the reviewed SHA it remediates");
 	}
 	const event: RemediationEvent = {
 		type: "remediation",
 		rootClass,
 		affectedAbstraction,
 		remediationSha,
-		findingIds,
+		findingIds: findings.map((finding) => finding.id),
 	};
 	const nextState = stateWithEvents([...state.events, event]);
 	return {

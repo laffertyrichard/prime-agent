@@ -163,6 +163,15 @@ describe("review finding recurrence experiment", () => {
 		expect(cluster.blockingRecurrenceCount).toBe(1);
 	});
 
+	it("rejects same-commit and reused remediation identities", () => {
+		const initial = add(createReviewState(), finding());
+		expect(() => remediate(initial, sha("1"))).toThrow("must differ from the reviewed SHA");
+
+		let state = remediate(initial, sha("2"));
+		state = add(state, finding({ id: "finding-2", reviewSha: sha("3") }));
+		expect(() => remediate(state, sha("2"))).toThrow("already recorded for the cluster");
+	});
+
 	it("rejects abbreviated SHAs and malformed persisted events", () => {
 		expect(() => add(createReviewState(), finding({ reviewSha: "abc123" }))).toThrow("exact lowercase");
 		expect(() =>
@@ -172,6 +181,49 @@ describe("review finding recurrence experiment", () => {
 				unexpected: true,
 			}),
 		).toThrow("Invalid persisted review event");
+	});
+
+	it("fails closed when a persisted event uses an unsupported envelope version", async () => {
+		type SessionStartHandler = (event: { type: "session_start" }, ctx: ExtensionContext) => void | Promise<void>;
+		let sessionStartHandler: SessionStartHandler | undefined;
+		let tool: ToolDefinition | undefined;
+		const api = {
+			on: (event: string, handler: unknown) => {
+				if (event === "session_start") sessionStartHandler = handler as SessionStartHandler;
+			},
+			registerTool: (candidate: ToolDefinition) => {
+				tool = candidate;
+			},
+		} as unknown as ExtensionAPI;
+		reviewFindingsExtension(api);
+		if (!sessionStartHandler || !tool) throw new Error("extension hooks were not registered");
+		const event = recordFinding(createReviewState(), finding()).event;
+		const context = {
+			sessionManager: {
+				getBranch: () => [
+					{
+						type: "message",
+						message: {
+							role: "toolResult",
+							toolName: "review_findings",
+							details: { version: 2, event },
+						},
+					},
+				],
+			} as unknown as ExtensionContext["sessionManager"],
+		} as ExtensionContext;
+		await sessionStartHandler({ type: "session_start" }, context);
+
+		const result = await tool.execute(
+			"call-1",
+			{ action: "assess", headSha: sha("1") },
+			undefined,
+			undefined,
+			context,
+		);
+		expect(result.details).toMatchObject({
+			error: "Review state restore failed: Unsupported persisted review event version",
+		});
 	});
 
 	it("registers a sequential extension tool with machine-readable event details", async () => {

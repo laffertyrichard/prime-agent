@@ -29,6 +29,7 @@ cp permission-gate.ts ~/.prime/agent/extensions/
 | Extension | Description |
 |-----------|-------------|
 | `todo.ts` | Todo list tool + `/todos` command with custom rendering and state persistence |
+| `review-findings.ts` | Experimental exact-SHA review ledger that pauses local remediation after repeated blocking root classes |
 | `hello.ts` | Minimal custom tool example |
 | `question.ts` | Demonstrates `ctx.ui.select()` for asking the user questions with custom UI |
 | `questionnaire.ts` | Multi-question input with tab bar navigation between questions |

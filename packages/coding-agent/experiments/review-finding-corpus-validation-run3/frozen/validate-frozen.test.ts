@@ -45,6 +45,7 @@ describe("frozen corpus gate", () => {
 						sourceArtifactSha256: createHash("sha256").update(content).digest("hex"),
 						sourceExcerpt: content,
 						sourceExcerptSha256: createHash("sha256").update(content).digest("hex"),
+						sourceLineRange: [1, 1] as [number, number],
 						neutralization: { manifestation: "A neutral manifestation." },
 					},
 				],

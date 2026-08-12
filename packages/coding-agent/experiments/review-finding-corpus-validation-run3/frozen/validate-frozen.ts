@@ -10,6 +10,7 @@ interface SourceItem {
 	sourceArtifactSha256: string;
 	sourceExcerpt: string;
 	sourceExcerptSha256?: string;
+	sourceLineRange?: [number, number];
 }
 
 interface SourceCorpus {
@@ -50,6 +51,14 @@ export function validateSourceArtifacts(provenance: SourceCorpus, sourceRoot: st
 			findings.push({ rule: "source-excerpt-hash-mismatch", location: item.itemId, detail: item.sourceArtifact });
 		}
 		const occurrences = content.split(item.sourceExcerpt).length - 1;
+		if (occurrences === 1 && item.sourceLineRange !== undefined) {
+			const position = content.indexOf(item.sourceExcerpt);
+			const startLine = content.slice(0, position).split("\n").length;
+			const endLine = startLine + item.sourceExcerpt.split("\n").length - 1;
+			if (item.sourceLineRange[0] !== startLine || item.sourceLineRange[1] !== endLine) {
+				findings.push({ rule: "source-line-range-mismatch", location: item.itemId, detail: item.sourceArtifact });
+			}
+		}
 		if (occurrences !== 1) {
 			findings.push({
 				rule: "source-excerpt-occurrence",

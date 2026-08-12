@@ -47,5 +47,15 @@
   "notes": [
     "Claude Code reported claude-opus-5 as the canonical primary audit model and claude-fable-5 as an auxiliary model in both audit envelopes. No audit assigned root classes or pair labels.",
     "The final corpus is a strict subset of the independently re-audited candidate. Every retained item received PASS from both auditors on all three item gates."
-  ]
+  ],
+  "exactShaReview": {
+    "round1ReviewSha": "ace208ada6a1be7bb94b3853ef0302343fc0f60a",
+    "status": "P1_FINDINGS_REMEDIATED_RE_REVIEW_REQUIRED"
+  },
+  "goldAdequacy": {
+    "sameRootPairs": 3,
+    "differentRootPairs": 13,
+    "purpose": "Bounded feasibility, not tolerance estimation",
+    "priorThresholdsInherited": false
+  }
 }

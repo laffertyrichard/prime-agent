@@ -49,8 +49,8 @@
       "gate": "duplicateManifestation",
       "codex": "FAIL",
       "claude": "PASS",
-      "adjudication": "ACCEPT_STRICTER_FAIL",
-      "resolution": "REWRITE_AND_REAUDIT"
+      "adjudication": "RETAIN_AS_INDEPENDENTLY_OBSERVABLE_SCOPE_MANIFESTATION",
+      "resolution": "READJUDICATE_AND_REAUDIT_UNCHANGED"
     },
     {
       "itemId": "item-32ff81ae4886",
@@ -167,5 +167,13 @@
     }
   ],
   "candidateVersion": "candidate-1",
-  "requiresIndependentReaudit": true
+  "requiresIndependentReaudit": true,
+  "goldPairChanges": [
+    {
+      "pairId": "pair-a21e13518c",
+      "change": "Replaced excluded item item-2eb6628a4df3 with added item item-35c3b67009bb before candidate re-audit.",
+      "relation": "DIFFERENT_ROOT",
+      "rationale": "Persistent contribution after contradictory evidence and unbounded display aggregation are distinct lifecycle and formatting boundaries."
+    }
+  ]
 }

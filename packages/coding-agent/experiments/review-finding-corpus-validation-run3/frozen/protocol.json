@@ -19,7 +19,7 @@
     "provenanceCorpus": "frozen/provenance-corpus.json",
     "provenanceCorpusSha256": "5523196519c05c5e57d6ab9d3fecb4400d0e062f8e81d6774c536f90d860f0a6",
     "goldPairs": "frozen/gold-pairs.json",
-    "goldPairsSha256": "52d52e3f484a067b5a123864cdb18d36df3de22975b35209713ee5ecab9cae2a",
+    "goldPairsSha256": "5842ff5334d326252c0d9f7d4f0906ad5f1086333415c60ddf481fc18262695b",
     "goldPairCount": 16,
     "sameRootPairs": 3,
     "differentRootPairs": 13,
@@ -27,14 +27,17 @@
     "rubric": "frozen/corpus-validity-rubric.md",
     "rubricSha256": "8d1c514ba183ccb7323a702744f029cf74e7b36549f66148439bac6215b1a39c",
     "mechanicalValidation": "frozen/mechanical-validation.json",
-    "mechanicalValidationSha256": "f4d4860cad537122d8aff2b77e7b26f20bc28b253e07c4abdabd1b91155892f8"
+    "mechanicalValidationSha256": "f4d4860cad537122d8aff2b77e7b26f20bc28b253e07c4abdabd1b91155892f8",
+    "goldAdequacy": "Bounded feasibility only; 3 positive and 13 negative pairs. Prior percentage thresholds are not inherited.",
+    "reproductionProtocol": "frozen/reproduction.md",
+    "subsequentClassificationProposal": "frozen/subsequent-classification-proposal.md"
   },
   "audit": {
     "draftCommit": "0b432f72e",
     "candidateCommit": "63115c3e6",
     "rounds": {
       "round-1": {
-        "audits/round-1/adjudication.json": "bf2e225c02441bb99585662dcf00e468db60ff7f95a86fae74521916dbe4e933",
+        "audits/round-1/adjudication.json": "b49eb55887b2bf3d969b443db98478a94a58669842ab5ae599d0aeca9cf695c5",
         "audits/round-1/claude-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
         "audits/round-1/claude-final.json": "947a97058c54fa77f56cb89522eabc2a0cc2d336b632e7d1d5147f00bec9a530",
         "audits/round-1/claude-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -101,6 +104,13 @@
       "separateRunRequired": true,
       "claudeModel": "claude-opus-5",
       "constraint": "Run only after the clean replication control is frozen; use the identical corpus and protocol."
-    }
+    },
+    "thresholdPolicy": "Run 2 percentage thresholds are not inherited. A separate no-execution preregistration must freeze attainable exact-count criteria and uncertainty reporting.",
+    "promptPolicy": "Classification prompts are not frozen or authorized by Run 3. A later preregistration branch must freeze new prompts; both model arms must use byte-identical prompt and evaluator artifacts."
+  },
+  "exactShaReview": {
+    "round1ReviewSha": "ace208ada6a1be7bb94b3853ef0302343fc0f60a",
+    "record": "frozen/exact-sha-review-round-1.json",
+    "status": "REMEDIATED_RE_REVIEW_REQUIRED"
   }
 }

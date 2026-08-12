@@ -9,116 +9,126 @@
       "leftItemId": "item-4711f03203e5",
       "rightItemId": "item-a36bcf847909",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "A cross-group terminal-state scope failure and storage-round-trip key-order sensitivity occur in different state-machine and persistence boundaries; changing either boundary does not address the other."
     },
     {
       "pairId": "pair-ce4d25d3f4",
       "leftItemId": "item-b7c6f6de4069",
       "rightItemId": "item-a588e8cfef87",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "Case-sensitive grouping changes recurrence identity, while an unreachable truncation threshold changes output handling; one coherent correction would not address both."
     },
     {
       "pairId": "pair-8bcc15fc51",
       "leftItemId": "item-a588e8cfef87",
       "rightItemId": "item-499a69824f00",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "A constant response passing through an oversized truncation guard concerns output bounds; deriving current-head state from an event commit concerns state context. They are independent."
     },
     {
       "pairId": "pair-2dd88829ae",
       "leftItemId": "item-9c3adb9fcc4e",
       "rightItemId": "item-641b99358635",
       "relation": "SAME_ROOT",
-      "adjudicationRationale": "Both are distinct display outcomes of encoding a list as unbounded comma-joined text: growth and ambiguity."
+      "adjudicationRationale": "Both are independently observable consequences of flattening a list of abstraction descriptions into comma-joined display text: the representation is unbounded and is ambiguous when values contain commas."
     },
     {
       "pairId": "pair-5b24fe3ab8",
       "leftItemId": "item-e5f809536c80",
       "rightItemId": "item-1b9f06e7b080",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "Counting an ancestor commit as a later recurrence concerns event chronology; unused exports concern module surface. They require unrelated changes."
     },
     {
       "pairId": "pair-4fa2b2b948",
       "leftItemId": "item-d1870bd04a50",
       "rightItemId": "item-641b99358635",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "Reusing a prior review identifier as a correction identifier concerns identifier validity; ambiguous comma-joined display text concerns list encoding."
     },
     {
       "pairId": "pair-888ef856a9",
       "leftItemId": "item-32ff81ae4886",
       "rightItemId": "item-6b54c6516c14",
       "relation": "SAME_ROOT",
-      "adjudicationRationale": "Both are distinct restore-time outcomes caused by historical replay failure: restore incompatibility and loss of read-only status access."
+      "adjudicationRationale": "Both are restore-time consequences of replaying historical events under a failing restore path: one causes restoration failure and the other makes read-only status unavailable after that failure."
     },
     {
       "pairId": "pair-fd55174c35",
       "leftItemId": "item-947ca2472899",
       "rightItemId": "item-72de0587137f",
       "relation": "SAME_ROOT",
-      "adjudicationRationale": "Both are distinct operational outcomes of inconsistent identity boundaries: incomplete closure and duplicate correction counting."
+      "adjudicationRationale": "Both arise because occurrence aggregation and correction recording use inconsistent identity boundaries: one correction leaves a same-category record open, and one correction commit can be counted twice."
     },
     {
       "pairId": "pair-79bb8547e2",
       "leftItemId": "item-72de0587137f",
       "rightItemId": "item-bbb7c7ac73c2",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "Duplicate correction counting concerns identity scope; quadratic event copying concerns append complexity. Neither correction addresses the other."
     },
     {
       "pairId": "pair-95d891cd78",
       "leftItemId": "item-32ff81ae4886",
       "rightItemId": "item-1b9f06e7b080",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "Historical validation incompatibility concerns persistence replay; unused exports concern module surface."
     },
     {
       "pairId": "pair-8e297bb382",
       "leftItemId": "item-bbb7c7ac73c2",
       "rightItemId": "item-b0d3b9485cf6",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "Quadratic append copying is a history-size cost; naming an earlier unresolved observation stale is a finding-state presentation error."
     },
     {
       "pairId": "pair-5f8fdb905d",
       "leftItemId": "item-8e66ef6bf977",
       "rightItemId": "item-499a69824f00",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "An unreachable prior-occurrence branch concerns reducer control flow; event-commit head derivation concerns assessment context."
     },
     {
       "pairId": "pair-a32f142911",
       "leftItemId": "item-e617c2f887d8",
       "rightItemId": "item-b3bfdbc72ca4",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "Reporting only the first qualifying group concerns multi-group result completeness; computing unused head partitions concerns unnecessary state derivation."
     },
     {
       "pairId": "pair-b9d7d7d8af",
       "leftItemId": "item-6b54c6516c14",
       "rightItemId": "item-d1870bd04a50",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "Read-only status failing after restore error concerns failure containment; accepting a prior review identifier as a correction identifier concerns identifier validity."
     },
     {
       "pairId": "pair-80ac4fa066",
       "leftItemId": "item-947ca2472899",
       "rightItemId": "item-b0d3b9485cf6",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "Requiring separate corrections for descriptions aggregated as one category concerns identity consistency; labeling older unresolved observations stale concerns state terminology."
     },
     {
       "pairId": "pair-a21e13518c",
       "leftItemId": "item-35c3b67009bb",
       "rightItemId": "item-9c3adb9fcc4e",
       "relation": "DIFFERENT_ROOT",
-      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+      "adjudicationRationale": "An observation remaining in recurrence counts after contradiction concerns lifecycle withdrawal; unbounded abstraction display concatenation concerns output representation."
     }
   ],
   "relationCounts": {
     "SAME_ROOT": 3,
     "DIFFERENT_ROOT": 13
+  },
+  "adequacy": {
+    "purpose": "Bounded feasibility corpus, not a prevalence or tolerance estimator.",
+    "discreteResolution": {
+      "sameRootPairs": 3,
+      "missedCheckpointRateStep": 0.3333333333333333,
+      "differentRootPairs": 13,
+      "falseCheckpointRateStep": 0.07692307692307693
+    },
+    "constraint": "A later classification protocol must preregister attainable exact-count criteria and uncertainty. Run 2 percentage thresholds are not inherited. Expanding or relabeling this gold set requires a new corpus-validation run."
   }
 }

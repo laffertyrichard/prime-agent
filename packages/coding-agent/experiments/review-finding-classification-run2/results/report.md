@@ -56,16 +56,11 @@ Errors were mostly substantive pair-boundary disagreements, not formatting diffe
 
 ## Exact-SHA peer review and stop condition
 
-Independent reviews inspected exact frozen SHAs and found corpus leakage:
+Three independent exact-SHA review rounds found progressively broader corpus leakage. Examples include retained recommendations, prior severity/disposition language, and literal root-class labels. They also found non-atomic excerpts that duplicate manifestations represented by other corpus items. The committed inventories from earlier review rounds were demonstrably incomplete; no post-hoc exclusion set is presented as complete or as valid sensitivity evidence.
 
-- At `71e9abc4619442e7cacdcdad3364e9cad487d95a`, Codex found P1 `BLIND_CORPUS_REDACTION_FAILURE`; Claude independently found P1 `INCOMPLETE_BLIND_INPUT_REDACTION`.
-- At `ade65d7dd16f6907d5726fbd3c4d8e110cd996e3`, Codex found the recorded contamination scope was undercounted; Claude independently found omitted contamination in F18.
+This contradicts the frozen redaction claim and creates prompt leakage, label imitation, and correlated/non-atomic inputs. The frozen corpus and raw outputs remain unchanged as evidence; they were not repaired after results became visible.
 
-The blind corpus retained explicit solution/recommendation text in F06, F08, F13, F15, F18, F21, F23, F24, and F25; prior severity/disposition text in F18 and F19; and prior root-class labels in F20–F22. F23 also accidentally combines the source text of multiple distinct advisories, including the manifestations separately represented by F24 and F25. This contradicts the frozen redaction claim and creates label imitation and non-atomic inputs. The inputs and raw outputs remain unchanged as evidence; they were not repaired after results became visible.
-
-The earlier four-item excision was incomplete. Excluding every currently identified contaminated finding leaves only 13 findings and 7 non-ambiguous designated pairs; that post-hoc subset passes the Condition B checkpoint thresholds for both reviewers, while exact cross-reviewer labels remain 0/13. Because this exclusion is post-hoc, severely reduces the corpus, and removes controls, it neither rescues nor reverses Run 2. It demonstrates that the frozen negative metrics are not robust to the contamination boundary.
-
-Therefore the experiment stop condition is active: Run 2 measured prompt leakage or label imitation in material part rather than only root-cause recognition. Full-corpus metrics remain reproducible but are not clean hypothesis evidence. No further classifier execution or protocol tuning is justified in this run.
+Therefore the experiment stop condition is active: Run 2 measured leakage or label imitation in a material and unbounded part of the corpus rather than isolating root-cause recognition. Full-corpus metrics remain mechanically reproducible but are not clean hypothesis evidence. Earlier post-hoc subset calculations are withdrawn because the contamination boundary could not be closed without redesigning the corpus after outputs were visible. No further classifier execution or protocol tuning is justified in this run.
 
 ## Run 1 disposition and next experiment
 

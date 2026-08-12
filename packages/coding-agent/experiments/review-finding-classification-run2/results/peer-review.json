@@ -22,47 +22,10 @@
     },
     "architectureConclusion": "CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED"
   },
-  "disposition": "STOP_CONDITION_PROMPT_LEAKAGE_OR_LABEL_IMITATION",
-  "contaminatedFindingIds": [
-    "F06",
-    "F08",
-    "F13",
-    "F15",
-    "F18",
-    "F19",
-    "F20",
-    "F21",
-    "F22",
-    "F23",
-    "F24",
-    "F25"
-  ],
+  "disposition": "STOP_CONDITION_PROMPT_LEAKAGE_OR_LABEL_IMITATION_CONTAMINATION_BOUNDARY_UNCLOSED",
   "sensitivityAnalysis": {
-    "status": "POST_HOC_DIAGNOSTIC_NOT_HYPOTHESIS_EVIDENCE",
-    "excludedFindingIds": [
-      "F06",
-      "F08",
-      "F13",
-      "F15",
-      "F18",
-      "F19",
-      "F20",
-      "F21",
-      "F22",
-      "F23",
-      "F24",
-      "F25"
-    ],
-    "remainingFindingCount": 13,
-    "remainingNonAmbiguousPairCount": 7,
-    "conditionB": {
-      "codexFalseCheckpointRate": 0,
-      "codexMissedCheckpointRate": 0,
-      "claudeFalseCheckpointRate": 0,
-      "claudeMissedCheckpointRate": 0
-    },
-    "conditionAExactLabelAgreement": 0.07692307692307693,
-    "conditionBExactLabelAgreement": 0
+    "status": "WITHDRAWN_INCOMPLETE_CONTAMINATION_BOUNDARY",
+    "reason": "Repeated exact-SHA review found additional leakage after each exclusion inventory; post-hoc subset metrics are not treated as experiment evidence."
   },
   "reviewRounds": [
     {
@@ -94,5 +57,21 @@
     }
   ],
   "initialReviewSha": "71e9abc4619442e7cacdcdad3364e9cad487d95a",
-  "latestReviewSha": "c1e77d418ebde9ef0b5ac40c18200086a0c0f8df"
+  "latestReviewSha": "c1e77d418ebde9ef0b5ac40c18200086a0c0f8df",
+  "contaminatedFindingIdsStatus": "NON_EXHAUSTIVE_EXAMPLES_ONLY",
+  "knownContaminatedFindingIds": [
+    "F06",
+    "F08",
+    "F13",
+    "F15",
+    "F18",
+    "F19",
+    "F20",
+    "F21",
+    "F22",
+    "F23",
+    "F24",
+    "F25"
+  ],
+  "additionalValidityDefectsStatus": "NON_EXHAUSTIVE_EXAMPLES_ONLY"
 }

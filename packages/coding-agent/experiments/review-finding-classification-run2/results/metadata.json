@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "executedAtUtc": "2026-08-12T21:51:36.977802+00:00",
+  "frozenProtocolCommit": "e1e317f19d7518cd7f3b32f1e3149e7701649744",
+  "reviewers": {
+    "codex": {
+      "toolVersion": "codex-cli 0.146.0",
+      "provider": "openai",
+      "model": "gpt-5.6-sol",
+      "reasoningEffort": "medium",
+      "conditions": {
+        "a": {
+          "threadId": "019ff7ee-311f-7433-b197-d378522b5a62",
+          "exitCode": 0,
+          "usage": {
+            "input_tokens": 24744,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1107,
+            "reasoning_output_tokens": 31
+          }
+        },
+        "b": {
+          "threadId": "019ff7ee-3118-7f53-8bc3-1932ef3e70df",
+          "exitCode": 0,
+          "usage": {
+            "input_tokens": 26048,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3493,
+            "reasoning_output_tokens": 722
+          }
+        }
+      }
+    },
+    "claude": {
+      "toolVersion": "Claude Code 2.1.228",
+      "provider": "anthropic",
+      "model": "claude-opus-4-6",
+      "effort": "high",
+      "conditions": {
+        "a": {
+          "sessionId": "9f389162-65b1-4c5e-bb08-52fbbae46664",
+          "exitCode": 0,
+          "usage": {
+            "input_tokens": 2,
+            "cache_creation_input_tokens": 31550,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 5403,
+            "output_tokens_details": {
+              "thinking_tokens": 3636
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 31550,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 5403,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 31550,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 31550
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "claude-opus-4-6": {
+              "inputTokens": 2,
+              "outputTokens": 5403,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 31550,
+              "webSearchRequests": 0,
+              "costUSD": 0.450585,
+              "contextWindow": 200000,
+              "maxOutputTokens": 64000,
+              "canonicalModel": "claude-opus-4-6",
+              "provider": "firstParty"
+            }
+          }
+        },
+        "b": {
+          "sessionId": "d464a610-7ac6-400c-9b13-0e15e06333fc",
+          "exitCode": 0,
+          "usage": {
+            "input_tokens": 2,
+            "cache_creation_input_tokens": 33337,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 22299,
+            "output_tokens_details": {
+              "thinking_tokens": 17608
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 33337,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 2,
+                "output_tokens": 22299,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 33337,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 33337
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "modelUsage": {
+            "claude-opus-4-6": {
+              "inputTokens": 2,
+              "outputTokens": 22299,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 33337,
+              "webSearchRequests": 0,
+              "costUSD": 0.890855,
+              "contextWindow": 200000,
+              "maxOutputTokens": 64000,
+              "canonicalModel": "claude-opus-4-6",
+              "provider": "firstParty"
+            }
+          }
+        }
+      }
+    }
+  },
+  "independenceEvidence": {
+    "freshTemporaryDirectoryPerInvocation": true,
+    "sessionPersistenceDisabled": true,
+    "reviewerToolsDisabledForClaude": true,
+    "codexSandbox": "read-only",
+    "outputsFrozenBeforeNormalization": true,
+    "otherReviewerOutputIncludedInPrompts": false
+  },
+  "executionWarnings": [
+    "Codex reported but did not stop on an incompatible user hooks configuration; --ignore-user-config did not suppress hook discovery.",
+    "Codex reported skills-description budget shortening even though prompts instructed it not to inspect skills; no tool calls occurred.",
+    "Both Codex runs reported a non-fatal model-cache parse error to stderr; the requested model completed successfully.",
+    "The initial schema-rejected invocations produced no model classification output and are excluded."
+  ],
+  "sha256": {
+    "results/raw/condition-a-claude-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "results/raw/condition-a-claude-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "results/raw/condition-a-claude.json": "cd21a0e4ec8cc28656fc816c2c86e9b00cbffd0bf2e0f5ee00580b5f04d9ebd3",
+    "results/raw/condition-a-codex-events.jsonl": "140bcd14ccd97d3616d26b6fadc9585dbe455ce49d1ee94384c31bafc05db795",
+    "results/raw/condition-a-codex-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "results/raw/condition-a-codex-final.json": "224681bc090941a5f9df27a23fbb13146f170a489e96c2f14a70e09991781e82",
+    "results/raw/condition-a-codex-stderr.txt": "43f515924d265159c011a9ec09f2503c1af86413e9d18a9a07343a32fd7ecdf9",
+    "results/raw/condition-b-claude-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "results/raw/condition-b-claude-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "results/raw/condition-b-claude.json": "38515fb6f1a8c9136ea789b1407cffad1c49215508a27d6c7bbf6a94f34cdb79",
+    "results/raw/condition-b-codex-events.jsonl": "e54269d7f72a068ea3b2d28f33e46e9f88d58e96ca4a769dbf67e4112b755050",
+    "results/raw/condition-b-codex-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "results/raw/condition-b-codex-final.json": "f94cb0ecc0ab11e2397db613b7c5cc47e4774767150745ecb0b5730e20c09b39",
+    "results/raw/condition-b-codex-stderr.txt": "e6e570055f80198eaf8b86f2c425be76d8076f418e84df4d83824ec882bd17dc",
+    "results/classifications.json": "1eddbffe05a3c98f66d09122ea9dd6cc0386930c060a4bea78b81a2025682530",
+    "results/metrics.json": "89ce5e92dbe34058886a5a3306feb426a110fe8c45c6ed61e146f1f114eb6aa7",
+    "results/report.md": "6d7c86ee7e5019d02a989d10912af84ab2517d10c2005c470fa022966ad54892"
+  },
+  "failedAttemptSha256": {
+    "results/failed-attempt-0/condition-a-claude-exit.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "results/failed-attempt-0/condition-a-claude-stderr.txt": "44faf4033d83fef7ee02e70ea3cc9ef62b0ed74713cff34db70646921f6b6d19",
+    "results/failed-attempt-0/condition-a-claude.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "results/failed-attempt-0/condition-a-codex-events.jsonl": "cebe02f1e02aee9d56569abba7fcf7d5f61e3b44c0ea6c5252e72367fd270323",
+    "results/failed-attempt-0/condition-a-codex-exit.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "results/failed-attempt-0/condition-a-codex-stderr.txt": "9e1920a7b8dee93c95064cda7eb646727baaf5086843f7b1b502d9af2ac30a1f",
+    "results/failed-attempt-0/condition-b-claude-exit.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "results/failed-attempt-0/condition-b-claude-stderr.txt": "44faf4033d83fef7ee02e70ea3cc9ef62b0ed74713cff34db70646921f6b6d19",
+    "results/failed-attempt-0/condition-b-claude.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "results/failed-attempt-0/condition-b-codex-events.jsonl": "67d844aeaa5474336e8a0bb6a73ca371b1d223cf41d151616b8c70099914f22a",
+    "results/failed-attempt-0/condition-b-codex-exit.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+    "results/failed-attempt-0/condition-b-codex-stderr.txt": "747237787aa0ec8bc26daca86a847a0e089565c34a8b181fd9ffd5377655b419"
+  }
+}

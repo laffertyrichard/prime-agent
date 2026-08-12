@@ -1,0 +1,6 @@
+{"type":"thread.started","thread_id":"019ff7ed-1040-7462-9563-3c9475c07a36"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"failed to parse hooks config /Users/mccully/.codex/hooks.json: unknown field `SessionStart`, expected `description` or `hooks` at line 2 column 16"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"error","message":"Skill descriptions were shortened to fit the 2% skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."}}
+{"type":"error","message":"{\n  \"type\": \"error\",\n  \"error\": {\n    \"type\": \"invalid_request_error\",\n    \"code\": \"invalid_json_schema\",\n    \"message\": \"Invalid schema for response_format 'codex_output_schema': In context=('properties', 'condition'), schema must have a 'type' key.\",\n    \"param\": \"text.format.schema\"\n  },\n  \"status\": 400\n}"}
+{"type":"turn.failed","error":{"message":"{\n  \"type\": \"error\",\n  \"error\": {\n    \"type\": \"invalid_request_error\",\n    \"code\": \"invalid_json_schema\",\n    \"message\": \"Invalid schema for response_format 'codex_output_schema': In context=('properties', 'condition'), schema must have a 'type' key.\",\n    \"param\": \"text.format.schema\"\n  },\n  \"status\": 400\n}"}}

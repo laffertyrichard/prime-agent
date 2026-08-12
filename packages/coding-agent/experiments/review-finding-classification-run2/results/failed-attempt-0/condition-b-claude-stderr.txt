@@ -1,0 +1,1 @@
+[0m[31m[31mError: --json-schema is not a valid JSON Schema: no schema with key or ref "https://json-schema.org/draft/2020-12/schema"[39m[0m

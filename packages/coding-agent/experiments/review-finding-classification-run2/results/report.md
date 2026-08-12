@@ -54,6 +54,17 @@ Errors were mostly substantive pair-boundary disagreements, not formatting diffe
 
 `evaluate.ts` imported the Run 1 `recordFinding`, `recordRemediation`, and `assessReviewState` functions unchanged. For each pair it replayed occurrence, remediation, candidate recurrence, remediation, and a third manifestation. Raw-label and explicit-decision-gated replay metrics matched the corresponding equality/pair predictions. Passing replay proves deterministic projection of supplied identity only; it does not validate classification.
 
+## Exact-SHA peer review and contamination sensitivity
+
+Independent reviews inspected `8cc25603ae5115713dc69d7ebdb913994ce291d5..71e9abc4619442e7cacdcdad3364e9cad487d95a`:
+
+- Codex correctness review (`codex-cli 0.146.0`, `gpt-5.6-sol`) found P1 `BLIND_CORPUS_REDACTION_FAILURE`.
+- Claude architecture review (Claude Code `2.1.228`, `claude-opus-4-6`) independently found P1 `INCOMPLETE_BLIND_INPUT_REDACTION` and still selected `CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED`.
+
+F19 retained an inline P2 disposition, and F20–F22 retained prior root-class labels; F21 also retained solution text. This contradicts the blind-redaction claim and contaminates 4/25 findings. It likely biases agreement upward: 9/12 reviewer-condition assignments for F20–F22 copied the exposed labels exactly. These inputs and raw outputs remain unchanged as evidence; the defect is not silently repaired after results were visible.
+
+A review-time sensitivity analysis excluding all pairs touching F19–F22 still fails the frozen thresholds: Codex Condition B false checkpoint rate is 1/15 = 6.7%, Claude missed checkpoint rate is 1/4 = 25%, Condition A exact-label agreement is 2/21 = 9.5%, and Condition B exact-label agreement is 0/21. The negative conclusion is therefore conservative and survives complete excision, but Run 2 cannot be described as a fully blind experiment.
+
 ## Run 1 disposition and next experiment
 
 Keep Run 1 frozen as experimental evidence. Do not simplify or promote it yet, and do not add a core `ReviewFinding` entity. The smallest justified next experiment is a blinded human-gate study on a fresh corpus: reviewers make pairwise decisions only, a human approves disputed or low-confidence pairs before assigning a canonical label, and the same frozen false/missed checkpoint thresholds are applied. This tests whether a small approval boundary can make the extension useful without pretending autonomous architectural recognition.

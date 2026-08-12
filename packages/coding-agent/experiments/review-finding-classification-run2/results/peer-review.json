@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "baseSha": "8cc25603ae5115713dc69d7ebdb913994ce291d5",
+  "reviewSha": "71e9abc4619442e7cacdcdad3364e9cad487d95a",
+  "codex": {
+    "toolVersion": "codex-cli 0.146.0",
+    "model": "gpt-5.6-sol",
+    "rawArtifact": "/Users/mccully/.prime/agent/session-artifacts/019ff7e1-c290-758a-90ad-ec347e214225/reviews/run2-final/codex-raw.txt",
+    "rawSha256": "2120e5bbd89ed0682d55576ef9f4baec86b636861e9382899694ca2bc084742d",
+    "finding": {
+      "severity": "P1",
+      "rootClass": "BLIND_CORPUS_REDACTION_FAILURE",
+      "affectedAbstraction": "blind-input construction and label-stability measurement"
+    }
+  },
+  "claude": {
+    "toolVersion": "Claude Code 2.1.228",
+    "model": "claude-opus-4-6",
+    "rawArtifact": "/Users/mccully/.prime/agent/session-artifacts/019ff7e1-c290-758a-90ad-ec347e214225/reviews/run2-final/claude-raw.txt",
+    "rawSha256": "fb2b510f550ddc2d61cdbaa657fa6932b35e4038e592a087b24a47104d25578d",
+    "finding": {
+      "severity": "P1",
+      "rootClass": "INCOMPLETE_BLIND_INPUT_REDACTION",
+      "affectedAbstraction": "blind-corpus construction / redaction boundary"
+    },
+    "architectureConclusion": "CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED"
+  },
+  "disposition": "ACCEPTED_AS_EXPERIMENT_LIMITATION_DO_NOT_RERUN_OR_REPAIR_AFTER_OUTPUTS",
+  "contaminatedFindingIds": [
+    "F19",
+    "F20",
+    "F21",
+    "F22"
+  ],
+  "sensitivityAnalysis": {
+    "excludedFindingIds": [
+      "F19",
+      "F20",
+      "F21",
+      "F22"
+    ],
+    "conditionB": {
+      "codexFalseCheckpointRate": 0.06666666666666667,
+      "claudeMissedCheckpointRate": 0.25
+    },
+    "conditionAExactLabelAgreement": 0.09523809523809523,
+    "conditionBExactLabelAgreement": 0
+  }
+}

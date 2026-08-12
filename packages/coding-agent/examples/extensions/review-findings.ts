@@ -45,7 +45,6 @@ const RemediationEventSchema = Type.Object(
 	{
 		type: Type.Literal("remediation"),
 		rootClass: RootClassSchema,
-		affectedAbstraction: TextSchema,
 		remediationSha: ShaSchema,
 		findingIds: Type.Array(TextSchema, { minItems: 1 }),
 	},
@@ -112,7 +111,6 @@ export interface RecordFindingInput {
 
 export interface RecordRemediationInput {
 	rootClass: string;
-	affectedAbstraction: string;
 	remediationSha: string;
 }
 
@@ -205,11 +203,7 @@ export function clusterFindings(state: ReviewState): FindingCluster[] {
 			}
 		}
 		const affectedAbstraction = Array.from(
-			new Set(
-				events.map((event) =>
-					event.type === "finding" ? event.finding.affectedAbstraction : event.affectedAbstraction,
-				),
-			),
+			new Set(events.flatMap((event) => (event.type === "finding" ? [event.finding.affectedAbstraction] : []))),
 		).join(", ");
 		clusters.push({
 			rootClass,
@@ -318,28 +312,21 @@ export function recordRemediation(state: ReviewState, input: RecordRemediationIn
 		throw new Error("Architecture checkpoint active: PAUSE_LOCAL_REMEDIATION");
 	}
 	const rootClass = normalizedRootClass(input.rootClass);
-	const affectedAbstraction = normalizedText(input.affectedAbstraction, "affectedAbstraction");
 	const remediationSha = exactSha(input.remediationSha, "remediationSha");
 	if (
 		state.events.some(
 			(event) =>
-				event.type === "remediation" &&
-				event.rootClass === rootClass &&
-				event.affectedAbstraction === affectedAbstraction &&
-				event.remediationSha === remediationSha,
+				event.type === "remediation" && event.rootClass === rootClass && event.remediationSha === remediationSha,
 		)
 	) {
-		throw new Error("This remediation SHA is already recorded for the cluster");
+		throw new Error("This remediation SHA is already recorded for the root class");
 	}
 	const findings = materializedFindings(state).filter(
 		(finding) =>
-			finding.rootClass === rootClass &&
-			finding.affectedAbstraction === affectedAbstraction &&
-			finding.severity === "blocking" &&
-			finding.disposition === "confirmed",
+			finding.rootClass === rootClass && finding.severity === "blocking" && finding.disposition === "confirmed",
 	);
 	if (findings.length === 0) {
-		throw new Error("No confirmed blocking findings in this cluster require remediation");
+		throw new Error("No confirmed blocking findings in this root class require remediation");
 	}
 	if (findings.some((finding) => finding.reviewSha === remediationSha)) {
 		throw new Error("remediationSha must differ from the reviewed SHA it remediates");
@@ -347,7 +334,6 @@ export function recordRemediation(state: ReviewState, input: RecordRemediationIn
 	const event: RemediationEvent = {
 		type: "remediation",
 		rootClass,
-		affectedAbstraction,
 		remediationSha,
 		findingIds: findings.map((finding) => finding.id),
 	};
@@ -370,7 +356,6 @@ export function replayReviewEvent(state: ReviewState, value: unknown): ReviewSta
 			.filter(
 				(finding) =>
 					finding.rootClass === value.rootClass &&
-					finding.affectedAbstraction === value.affectedAbstraction &&
 					finding.severity === "blocking" &&
 					finding.disposition === "confirmed",
 			)
@@ -496,7 +481,6 @@ export default function reviewFindingsExtension(pi: ExtensionAPI) {
 				} else if (params.action === "record_remediation") {
 					transition = recordRemediation(state, {
 						rootClass: required(params.rootClass, "rootClass"),
-						affectedAbstraction: required(params.affectedAbstraction, "affectedAbstraction"),
 						remediationSha: required(params.remediationSha, "remediationSha"),
 					});
 				} else {

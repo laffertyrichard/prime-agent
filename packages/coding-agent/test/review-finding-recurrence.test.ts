@@ -39,7 +39,6 @@ function add(state: ReviewState, input: RecordFindingInput): ReviewState {
 function remediate(state: ReviewState, remediationSha: string): ReviewState {
 	return recordRemediation(state, {
 		rootClass: ROOT_CLASS,
-		affectedAbstraction: ABSTRACTION,
 		remediationSha,
 	}).state;
 }
@@ -165,13 +164,31 @@ describe("review finding recurrence experiment", () => {
 		expect(cluster.blockingRecurrenceCount).toBe(1);
 	});
 
+	it("one root-class remediation closes simultaneous manifestations", () => {
+		let state = add(createReviewState(), finding());
+		state = add(
+			state,
+			finding({
+				id: "finding-2",
+				reviewerRole: "claude-architecture",
+				affectedAbstraction: "central message normalization",
+			}),
+		);
+		state = remediate(state, sha("2"));
+
+		expect(assessReviewState(state, sha("2")).remediatedFindings.map((item) => item.id)).toEqual([
+			"finding-1",
+			"finding-2",
+		]);
+	});
+
 	it("rejects same-commit and reused remediation identities", () => {
 		const initial = add(createReviewState(), finding());
 		expect(() => remediate(initial, sha("1"))).toThrow("must differ from the reviewed SHA");
 
 		let state = remediate(initial, sha("2"));
 		state = add(state, finding({ id: "finding-2", reviewSha: sha("3") }));
-		expect(() => remediate(state, sha("2"))).toThrow("already recorded for the cluster");
+		expect(() => remediate(state, sha("2"))).toThrow("already recorded for the root class");
 	});
 
 	it("rejects abbreviated SHAs and malformed persisted events", () => {

@@ -26,6 +26,7 @@
   "contaminatedFindingIds": [
     "F06",
     "F08",
+    "F13",
     "F15",
     "F18",
     "F19",
@@ -33,6 +34,7 @@
     "F21",
     "F22",
     "F23",
+    "F24",
     "F25"
   ],
   "sensitivityAnalysis": {
@@ -40,6 +42,7 @@
     "excludedFindingIds": [
       "F06",
       "F08",
+      "F13",
       "F15",
       "F18",
       "F19",
@@ -47,17 +50,18 @@
       "F21",
       "F22",
       "F23",
+      "F24",
       "F25"
     ],
-    "remainingFindingCount": 15,
-    "remainingNonAmbiguousPairCount": 9,
+    "remainingFindingCount": 13,
+    "remainingNonAmbiguousPairCount": 7,
     "conditionB": {
       "codexFalseCheckpointRate": 0,
       "codexMissedCheckpointRate": 0,
       "claudeFalseCheckpointRate": 0,
       "claudeMissedCheckpointRate": 0
     },
-    "conditionAExactLabelAgreement": 0.06666666666666667,
+    "conditionAExactLabelAgreement": 0.07692307692307693,
     "conditionBExactLabelAgreement": 0
   },
   "reviewRounds": [
@@ -70,6 +74,11 @@
       "reviewSha": "ade65d7dd16f6907d5726fbd3c4d8e110cd996e3",
       "codexRawSha256": "0f3a4b319a22d5fbb3eea8d93097c6bf9c965a537b4f688f9fd723c0ce4dea77",
       "claudeRawSha256": "70faeffeaf4629e6e4acd3ac311d1f508c45cafa3bd7a21d404997a13fd356d6"
+    },
+    {
+      "reviewSha": "c1e77d418ebde9ef0b5ac40c18200086a0c0f8df",
+      "codexRawSha256": "0ee49564dc8f70a2877dd5b99e157f364c99e21568bfa09b8f9599b8093e94d3",
+      "claudeRawSha256": "f8bb1280fa7492e79f1041e01e0d735422be6e3516a4039345643b6e8b09a9c8"
     }
   ],
   "additionalValidityDefects": [
@@ -77,8 +86,13 @@
       "findingId": "F23",
       "defect": "NON_ATOMIC_SOURCE_EXCERPT",
       "detail": "The excerpt combines advisories separately represented as F24 and F25."
+    },
+    {
+      "findingId": "F24",
+      "defect": "NON_ATOMIC_SOURCE_EXCERPT",
+      "detail": "The excerpt includes the manifestation separately represented as F25."
     }
   ],
   "initialReviewSha": "71e9abc4619442e7cacdcdad3364e9cad487d95a",
-  "latestReviewSha": "ade65d7dd16f6907d5726fbd3c4d8e110cd996e3"
+  "latestReviewSha": "c1e77d418ebde9ef0b5ac40c18200086a0c0f8df"
 }

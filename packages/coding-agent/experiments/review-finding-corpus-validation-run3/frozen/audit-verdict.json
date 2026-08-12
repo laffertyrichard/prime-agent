@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "corpusVersion": "frozen-1",
+  "verdict": "PASS_PENDING_EXACT_SHA_REVIEW",
+  "retainedItemCount": 22,
+  "round1": {
+    "blindCorpusSha256": "dbe19e63c8ebb97e4698dd7ad5f26833d5c4450cc219855b2f57597ec4b5aaed",
+    "codexCorpusPass": false,
+    "claudeCorpusPass": true,
+    "disagreements": 10,
+    "resolution": "All disagreements adjudicated; failed items rewritten and re-audited or excluded."
+  },
+  "round2": {
+    "blindCorpusSha256": "cf9ff7daf90217134586f8e5485c8d405b939d35f69aeb3fe8b165f7dc2bfa8b",
+    "codexCorpusPass": false,
+    "claudeCorpusPass": true,
+    "disagreements": 2,
+    "resolution": "Both items in the disputed duplicate pair were excluded."
+  },
+  "retainedItemGateCounts": {
+    "codex": {
+      "atomicityPass": 22,
+      "leakagePass": 22,
+      "duplicatePass": 22
+    },
+    "claude": {
+      "atomicityPass": 22,
+      "leakagePass": 22,
+      "duplicatePass": 22
+    }
+  },
+  "unresolvedItemDisagreements": 0,
+  "ambiguousGoldCases": 0,
+  "excludedGoldCases": 4,
+  "independence": {
+    "goldWithheldFromAuditors": true,
+    "provenanceWithheldFromAuditors": true,
+    "auditorOutputsMutuallyHiddenUntilBothCompleted": true,
+    "freshTemporaryDirectoryPerInvocation": true
+  },
+  "modelExecution": {
+    "corpusValidityAuditInvocations": 4,
+    "classificationInvocations": 0,
+    "classificationOutputs": 0,
+    "outputsExposedBeforeAuditsCompleted": false
+  },
+  "notes": [
+    "Claude Code reported claude-opus-5 as the canonical primary audit model and claude-fable-5 as an auxiliary model in both audit envelopes. No audit assigned root classes or pair labels.",
+    "The final corpus is a strict subset of the independently re-audited candidate. Every retained item received PASS from both auditors on all three item gates."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "candidateCommit": "63115c3e60bd58de6e5247c852a297989552b519",
+  "blindCorpusSha256": "cf9ff7daf90217134586f8e5485c8d405b939d35f69aeb3fe8b165f7dc2bfa8b",
+  "codex": {
+    "toolVersion": "codex-cli 0.146.0",
+    "model": "gpt-5.6-sol",
+    "exitCode": 0,
+    "corpusPass": false,
+    "rawFinalSha256": "b13f1f865afb42b76a025e25a87c155722cca62e376bc1f47c18fdbb51117844"
+  },
+  "claude": {
+    "toolVersion": "Claude Code 2.1.228",
+    "requestedModel": "claude-opus-5",
+    "canonicalPrimaryModel": "claude-opus-5",
+    "auxiliaryModelObserved": "claude-fable-5",
+    "promptSuggestionsDisabled": true,
+    "exitCode": 0,
+    "corpusPass": true,
+    "rawEnvelopeSha256": "c7e86cd5f0f5f61406bda36f903ebf4d4a8fb890faa35fefedc76857f25e4c71",
+    "normalizedFinalSha256": "ae30f6700728ccc46dff258e5fe34eea50e8f99b6faf6cd477366182535a7bce"
+  },
+  "classificationInvocationCount": 0,
+  "classificationOutputCount": 0
+}

@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "experiment": "review-finding-corpus-validation-run3",
+  "phase": "FROZEN_PENDING_EXACT_SHA_REVIEW",
+  "validationVerdict": "PASS_PENDING_EXACT_SHA_REVIEW",
+  "branch": "experiment/review-finding-corpus-validation-run3",
+  "baseSha": "57283d1b01378f12bbb05e19653cdfa89a1aa796",
+  "boundaries": {
+    "run1Sha": "8cc25603ae5115713dc69d7ebdb913994ce291d5",
+    "run2Branch": "experiment/review-finding-classification-run2",
+    "run2Sha": "57283d1b01378f12bbb05e19653cdfa89a1aa796",
+    "pr2Modified": false
+  },
+  "instrument": {
+    "corpusVersion": "frozen-1",
+    "itemCount": 22,
+    "blindCorpus": "frozen/blind-corpus.json",
+    "blindCorpusSha256": "b7b3f5cab0bc588d0a33f560275ff599fcef484287f07c078bc4b763b8043e9b",
+    "provenanceCorpus": "frozen/provenance-corpus.json",
+    "provenanceCorpusSha256": "5523196519c05c5e57d6ab9d3fecb4400d0e062f8e81d6774c536f90d860f0a6",
+    "goldPairs": "frozen/gold-pairs.json",
+    "goldPairsSha256": "52d52e3f484a067b5a123864cdb18d36df3de22975b35209713ee5ecab9cae2a",
+    "goldPairCount": 16,
+    "sameRootPairs": 3,
+    "differentRootPairs": 13,
+    "ambiguousGoldCases": 0,
+    "rubric": "frozen/corpus-validity-rubric.md",
+    "rubricSha256": "8d1c514ba183ccb7323a702744f029cf74e7b36549f66148439bac6215b1a39c",
+    "mechanicalValidation": "frozen/mechanical-validation.json",
+    "mechanicalValidationSha256": "f4d4860cad537122d8aff2b77e7b26f20bc28b253e07c4abdabd1b91155892f8"
+  },
+  "audit": {
+    "draftCommit": "0b432f72e",
+    "candidateCommit": "63115c3e6",
+    "rounds": {
+      "round-1": {
+        "audits/round-1/adjudication.json": "bf2e225c02441bb99585662dcf00e468db60ff7f95a86fae74521916dbe4e933",
+        "audits/round-1/claude-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "audits/round-1/claude-final.json": "947a97058c54fa77f56cb89522eabc2a0cc2d336b632e7d1d5147f00bec9a530",
+        "audits/round-1/claude-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "audits/round-1/claude.json": "d2940e4bd0ec7759357ec6a54585368cf9cf3f668a2d23a7ba35d5595a0c8b53",
+        "audits/round-1/codex-events.jsonl": "1ea7182ff2b3e3f9e2838e9355f3ff4b775fa84781be9f07e22159d8f8cfb572",
+        "audits/round-1/codex-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "audits/round-1/codex-final.json": "fd8c5e96b9209851b6c89a5b2a3c65bd2cd3d5393c16b9165788009b04e613d7",
+        "audits/round-1/codex-stderr.txt": "7fd4656a2e3a03b8aad9667a24c8a85287e6792c7fd47d040488ea79f2ee6787",
+        "audits/round-1/metadata.json": "5f8e21037fa78cdf801f135235d688acd9acb2e472f03e191146f5ad396546df"
+      },
+      "round-2": {
+        "audits/round-2/adjudication.json": "0d01636e33db6dcaf79658d554b8772dabb333d56c5b9a57e77178ac18601b94",
+        "audits/round-2/claude-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "audits/round-2/claude-final.json": "ae30f6700728ccc46dff258e5fe34eea50e8f99b6faf6cd477366182535a7bce",
+        "audits/round-2/claude-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "audits/round-2/claude.json": "c7e86cd5f0f5f61406bda36f903ebf4d4a8fb890faa35fefedc76857f25e4c71",
+        "audits/round-2/codex-events.jsonl": "699c88e20f2c93af57958cd6c336ada1856a8c2a808b88cadd9e9dba29fbe6c1",
+        "audits/round-2/codex-exit.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "audits/round-2/codex-final.json": "b13f1f865afb42b76a025e25a87c155722cca62e376bc1f47c18fdbb51117844",
+        "audits/round-2/codex-stderr.txt": "ee438a5f52e8a067d860bc90f3ffc5d94e33da344d3b5f9056f6aa443df61f4a",
+        "audits/round-2/metadata.json": "6e68609f636a746c2161e95130f0b73ca7a2cbb853e42c174c134877348c0c2e"
+      }
+    },
+    "reviewers": {
+      "codex": {
+        "toolVersion": "codex-cli 0.146.0",
+        "model": "gpt-5.6-sol"
+      },
+      "claude": {
+        "toolVersion": "Claude Code 2.1.228",
+        "requestedModel": "claude-opus-5",
+        "canonicalPrimaryModel": "claude-opus-5",
+        "auxiliaryModelObserved": "claude-fable-5"
+      }
+    },
+    "retainedItemGatePasses": {
+      "codex": 22,
+      "claude": 22
+    },
+    "unresolvedDisagreements": 0
+  },
+  "executionBoundary": {
+    "classificationAuthorized": false,
+    "classificationInvocationCount": 0,
+    "classificationOutputCount": 0,
+    "auditorOutputsMutuallyHiddenUntilBothCompletedEachRound": true,
+    "goldAndProvenanceWithheldFromAuditors": true
+  },
+  "sourceArtifactSha256": {
+    "run-1/claude-raw.txt": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+    "run-2/claude-raw.txt": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+    "run-2/codex-raw.txt": "82c466bf99f2ca0e981952091ac296d7ab3797fe947d5bed2da5d97b9041b80b",
+    "run-3/claude-raw.txt": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f"
+  },
+  "laterRuns": {
+    "authorizationRequired": true,
+    "cleanReplicationControl": {
+      "separateRunRequired": true,
+      "codexModel": "gpt-5.6-sol",
+      "claudeModel": "claude-opus-4-6",
+      "constraint": "Change the corpus only; preserve prior model configuration."
+    },
+    "opus5Arm": {
+      "separateRunRequired": true,
+      "claudeModel": "claude-opus-5",
+      "constraint": "Run only after the clean replication control is frozen; use the identical corpus and protocol."
+    }
+  }
+}

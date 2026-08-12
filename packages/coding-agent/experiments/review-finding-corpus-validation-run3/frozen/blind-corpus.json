@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "corpusVersion": "frozen-1",
+  "itemCount": 22,
+  "items": [
+    {
+      "itemId": "item-35c3b67009bb",
+      "manifestation": "An observation continues contributing to recurrence counts after later evidence contradicts it."
+    },
+    {
+      "itemId": "item-3966afa09ad1",
+      "manifestation": "An error produced by the terminal recurrence state does not identify which aggregate group triggered that state."
+    },
+    {
+      "itemId": "item-bbb7c7ac73c2",
+      "manifestation": "Total event-copy work grows quadratically with history length."
+    },
+    {
+      "itemId": "item-b7c6f6de4069",
+      "manifestation": "Two otherwise identical records whose abstraction text differs only by capitalization produce separate aggregate groups."
+    },
+    {
+      "itemId": "item-a588e8cfef87",
+      "manifestation": "A constant three-line response is passed through a truncation check configured for 2000 lines or 50 KB."
+    },
+    {
+      "itemId": "item-e5f809536c80",
+      "manifestation": "A record added after a correction is counted as a later recurrence even when its commit predates that correction."
+    },
+    {
+      "itemId": "item-8e66ef6bf977",
+      "manifestation": "A branch tests whether at least one occurrence exists in a state where the surrounding operation cannot exist without a prior occurrence."
+    },
+    {
+      "itemId": "item-a36bcf847909",
+      "manifestation": "Restoration acceptance changes when object-key order differs after the storage round trip."
+    },
+    {
+      "itemId": "item-9c3adb9fcc4e",
+      "manifestation": "Every distinct abstraction description is concatenated into one display field without a length or item bound."
+    },
+    {
+      "itemId": "item-72de0587137f",
+      "manifestation": "One correction commit can advance the recurrence counter twice when recorded under two descriptive abstractions."
+    },
+    {
+      "itemId": "item-b0d3b9485cf6",
+      "manifestation": "An unresolved record from an earlier commit is displayed in a collection named stale findings."
+    },
+    {
+      "itemId": "item-e617c2f887d8",
+      "manifestation": "When more than one aggregate group meets the reporting condition, the result includes only the first group."
+    },
+    {
+      "itemId": "item-4711f03203e5",
+      "manifestation": "A terminal recurrence state reached by one aggregate group prevents correction requests for unrelated groups."
+    },
+    {
+      "itemId": "item-32ff81ae4886",
+      "manifestation": "State restoration fails for historical events after validation rules change."
+    },
+    {
+      "itemId": "item-947ca2472899",
+      "manifestation": "Two open records that differ only in descriptive abstraction text require separate correction events even though occurrence aggregation treats them as one category."
+    },
+    {
+      "itemId": "item-b3bfdbc72ca4",
+      "manifestation": "The system computes four head-based finding partitions that the recurrence decision does not read."
+    },
+    {
+      "itemId": "item-d1870bd04a50",
+      "manifestation": "After an earlier observation is closed, its review commit identifier can later be recorded as a correction commit identifier."
+    },
+    {
+      "itemId": "item-641b99358635",
+      "manifestation": "Two abstraction descriptions containing commas can produce the same comma-joined display text as a different list of descriptions."
+    },
+    {
+      "itemId": "item-5f2f1d019506",
+      "manifestation": "Restoration recomputes the expected record identifiers before a canonical event comparison repeats the same mismatch check."
+    },
+    {
+      "itemId": "item-1b9f06e7b080",
+      "manifestation": "The extension exports thirteen symbols that no consumer imports."
+    },
+    {
+      "itemId": "item-499a69824f00",
+      "manifestation": "The set reported as current-head findings changes according to the commit identifier of the event just recorded rather than an independently supplied repository head."
+    },
+    {
+      "itemId": "item-6b54c6516c14",
+      "manifestation": "A read-only status request returns an error after any historical event fails restoration."
+    }
+  ]
+}

@@ -168,10 +168,6 @@ function materializedFindings(state: ReviewState): ReviewFinding[] {
 	});
 }
 
-function clusterKey(rootClass: string, affectedAbstraction: string): string {
-	return JSON.stringify([rootClass, affectedAbstraction]);
-}
-
 export function clusterFindings(state: ReviewState): FindingCluster[] {
 	const groups = new Map<string, ReviewEvent[]>();
 	for (const event of state.events) {
@@ -182,14 +178,11 @@ export function clusterFindings(state: ReviewState): FindingCluster[] {
 			continue;
 		}
 		const rootClass = event.type === "finding" ? event.finding.rootClass : event.rootClass;
-		const affectedAbstraction =
-			event.type === "finding" ? event.finding.affectedAbstraction : event.affectedAbstraction;
-		const key = clusterKey(rootClass, affectedAbstraction);
-		groups.set(key, [...(groups.get(key) ?? []), event]);
+		groups.set(rootClass, [...(groups.get(rootClass) ?? []), event]);
 	}
 
 	const clusters: FindingCluster[] = [];
-	for (const [key, events] of groups) {
+	for (const [rootClass, events] of groups) {
 		const seenReviewShas = new Set<string>();
 		const findingIds: string[] = [];
 		let occurrenceCount = 0;
@@ -211,7 +204,13 @@ export function clusterFindings(state: ReviewState): FindingCluster[] {
 				remediatedSinceOccurrence = false;
 			}
 		}
-		const [rootClass, affectedAbstraction] = JSON.parse(key) as [string, string];
+		const affectedAbstraction = Array.from(
+			new Set(
+				events.map((event) =>
+					event.type === "finding" ? event.finding.affectedAbstraction : event.affectedAbstraction,
+				),
+			),
+		).join(", ");
 		clusters.push({
 			rootClass,
 			affectedAbstraction,
@@ -232,8 +231,7 @@ function checkpointForState(state: ReviewState): ArchitectureCheckpoint | undefi
 			event.type !== "finding" ||
 			event.finding.severity !== "blocking" ||
 			event.finding.disposition === "rejected" ||
-			event.finding.rootClass !== cluster.rootClass ||
-			event.finding.affectedAbstraction !== cluster.affectedAbstraction
+			event.finding.rootClass !== cluster.rootClass
 		) {
 			return [];
 		}
@@ -474,7 +472,7 @@ export default function reviewFindingsExtension(pi: ExtensionAPI) {
 			"Record exact-SHA review findings and remediation, or assess deterministic recurrence at an exact head SHA.",
 		promptSnippet: "Stop local remediation when a confirmed blocking root class recurs twice after remediation",
 		promptGuidelines: [
-			"Use an explicit UPPER_SNAKE_CASE root class and shared affected abstraction; this tool does not infer similarity.",
+			"Use an explicit UPPER_SNAKE_CASE root class; recurrence identity uses that class while affected abstraction remains descriptive.",
 			"Record reproduced findings as confirmed and falsified findings as rejected.",
 			"A SHA proves identity only; independently verify ancestry, reviewer authority, and evidence validity.",
 		],

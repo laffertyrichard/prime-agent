@@ -154,11 +154,13 @@ describe("review finding recurrence experiment", () => {
 				id: "finding-2",
 				reviewSha: sha("3"),
 				reviewerRole: "claude-architecture",
+				affectedAbstraction: "central message normalization",
 				evidence: "message-normalizer.ts leaves a central consumer assuming non-null blocks",
 			}),
 		);
 		const cluster = assessReviewState(state, sha("3")).clusters[0];
 
+		expect(cluster.affectedAbstraction).toBe("assistant content normalization, central message normalization");
 		expect(cluster.findingIds).toEqual(["finding-1", "finding-2"]);
 		expect(cluster.blockingRecurrenceCount).toBe(1);
 	});

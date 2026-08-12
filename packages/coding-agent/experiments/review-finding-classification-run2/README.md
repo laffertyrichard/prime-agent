@@ -12,6 +12,10 @@ This directory is fork-only experimental evidence. It does not change Prime core
 
 The corpus copies verbatim excerpts from authorized Run 1 Codex and Claude review artifacts. Blind inputs remove solution text, prior root-class labels, dispositions, and one absolute local path prefix. Provenance and source hashes are in `corpus.json` and `protocol.json`.
 
+## Pre-inference schema compatibility correction
+
+The first four invocations produced no model output: both CLIs rejected the response schemas before inference. `const` was replaced with equivalent typed single-value `enum` constraints and the unsupported draft declaration was removed. Failed command artifacts are preserved in `results/failed-attempt-0`; prompts, corpus, gold, metrics, thresholds, and model selectors did not change.
+
 ## Independence
 
 Run each command in a fresh temporary directory. Do not place `gold-pairs.json`, repository files, or another reviewer output in that directory. Freeze all four raw outputs before normalization or evaluation.

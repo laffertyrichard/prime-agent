@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "experiment": "review-finding-classification-run2",
-  "frozenAtUtc": "2026-08-12T21:41:35.288840+00:00",
+  "frozenAtUtc": "2026-08-12T21:43:06.119102+00:00",
   "branch": "experiment/review-finding-classification-run2",
   "baseSha": "8cc25603ae5115713dc69d7ebdb913994ce291d5",
   "question": "Can independent Codex and Claude reviews assign stable, generalizable architectural root classes to real findings well enough for deterministic recurrence detection to be useful?",
@@ -31,14 +31,14 @@
       "prompt": "prompts/condition-a.txt",
       "promptSha256": "a9e93569fb0dda7c0fb5b7fbb88b2b69e654dadcd4fdc99ccf9ae1cdc8af3a5e",
       "schema": "schemas/condition-a.schema.json",
-      "schemaSha256": "4e98be25ee0af3bc14cf3319eb7f3938046ccb2bad590cca02e646b55c4d2773",
+      "schemaSha256": "d344043b375569c5511fe9a9f95db384de1b02367261c8429e3fb5d6e358a8ac",
       "pairDecisionSource": "Exact equality after frozen formatting-only root-class normalization."
     },
     "B": {
       "prompt": "prompts/condition-b.txt",
       "promptSha256": "26f15aaacf0e288e8a67ab4ce858a78d04cd3242fbeb4a3b08cf76015428457a",
       "schema": "schemas/condition-b.schema.json",
-      "schemaSha256": "5beee1cc6c070dd698d05c34ecb7666e2b31eb49a3cc6e6c373b441644bd6ced",
+      "schemaSha256": "8b5bf17b8da4050ed07e8148e64106513e81df98c4b59756c1321bf152626a7e",
       "pairDecisionSource": "Explicit reviewer pair decisions; raw-label replay remains separately measured."
     }
   },
@@ -95,5 +95,8 @@
     "normalize-results.ts": "50b663e3f84208bb279fa2de2efe64fef612f404f3602b5b82c07766628e4f09",
     "run1-import-stubs.ts": "43fa8ddb9c00202e11152b89917ce3e39f40748e4d37624f67eb1f07dc4cdbec",
     "tsconfig.json": "4762f768db5047906a044d61bd7960e2bf998d83465bdc75351ef8b843c627ed"
-  }
+  },
+  "executionNotes": [
+    "An initial no-output invocation was rejected by both CLIs before inference because the frozen JSON Schemas used unsupported draft/const syntax. The schemas were compatibility-adjusted without changing fields, prompts, metrics, gold, or model selectors; failed command artifacts are preserved under results/failed-attempt-0."
+  ]
 }

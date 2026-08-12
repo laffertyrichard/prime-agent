@@ -73,5 +73,10 @@
     "F24",
     "F25"
   ],
-  "additionalValidityDefectsStatus": "NON_EXHAUSTIVE_EXAMPLES_ONLY"
+  "additionalValidityDefectsStatus": "NON_EXHAUSTIVE_EXAMPLES_ONLY",
+  "architectureConclusion": {
+    "value": "CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED",
+    "qualification": "Run 2 provides no clean support because the blind instrument was invalidated by an unclosed contamination boundary; this is not evidence that the hypothesis is false."
+  },
+  "smallestJustifiedNextExperiment": "Corpus validation only: independently audit a fresh atomic corpus and prove labels, severity, dispositions, recommendations, and duplicate manifestations are absent before any model runs."
 }

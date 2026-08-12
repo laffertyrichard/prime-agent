@@ -176,7 +176,7 @@
     "results/classifications.json": "1eddbffe05a3c98f66d09122ea9dd6cc0386930c060a4bea78b81a2025682530",
     "results/metrics.json": "89ce5e92dbe34058886a5a3306feb426a110fe8c45c6ed61e146f1f114eb6aa7",
     "results/report.md": "5eb9ea8c99e4b5625674062dd5368343fdff119ae599ab402c905c66ac56e59e",
-    "results/peer-review.json": "c535231faefcc73959b29eb3af0b0a5d9f6dacd75db5265fbd83e4a29cfb3aea"
+    "results/peer-review.json": "f91ab976f4c93f9bd6fde5c0a1a091a0c12e06dde4a4e4110d3b4eb67a59183a"
   },
   "failedAttemptSha256": {
     "results/failed-attempt-0/condition-a-claude-exit.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",

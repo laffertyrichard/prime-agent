@@ -175,8 +175,8 @@
     "results/raw/condition-b-codex-stderr.txt": "e6e570055f80198eaf8b86f2c425be76d8076f418e84df4d83824ec882bd17dc",
     "results/classifications.json": "1eddbffe05a3c98f66d09122ea9dd6cc0386930c060a4bea78b81a2025682530",
     "results/metrics.json": "89ce5e92dbe34058886a5a3306feb426a110fe8c45c6ed61e146f1f114eb6aa7",
-    "results/report.md": "3356493403977c74e3ace07fe82a114bf939c07bb27740adb5e7e653dc572e14",
-    "results/peer-review.json": "d1e5af07a044b53cff8e2c53d06650846599c544843d5c5548622ad9e43be2d5"
+    "results/report.md": "1455f0eac98fcb11b3dfa558d3b325997577531bfcbea1d55df3b28977a9f795",
+    "results/peer-review.json": "8713b8918b3566e3766db6cfa7f12f9d1bed57b5256b144226a753a0eda2cbf9"
   },
   "failedAttemptSha256": {
     "results/failed-attempt-0/condition-a-claude-exit.txt": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",

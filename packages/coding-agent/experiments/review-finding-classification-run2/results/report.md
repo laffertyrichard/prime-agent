@@ -4,7 +4,7 @@
 
 **CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED**
 
-The minimal rubric improved conceptual grouping, but the frozen operational thresholds did not all pass. Codex produced a false checkpoint rate of 11.1% under explicit Condition B pair decisions; Claude missed 16.7% of gold same-root checkpoints. Classification difficulty did not reveal a missing core capability, so `CORE_HOOK_EVIDENCE_REQUIRED` is not justified.
+The frozen evaluator selects this conclusion because the operational thresholds did not all pass. However, exact-SHA peer review activated the stop condition for prompt leakage and label imitation: the corpus is not a valid blind test, so Run 2 does not provide clean evidence for or against autonomous classification. `CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED` means the hypothesis is unsupported by this run, not disproven. Classification difficulty did not reveal a missing core capability, so `CORE_HOOK_EVIDENCE_REQUIRED` is not justified.
 
 ## Scope and frozen protocol
 
@@ -54,17 +54,19 @@ Errors were mostly substantive pair-boundary disagreements, not formatting diffe
 
 `evaluate.ts` imported the Run 1 `recordFinding`, `recordRemediation`, and `assessReviewState` functions unchanged. For each pair it replayed occurrence, remediation, candidate recurrence, remediation, and a third manifestation. Raw-label and explicit-decision-gated replay metrics matched the corresponding equality/pair predictions. Passing replay proves deterministic projection of supplied identity only; it does not validate classification.
 
-## Exact-SHA peer review and contamination sensitivity
+## Exact-SHA peer review and stop condition
 
-Independent reviews inspected `8cc25603ae5115713dc69d7ebdb913994ce291d5..71e9abc4619442e7cacdcdad3364e9cad487d95a`:
+Independent reviews inspected exact frozen SHAs and found corpus leakage:
 
-- Codex correctness review (`codex-cli 0.146.0`, `gpt-5.6-sol`) found P1 `BLIND_CORPUS_REDACTION_FAILURE`.
-- Claude architecture review (Claude Code `2.1.228`, `claude-opus-4-6`) independently found P1 `INCOMPLETE_BLIND_INPUT_REDACTION` and still selected `CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED`.
+- At `71e9abc4619442e7cacdcdad3364e9cad487d95a`, Codex found P1 `BLIND_CORPUS_REDACTION_FAILURE`; Claude independently found P1 `INCOMPLETE_BLIND_INPUT_REDACTION`.
+- At `ade65d7dd16f6907d5726fbd3c4d8e110cd996e3`, Codex found the recorded contamination scope was undercounted; Claude independently found omitted contamination in F18.
 
-F19 retained an inline P2 disposition, and F20–F22 retained prior root-class labels; F21 also retained solution text. This contradicts the blind-redaction claim and contaminates 4/25 findings. It likely biases agreement upward: 9/12 reviewer-condition assignments for F20–F22 copied the exposed labels exactly. These inputs and raw outputs remain unchanged as evidence; the defect is not silently repaired after results were visible.
+The blind corpus retained explicit solution/recommendation text in F06, F08, F15, F18, F21, F23, and F25; prior severity/disposition text in F18 and F19; and prior root-class labels in F20–F22. F23 also accidentally combines the source text of multiple distinct advisories, including the manifestations separately represented by F24 and F25. This contradicts the frozen redaction claim and creates label imitation and non-atomic inputs. The inputs and raw outputs remain unchanged as evidence; they were not repaired after results became visible.
 
-A review-time sensitivity analysis excluding all pairs touching F19–F22 still fails the frozen thresholds: Codex Condition B false checkpoint rate is 1/15 = 6.7%, Claude missed checkpoint rate is 1/4 = 25%, Condition A exact-label agreement is 2/21 = 9.5%, and Condition B exact-label agreement is 0/21. The negative conclusion is therefore conservative and survives complete excision, but Run 2 cannot be described as a fully blind experiment.
+The earlier four-item excision was incomplete. Excluding every currently identified contaminated finding leaves only 15 findings and 9 non-ambiguous designated pairs; that post-hoc subset passes the Condition B checkpoint thresholds for both reviewers, while exact cross-reviewer labels remain 0/15. Because this exclusion is post-hoc, severely reduces the corpus, and removes controls, it neither rescues nor reverses Run 2. It demonstrates that the frozen negative metrics are not robust to the contamination boundary.
+
+Therefore the experiment stop condition is active: Run 2 measured prompt leakage or label imitation in material part rather than only root-cause recognition. Full-corpus metrics remain reproducible but are not clean hypothesis evidence. No further classifier execution or protocol tuning is justified in this run.
 
 ## Run 1 disposition and next experiment
 
-Keep Run 1 frozen as experimental evidence. Do not simplify or promote it yet, and do not add a core `ReviewFinding` entity. The smallest justified next experiment is a blinded human-gate study on a fresh corpus: reviewers make pairwise decisions only, a human approves disputed or low-confidence pairs before assigning a canonical label, and the same frozen false/missed checkpoint thresholds are applied. This tests whether a small approval boundary can make the extension useful without pretending autonomous architectural recognition.
+Keep Run 1 frozen as experimental evidence. Do not simplify or promote it yet, and do not add a core `ReviewFinding` entity. Abandon Run 2 as a decisive classification test while preserving it as failed-method evidence. The smallest justified next experiment is corpus-validation only: a fresh, independently audited set of atomic findings with machine checks and human review proving that labels, severity, dispositions, recommendations, and duplicated manifestations are absent before any model runs. Only after that gate should the same pairwise experiment be rerun.

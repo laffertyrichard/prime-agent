@@ -1,11 +1,9 @@
 {
   "schemaVersion": 1,
   "baseSha": "8cc25603ae5115713dc69d7ebdb913994ce291d5",
-  "reviewSha": "71e9abc4619442e7cacdcdad3364e9cad487d95a",
   "codex": {
     "toolVersion": "codex-cli 0.146.0",
     "model": "gpt-5.6-sol",
-    "rawArtifact": "/Users/mccully/.prime/agent/session-artifacts/019ff7e1-c290-758a-90ad-ec347e214225/reviews/run2-final/codex-raw.txt",
     "rawSha256": "2120e5bbd89ed0682d55576ef9f4baec86b636861e9382899694ca2bc084742d",
     "finding": {
       "severity": "P1",
@@ -16,7 +14,6 @@
   "claude": {
     "toolVersion": "Claude Code 2.1.228",
     "model": "claude-opus-4-6",
-    "rawArtifact": "/Users/mccully/.prime/agent/session-artifacts/019ff7e1-c290-758a-90ad-ec347e214225/reviews/run2-final/claude-raw.txt",
     "rawSha256": "fb2b510f550ddc2d61cdbaa657fa6932b35e4038e592a087b24a47104d25578d",
     "finding": {
       "severity": "P1",
@@ -25,25 +22,63 @@
     },
     "architectureConclusion": "CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED"
   },
-  "disposition": "ACCEPTED_AS_EXPERIMENT_LIMITATION_DO_NOT_RERUN_OR_REPAIR_AFTER_OUTPUTS",
+  "disposition": "STOP_CONDITION_PROMPT_LEAKAGE_OR_LABEL_IMITATION",
   "contaminatedFindingIds": [
+    "F06",
+    "F08",
+    "F15",
+    "F18",
     "F19",
     "F20",
     "F21",
-    "F22"
+    "F22",
+    "F23",
+    "F25"
   ],
   "sensitivityAnalysis": {
+    "status": "POST_HOC_DIAGNOSTIC_NOT_HYPOTHESIS_EVIDENCE",
     "excludedFindingIds": [
+      "F06",
+      "F08",
+      "F15",
+      "F18",
       "F19",
       "F20",
       "F21",
-      "F22"
+      "F22",
+      "F23",
+      "F25"
     ],
+    "remainingFindingCount": 15,
+    "remainingNonAmbiguousPairCount": 9,
     "conditionB": {
-      "codexFalseCheckpointRate": 0.06666666666666667,
-      "claudeMissedCheckpointRate": 0.25
+      "codexFalseCheckpointRate": 0,
+      "codexMissedCheckpointRate": 0,
+      "claudeFalseCheckpointRate": 0,
+      "claudeMissedCheckpointRate": 0
     },
-    "conditionAExactLabelAgreement": 0.09523809523809523,
+    "conditionAExactLabelAgreement": 0.06666666666666667,
     "conditionBExactLabelAgreement": 0
-  }
+  },
+  "reviewRounds": [
+    {
+      "reviewSha": "71e9abc4619442e7cacdcdad3364e9cad487d95a",
+      "codexRawSha256": "2120e5bbd89ed0682d55576ef9f4baec86b636861e9382899694ca2bc084742d",
+      "claudeRawSha256": "fb2b510f550ddc2d61cdbaa657fa6932b35e4038e592a087b24a47104d25578d"
+    },
+    {
+      "reviewSha": "ade65d7dd16f6907d5726fbd3c4d8e110cd996e3",
+      "codexRawSha256": "0f3a4b319a22d5fbb3eea8d93097c6bf9c965a537b4f688f9fd723c0ce4dea77",
+      "claudeRawSha256": "70faeffeaf4629e6e4acd3ac311d1f508c45cafa3bd7a21d404997a13fd356d6"
+    }
+  ],
+  "additionalValidityDefects": [
+    {
+      "findingId": "F23",
+      "defect": "NON_ATOMIC_SOURCE_EXCERPT",
+      "detail": "The excerpt combines advisories separately represented as F24 and F25."
+    }
+  ],
+  "initialReviewSha": "71e9abc4619442e7cacdcdad3364e9cad487d95a",
+  "latestReviewSha": "ade65d7dd16f6907d5726fbd3c4d8e110cd996e3"
 }

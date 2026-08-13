@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "executionAuthorized": false,
+  "sourceSha": "bd247656aeeabea6b347bc892c0bfb9236fd7663",
+  "shared": {
+    "conditions": [
+      "A",
+      "B"
+    ],
+    "freshSessionPerInvocation": true,
+    "outputsMutuallyHiddenUntilAllFourRawOutputsAreFrozen": true,
+    "toolCallsAllowed": false,
+    "sameEffectiveModelSetRequiredAcrossConditions": true
+  },
+  "reviewers": {
+    "codex": {
+      "tool": "codex-cli",
+      "toolVersion": "0.146.0",
+      "provider": "openai",
+      "requestedModel": "gpt-5.6-sol",
+      "reasoningEffort": "medium",
+      "allowedEffectiveModelSets": [
+        [
+          "gpt-5.6-sol"
+        ]
+      ]
+    },
+    "claude": {
+      "tool": "Claude Code",
+      "toolVersion": "2.1.228",
+      "provider": "anthropic",
+      "effort": "high",
+      "arms": {
+        "RUN_A_CONTROL": {
+          "requestedModel": "claude-opus-4-6",
+          "allowedEffectiveModelSets": [
+            [
+              "claude-opus-4-6"
+            ]
+          ]
+        },
+        "RUN_B_OPUS5": {
+          "requestedModel": "claude-opus-5",
+          "allowedEffectiveModelSets": [
+            [
+              "claude-opus-5"
+            ],
+            [
+              "claude-opus-5",
+              "claude-fable-5"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "failClosedRules": [
+    "Reject the arm before evaluation if a requested model, canonical model, tool version, prompt hash, schema hash, exit code, raw-artifact hash, or raw tool-use evidence differs from this preregistration.",
+    "Reject the arm if a reviewer has different effective model sets in Conditions A and B.",
+    "Reject any unlisted auxiliary model. Record every modelUsage entry with nonzero aggregate token use.",
+    "If Run B uses claude-fable-5, interpret Run B as an effective-composition change rather than a pure primary-model substitution."
+  ],
+  "evidenceLimits": {
+    "codex": "The CLI event stream attests token usage and absence of tool-event types but does not provider-attest the effective model; the requested selector and exact CLI version are the available identity evidence.",
+    "claude": "The raw Claude Code envelope must attest every modelUsage entry; metadata is rejected unless it matches the envelope exactly."
+  }
+}

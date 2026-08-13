@@ -81,7 +81,16 @@ So perfect performance needs at least 16 positives for a 0.80 lower bound, while
 
 Reconsider only after a new corpus version and a new preregistration meet that positive-class bar and freeze a one-miss-tolerant gate before execution. This record does not design that successor experiment.
 
-## 7. Limitations
+## 7. Independent exact-SHA review
+
+The initially committed decision record at `fe2a2e610e5c47f0e749c6fa3795440333d6651e` received mutually isolated, read-only reviews before either output was read:
+
+- Codex (`gpt-5.6-sol`) verdict: `NO_BLOCKER_OR_P1_FINDINGS`. Raw-output archive member `codex-review.txt`; SHA-256 `ef738b96ecbbba5d2bd18674a2ae4bf481f0dce1036badd6aece3a045386f4c0`.
+- Claude Code (`claude-opus-5`, high effort) verdict: `NO_BLOCKER_OR_P1_FINDINGS`. Raw-output archive member `claude-review.txt`; SHA-256 `cce52b104cbddd389e134aa0d87b209c05cc7e80e255ac09783b9978eb62a5d4`.
+
+Both reviewers independently verified the numeric claims, Wilson arithmetic, Run 5 entailment, frozen-artifact boundary, and disabled upstream push. Their byte-exact raw files are members of `repeated-review-defect-classification-decision-reviews/fe2a2e610e5c47f0e749c6fa3795440333d6651e/raw-outputs.tar`; individual hashes are collected in the adjacent `sha256.txt`. Adding this durable evidence necessarily creates a later commit; both reviewers must therefore also clear the final exact SHA before landing.
+
+## 8. Limitations
 
 - Run B was never executed.
 - Run 5 was never executed.

@@ -3253,6 +3253,7 @@ describe("AgentSession RLM session dir", () => {
 
 		expect(inspectable._ensureRlmSessionDir()).toBeUndefined();
 		const env = inspectable._rlmKernelEnv();
+		expect(env.RLM_SESSION_FILE).toBeUndefined();
 		expect(env.RLM_SESSION_DIR).toBeUndefined();
 		expect(env.RLM_HARNESS_STATE_DIR).toBeUndefined();
 		expect(env.RLM_GLOBAL_HARNESS_STATE_DIR).toBeDefined();
@@ -3270,9 +3271,11 @@ describe("AgentSession RLM session dir", () => {
 		const artifactDir = sessionManager.getSessionArtifactDir();
 		expect(artifactDir).toBeDefined();
 		expect(inspectable._ensureRlmSessionDir()).toBe(artifactDir);
-		expect(inspectable._rlmKernelEnv().RLM_SESSION_DIR).toBe(artifactDir);
-		expect(inspectable._rlmKernelEnv().RLM_HARNESS_STATE_DIR).toBe(join(artifactDir!, "harness"));
-		expect(inspectable._rlmKernelEnv().RLM_GLOBAL_HARNESS_STATE_DIR).toBeDefined();
+		const env = inspectable._rlmKernelEnv();
+		expect(env.RLM_SESSION_FILE).toBe(sessionManager.getSessionFile());
+		expect(env.RLM_SESSION_DIR).toBe(artifactDir);
+		expect(env.RLM_HARNESS_STATE_DIR).toBe(join(artifactDir!, "harness"));
+		expect(env.RLM_GLOBAL_HARNESS_STATE_DIR).toBeDefined();
 	});
 
 	it("points RLM_HARNESS_STATE_DIR at the session's own artifact dir for subagent sessions", () => {
@@ -3288,6 +3291,7 @@ describe("AgentSession RLM session dir", () => {
 		expect(artifactDir).toBeDefined();
 		expect(artifactDir).not.toBe(subDir);
 		const env = inspectable._rlmKernelEnv();
+		expect(env.RLM_SESSION_FILE).toBe(sessionManager.getSessionFile());
 		expect(env.RLM_SESSION_DIR).toBe(subDir);
 		expect(env.RLM_HARNESS_STATE_DIR).toBe(join(artifactDir!, "harness"));
 	});

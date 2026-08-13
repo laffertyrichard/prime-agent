@@ -50,7 +50,7 @@ export function buildSystemPrompt(options: BuildSystemPromptOptions): string {
 		harnessState,
 	} = options;
 	const promptCwd = cwd.replace(/\\/g, "/");
-	const promptMessagesPath = (messagesPath ?? "not persisted").replace(/\\/g, "/");
+	const promptMessagesPath = messagesPath?.replace(/\\/g, "/");
 
 	const now = new Date();
 	const year = now.getFullYear();

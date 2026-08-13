@@ -1,0 +1,183 @@
+{
+  "thresholds": {
+    "pairwiseF1": 0.8,
+    "interReviewerAgreement": 0.8,
+    "falseCheckpointRate": 0.05,
+    "missedCheckpointRate": 0.1,
+    "openExactLabelAgreement": 0.8
+  },
+  "conditions": {
+    "A": {
+      "exactNormalizedRootClassAgreement": 0.16,
+      "labelDerivedInterReviewerAgreement": 0.9583333333333334,
+      "codex": {
+        "labelDerivedPairMetrics": {
+          "tp": 2,
+          "fp": 0,
+          "tn": 18,
+          "fn": 4,
+          "precision": 1,
+          "recall": 0.3333333333333333,
+          "f1": 0.5,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0.6666666666666666
+        },
+        "rawLabelReplayMetrics": {
+          "tp": 2,
+          "fp": 0,
+          "tn": 18,
+          "fn": 4,
+          "precision": 1,
+          "recall": 0.3333333333333333,
+          "f1": 0.5,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0.6666666666666666
+        }
+      },
+      "claude": {
+        "labelDerivedPairMetrics": {
+          "tp": 3,
+          "fp": 0,
+          "tn": 18,
+          "fn": 3,
+          "precision": 1,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0.5
+        },
+        "rawLabelReplayMetrics": {
+          "tp": 3,
+          "fp": 0,
+          "tn": 18,
+          "fn": 3,
+          "precision": 1,
+          "recall": 0.5,
+          "f1": 0.6666666666666666,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0.5
+        }
+      }
+    },
+    "B": {
+      "exactNormalizedRootClassAgreement": 0.04,
+      "labelDerivedInterReviewerAgreement": 0.9583333333333334,
+      "codex": {
+        "labelDerivedPairMetrics": {
+          "tp": 6,
+          "fp": 0,
+          "tn": 18,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0
+        },
+        "rawLabelReplayMetrics": {
+          "tp": 6,
+          "fp": 0,
+          "tn": 18,
+          "fn": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0
+        },
+        "explicitPairMetrics": {
+          "tp": 6,
+          "fp": 2,
+          "tn": 16,
+          "fn": 0,
+          "precision": 0.75,
+          "recall": 1,
+          "f1": 0.8571428571428571,
+          "falseCheckpointRate": 0.1111111111111111,
+          "missedCheckpointRate": 0
+        },
+        "decisionGatedReplayMetrics": {
+          "tp": 6,
+          "fp": 2,
+          "tn": 16,
+          "fn": 0,
+          "precision": 0.75,
+          "recall": 1,
+          "f1": 0.8571428571428571,
+          "falseCheckpointRate": 0.1111111111111111,
+          "missedCheckpointRate": 0
+        },
+        "ambiguousCaseRate": 0
+      },
+      "claude": {
+        "labelDerivedPairMetrics": {
+          "tp": 5,
+          "fp": 0,
+          "tn": 18,
+          "fn": 1,
+          "precision": 1,
+          "recall": 0.8333333333333334,
+          "f1": 0.9090909090909091,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0.16666666666666666
+        },
+        "rawLabelReplayMetrics": {
+          "tp": 5,
+          "fp": 0,
+          "tn": 18,
+          "fn": 1,
+          "precision": 1,
+          "recall": 0.8333333333333334,
+          "f1": 0.9090909090909091,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0.16666666666666666
+        },
+        "explicitPairMetrics": {
+          "tp": 5,
+          "fp": 0,
+          "tn": 18,
+          "fn": 1,
+          "precision": 1,
+          "recall": 0.8333333333333334,
+          "f1": 0.9090909090909091,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0.16666666666666666
+        },
+        "decisionGatedReplayMetrics": {
+          "tp": 5,
+          "fp": 0,
+          "tn": 18,
+          "fn": 1,
+          "precision": 1,
+          "recall": 0.8333333333333334,
+          "f1": 0.9090909090909091,
+          "falseCheckpointRate": 0,
+          "missedCheckpointRate": 0.16666666666666666
+        },
+        "ambiguousCaseRate": 0
+      },
+      "explicitInterReviewerAgreement": 0.875,
+      "namingDisagreements": [],
+      "substantiveDisagreements": [
+        {
+          "pairId": "P06",
+          "reviewer": "claude",
+          "predicted": "DIFFERENT_ROOT"
+        },
+        {
+          "pairId": "P19",
+          "reviewer": "codex",
+          "predicted": "SAME_ROOT"
+        },
+        {
+          "pairId": "P23",
+          "reviewer": "codex",
+          "predicted": "SAME_ROOT"
+        }
+      ]
+    }
+  },
+  "openStable": false,
+  "rubricUseful": false,
+  "architectureConclusion": "CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED"
+}

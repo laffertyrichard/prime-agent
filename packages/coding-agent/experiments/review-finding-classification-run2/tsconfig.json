@@ -1,0 +1,14 @@
+{
+  "extends": "../../../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@earendil-works/pi-ai": [
+        "./run1-import-stubs.ts"
+      ],
+      "@earendil-works/pi-coding-agent": [
+        "./run1-import-stubs.ts"
+      ]
+    }
+  }
+}

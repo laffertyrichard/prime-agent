@@ -1,0 +1,798 @@
+{
+  "schemaVersion": 1,
+  "arm": "RUN_A_CONTROL",
+  "conditions": {
+    "A": {
+      "codex": {
+        "condition": "A",
+        "classifications": [
+          {
+            "itemId": "item-35c3b67009bb",
+            "rootClass": "EVIDENCE_INVALIDATION_INVARIANT",
+            "confidence": 0.9,
+            "conciseRationale": "Contradicted evidence is not removed from the effective recurrence history."
+          },
+          {
+            "itemId": "item-3966afa09ad1",
+            "rootClass": "ERROR_CONTEXT_PRESERVATION",
+            "confidence": 0.96,
+            "conciseRationale": "Failure propagation loses the aggregate identity needed to explain the terminal state."
+          },
+          {
+            "itemId": "item-bbb7c7ac73c2",
+            "rootClass": "INCREMENTAL_HISTORY_PROCESSING",
+            "confidence": 0.94,
+            "conciseRationale": "History updates repeatedly copy prior events instead of maintaining incremental state."
+          },
+          {
+            "itemId": "item-b7c6f6de4069",
+            "rootClass": "CANONICAL_AGGREGATION_IDENTITY",
+            "confidence": 0.97,
+            "conciseRationale": "Semantically equivalent text variants are not normalized before forming group identity."
+          },
+          {
+            "itemId": "item-a588e8cfef87",
+            "rootClass": "CONTEXT_APPROPRIATE_BOUNDARY_POLICY",
+            "confidence": 0.81,
+            "conciseRationale": "A generic truncation boundary is applied where the response shape already guarantees a much smaller bound."
+          },
+          {
+            "itemId": "item-e5f809536c80",
+            "rootClass": "DOMAIN_TIME_ORDERING",
+            "confidence": 0.97,
+            "conciseRationale": "Recurrence ordering follows recording sequence instead of commit chronology."
+          },
+          {
+            "itemId": "item-8e66ef6bf977",
+            "rootClass": "INVARIANT_AWARE_CONTROL_FLOW",
+            "confidence": 0.94,
+            "conciseRationale": "Control flow rechecks a condition already guaranteed by the surrounding operation's preconditions."
+          },
+          {
+            "itemId": "item-a36bcf847909",
+            "rootClass": "CANONICAL_STATE_COMPARISON",
+            "confidence": 0.98,
+            "conciseRationale": "Restoration compares representation-dependent key order rather than canonical object meaning."
+          },
+          {
+            "itemId": "item-9c3adb9fcc4e",
+            "rootClass": "BOUNDED_AGGREGATE_PRESENTATION",
+            "confidence": 0.98,
+            "conciseRationale": "Aggregate display construction has no cardinality or size invariant."
+          },
+          {
+            "itemId": "item-72de0587137f",
+            "rootClass": "LOGICAL_EVENT_DEDUPLICATION",
+            "confidence": 0.94,
+            "conciseRationale": "One correction's identity is not deduplicated across multiple descriptive representations."
+          },
+          {
+            "itemId": "item-b0d3b9485cf6",
+            "rootClass": "STATE_TAXONOMY_ALIGNMENT",
+            "confidence": 0.86,
+            "conciseRationale": "Collection semantics conflate unresolved historical records with records that are actually stale."
+          },
+          {
+            "itemId": "item-e617c2f887d8",
+            "rootClass": "MULTI_AGGREGATE_RESULT_COMPLETENESS",
+            "confidence": 0.98,
+            "conciseRationale": "Reporting is modeled as a single match despite a condition that can hold for multiple groups."
+          },
+          {
+            "itemId": "item-4711f03203e5",
+            "rootClass": "AGGREGATE_STATE_ISOLATION",
+            "confidence": 0.99,
+            "conciseRationale": "A group-local terminal state is incorrectly enforced as a global workflow state."
+          },
+          {
+            "itemId": "item-32ff81ae4886",
+            "rootClass": "VERSIONED_HISTORY_VALIDATION",
+            "confidence": 0.99,
+            "conciseRationale": "Historical events are restored under current validation rules without schema-version compatibility."
+          },
+          {
+            "itemId": "item-947ca2472899",
+            "rootClass": "CANONICAL_AGGREGATION_IDENTITY",
+            "confidence": 0.94,
+            "conciseRationale": "Correction targeting and occurrence grouping use inconsistent notions of category identity."
+          },
+          {
+            "itemId": "item-b3bfdbc72ca4",
+            "rootClass": "DECISION_RELEVANT_DERIVATION",
+            "confidence": 0.96,
+            "conciseRationale": "State partitions are derived without participating in the decision they ostensibly support."
+          },
+          {
+            "itemId": "item-d1870bd04a50",
+            "rootClass": "COMMIT_ROLE_EXCLUSIVITY",
+            "confidence": 0.91,
+            "conciseRationale": "The model does not prevent one commit identifier from assuming incompatible observation and correction roles."
+          },
+          {
+            "itemId": "item-641b99358635",
+            "rootClass": "UNAMBIGUOUS_COMPOSITE_ENCODING",
+            "confidence": 0.99,
+            "conciseRationale": "Delimiter joining is not injective when component values may contain the delimiter."
+          },
+          {
+            "itemId": "item-5f2f1d019506",
+            "rootClass": "SINGLE_SOURCE_RESTORATION_VALIDATION",
+            "confidence": 0.94,
+            "conciseRationale": "Equivalent restoration consistency checks are implemented in overlapping validation paths."
+          },
+          {
+            "itemId": "item-1b9f06e7b080",
+            "rootClass": "MINIMAL_PUBLIC_API_SURFACE",
+            "confidence": 0.97,
+            "conciseRationale": "The exported contract substantially exceeds the symbols required by consumers."
+          },
+          {
+            "itemId": "item-499a69824f00",
+            "rootClass": "EXPLICIT_REPOSITORY_HEAD_CONTEXT",
+            "confidence": 0.99,
+            "conciseRationale": "Head-relative state is derived from the latest event rather than authoritative repository-head input."
+          },
+          {
+            "itemId": "item-6b54c6516c14",
+            "rootClass": "READ_MODEL_FAULT_ISOLATION",
+            "confidence": 0.95,
+            "conciseRationale": "A read-only status projection cannot isolate unusable historical entries from the overall query result."
+          }
+        ]
+      },
+      "claude": {
+        "condition": "A",
+        "classifications": [
+          {
+            "itemId": "item-35c3b67009bb",
+            "rootClass": "INVALIDATION_PROPAGATION",
+            "confidence": 0.72,
+            "conciseRationale": "Contradicted observations still feed aggregation counts because the system lacks a mechanism to retract an observation's contribution when later evidence invalidates it. The missing invariant is that invalidation events must propagate to all dependent computed state."
+          },
+          {
+            "itemId": "item-3966afa09ad1",
+            "rootClass": "ERROR_CONTEXT_LOSS",
+            "confidence": 0.78,
+            "conciseRationale": "The terminal-state error is raised without attaching the identity of the aggregate group that caused the transition. The missing design property is that domain errors must carry sufficient causal context to locate the triggering entity."
+          },
+          {
+            "itemId": "item-bbb7c7ac73c2",
+            "rootClass": "INCREMENTAL_COMPUTATION_ABSENCE",
+            "confidence": 0.8,
+            "conciseRationale": "Full event-copy on each operation means work scales as O(n^2) with history length. The missing invariant is that processing should be incremental or append-only, touching only new/changed events rather than re-copying the entire history."
+          },
+          {
+            "itemId": "item-b7c6f6de4069",
+            "rootClass": "INPUT_NORMALIZATION",
+            "confidence": 0.85,
+            "conciseRationale": "Case-only differences in abstraction text produce distinct aggregate groups because grouping keys are not normalized before comparison. The missing invariant is canonical normalization at the aggregation boundary."
+          },
+          {
+            "itemId": "item-a588e8cfef87",
+            "rootClass": "TAUTOLOGICAL_GUARD",
+            "confidence": 0.72,
+            "conciseRationale": "A truncation check for 2000 lines/50KB is applied to a constant 3-line output that can never exceed the threshold. The condition is tautologically false given the input's static properties, making the guard dead code."
+          },
+          {
+            "itemId": "item-e5f809536c80",
+            "rootClass": "TEMPORAL_ORDERING_INVARIANT",
+            "confidence": 0.74,
+            "conciseRationale": "Recurrence ordering uses record-insertion time rather than commit timestamp, so a record whose commit predates a correction is treated as a post-correction recurrence. The missing invariant is that temporal precedence must derive from domain timestamps, not processing order."
+          },
+          {
+            "itemId": "item-8e66ef6bf977",
+            "rootClass": "TAUTOLOGICAL_GUARD",
+            "confidence": 0.7,
+            "conciseRationale": "The branch tests for at least one prior occurrence inside an operation whose preconditions already guarantee a prior occurrence exists. The guard is always true and therefore dead. Same underlying property as item-a588e8cfef87: a condition that can never take its alternative branch given context invariants."
+          },
+          {
+            "itemId": "item-a36bcf847909",
+            "rootClass": "ORDER_DEPENDENT_EQUALITY",
+            "confidence": 0.8,
+            "conciseRationale": "Restoration acceptance depends on object-key order, which serialization does not guarantee to preserve. The missing invariant is that structural equality comparisons must be order-insensitive (canonical form or deep-equal)."
+          },
+          {
+            "itemId": "item-9c3adb9fcc4e",
+            "rootClass": "UNBOUNDED_OUTPUT_AGGREGATION",
+            "confidence": 0.78,
+            "conciseRationale": "All distinct abstraction descriptions are concatenated into a single display field with no cap on count or total length. The missing invariant is a bound on aggregated output size to prevent unbounded growth in display/transport."
+          },
+          {
+            "itemId": "item-72de0587137f",
+            "rootClass": "INCONSISTENT_IDENTITY_GRANULARITY",
+            "confidence": 0.77,
+            "conciseRationale": "One correction commit advances the recurrence counter once per descriptive abstraction rather than once per commit. The identity boundary for counting corrections is misaligned with the natural event identity (the commit). Same root as item-947ca2472899: aligning correction identity with aggregation identity fixes both."
+          },
+          {
+            "itemId": "item-b0d3b9485cf6",
+            "rootClass": "INCORRECT_PARTITION_CRITERIA",
+            "confidence": 0.65,
+            "conciseRationale": "An unresolved record from an earlier commit is placed in a 'stale findings' collection, conflating commit age with staleness. The partition predicate uses the wrong discriminant (commit recency vs. resolution status)."
+          },
+          {
+            "itemId": "item-e617c2f887d8",
+            "rootClass": "PREMATURE_RESULT_TERMINATION",
+            "confidence": 0.82,
+            "conciseRationale": "When multiple aggregate groups satisfy the reporting condition, only the first is included. The missing invariant is that result collection must iterate all qualifying groups, not short-circuit after the first match."
+          },
+          {
+            "itemId": "item-4711f03203e5",
+            "rootClass": "INSUFFICIENT_STATE_ISOLATION",
+            "confidence": 0.82,
+            "conciseRationale": "A terminal recurrence state reached by one aggregate group blocks correction requests for unrelated groups. Per-group state is leaking into a shared scope, violating the invariant that each group's lifecycle is independent."
+          },
+          {
+            "itemId": "item-32ff81ae4886",
+            "rootClass": "UNVERSIONED_SCHEMA",
+            "confidence": 0.75,
+            "conciseRationale": "Historical events cannot be restored after validation rules evolve because events carry no schema version and current-rules validation is applied retroactively. The missing invariant is versioned validation that matches events to their originating rule set."
+          },
+          {
+            "itemId": "item-947ca2472899",
+            "rootClass": "INCONSISTENT_IDENTITY_GRANULARITY",
+            "confidence": 0.75,
+            "conciseRationale": "Two open records differing only in abstraction text require separate corrections despite being one aggregation category. The correction model's identity boundary (per-abstraction) is finer than the aggregation model's (per-category). Same root as item-72de0587137f."
+          },
+          {
+            "itemId": "item-b3bfdbc72ca4",
+            "rootClass": "DEAD_COMPUTATION",
+            "confidence": 0.8,
+            "conciseRationale": "Four head-based finding partitions are computed but never read by the recurrence decision. The missing invariant is that computed outputs must have at least one consumer; otherwise the computation is dead weight."
+          },
+          {
+            "itemId": "item-d1870bd04a50",
+            "rootClass": "MISSING_CROSS_ROLE_CONSTRAINT",
+            "confidence": 0.65,
+            "conciseRationale": "A review commit identifier from a closed observation can be reused as a correction commit identifier. The system lacks a constraint ensuring that a commit identifier's semantic role (review vs. correction) is exclusive or at least validated against lifecycle state."
+          },
+          {
+            "itemId": "item-641b99358635",
+            "rootClass": "AMBIGUOUS_SERIALIZATION",
+            "confidence": 0.82,
+            "conciseRationale": "Comma-joining descriptions that themselves contain commas produces ambiguous display text—two different description lists can yield identical output. The missing invariant is that serialization must be injective (unambiguous delimiter or escaping)."
+          },
+          {
+            "itemId": "item-5f2f1d019506",
+            "rootClass": "DUPLICATED_VALIDATION_STEP",
+            "confidence": 0.62,
+            "conciseRationale": "Restoration recomputes expected record identifiers, then a subsequent canonical-event comparison re-checks the same mismatch. The same verification is performed twice in the pipeline, indicating a missing single-point-of-truth for that check."
+          },
+          {
+            "itemId": "item-1b9f06e7b080",
+            "rootClass": "DEAD_EXPORT_SURFACE",
+            "confidence": 0.88,
+            "conciseRationale": "Thirteen exported symbols have zero consumers. The missing invariant is that the public API surface should consist only of symbols with at least one external consumer; uncalled exports are dead surface area."
+          },
+          {
+            "itemId": "item-499a69824f00",
+            "rootClass": "IMPLICIT_STATE_COUPLING",
+            "confidence": 0.72,
+            "conciseRationale": "Current-head findings are determined by the commit identifier of the event just recorded rather than an independently supplied repository head. The query result is implicitly coupled to event-processing state instead of an explicit, externally authoritative reference."
+          },
+          {
+            "itemId": "item-6b54c6516c14",
+            "rootClass": "MISSING_FAULT_ISOLATION",
+            "confidence": 0.78,
+            "conciseRationale": "A read-only status request fails if any historical event cannot be restored. The read path is fully coupled to restoration success with no graceful degradation. The missing invariant is that query paths must be isolated from write-path/restoration failures."
+          }
+        ]
+      }
+    },
+    "B": {
+      "codex": {
+        "condition": "B",
+        "classifications": [
+          {
+            "itemId": "item-35c3b67009bb",
+            "rootClass": "MISSING_EVIDENCE_RETRACTION_SEMANTICS",
+            "confidence": 0.91,
+            "conciseRationale": "The recurrence projection treats observations as permanently admissible and does not retract their contribution when superseding evidence contradicts them.",
+            "affectedAbstraction": "recurrence evidence lifecycle"
+          },
+          {
+            "itemId": "item-3966afa09ad1",
+            "rootClass": "TERMINAL_STATE_NOT_AGGREGATE_SCOPED",
+            "confidence": 0.82,
+            "conciseRationale": "The terminal-state result loses the aggregate identity needed to explain which group caused the transition.",
+            "affectedAbstraction": "aggregate recurrence state and error contract"
+          },
+          {
+            "itemId": "item-bbb7c7ac73c2",
+            "rootClass": "FULL_HISTORY_COPY_ON_APPEND",
+            "confidence": 0.95,
+            "conciseRationale": "Each added event causes existing history to be copied again, making cumulative work quadratic.",
+            "affectedAbstraction": "event-history persistence model"
+          },
+          {
+            "itemId": "item-b7c6f6de4069",
+            "rootClass": "NONCANONICAL_GROUP_IDENTITY",
+            "confidence": 0.97,
+            "conciseRationale": "Raw presentation text, including capitalization, is used as aggregate identity without normalization.",
+            "affectedAbstraction": "aggregate-group identity boundary"
+          },
+          {
+            "itemId": "item-a588e8cfef87",
+            "rootClass": "STATIC_BOUND_NOT_REFLECTED_IN_CONTRACT",
+            "confidence": 0.89,
+            "conciseRationale": "A response with a fixed tiny shape is processed as though its size were unbounded, leaving an inapplicable truncation path.",
+            "affectedAbstraction": "response-size contract"
+          },
+          {
+            "itemId": "item-e5f809536c80",
+            "rootClass": "RECURRENCE_ORDER_USES_INGESTION_SEQUENCE",
+            "confidence": 0.96,
+            "conciseRationale": "Recurrence chronology follows record insertion order instead of the ordering represented by commit history.",
+            "affectedAbstraction": "recurrence temporal-ordering model"
+          },
+          {
+            "itemId": "item-8e66ef6bf977",
+            "rootClass": "PRECONDITION_NOT_ENCODED_IN_STATE_MODEL",
+            "confidence": 0.93,
+            "conciseRationale": "The operation's existence guarantees a prior occurrence, but that invariant is not represented and an impossible branch remains.",
+            "affectedAbstraction": "operation-state invariant"
+          },
+          {
+            "itemId": "item-a36bcf847909",
+            "rootClass": "ORDER_SENSITIVE_STRUCTURAL_COMPARISON",
+            "confidence": 0.98,
+            "conciseRationale": "Restoration validity is determined through an ordered representation even though object-key order is not semantic.",
+            "affectedAbstraction": "canonical event-comparison contract"
+          },
+          {
+            "itemId": "item-9c3adb9fcc4e",
+            "rootClass": "UNSTRUCTURED_AGGREGATE_DISPLAY",
+            "confidence": 0.84,
+            "conciseRationale": "A collection of descriptions is flattened into one unconstrained display scalar without a bounded structured representation.",
+            "affectedAbstraction": "aggregate-description presentation contract"
+          },
+          {
+            "itemId": "item-72de0587137f",
+            "rootClass": "INCONSISTENT_CORRECTION_IDENTITY",
+            "confidence": 0.88,
+            "conciseRationale": "Correction effects are keyed through descriptive abstractions rather than one canonical correction target, allowing one commit to count twice.",
+            "affectedAbstraction": "correction-target identity boundary"
+          },
+          {
+            "itemId": "item-b0d3b9485cf6",
+            "rootClass": "UNRESOLVED_AND_STALE_STATES_CONFLATED",
+            "confidence": 0.94,
+            "conciseRationale": "The collection contract labels records by age while admitting records whose demonstrated state is merely unresolved.",
+            "affectedAbstraction": "finding-status classification model"
+          },
+          {
+            "itemId": "item-e617c2f887d8",
+            "rootClass": "SINGLE_RESULT_REPORTING_CONTRACT",
+            "confidence": 0.97,
+            "conciseRationale": "The reporting boundary is modeled to retain one qualifying aggregate despite the decision domain allowing multiple groups.",
+            "affectedAbstraction": "multi-group reporting contract"
+          },
+          {
+            "itemId": "item-4711f03203e5",
+            "rootClass": "TERMINAL_STATE_NOT_AGGREGATE_SCOPED",
+            "confidence": 0.95,
+            "conciseRationale": "A terminal transition is stored or enforced globally instead of being isolated to the aggregate group that reached it.",
+            "affectedAbstraction": "aggregate recurrence state machine"
+          },
+          {
+            "itemId": "item-32ff81ae4886",
+            "rootClass": "UNVERSIONED_HISTORICAL_VALIDATION",
+            "confidence": 0.98,
+            "conciseRationale": "Historical events are revalidated under current rules without preserving the validation schema applicable when they were recorded.",
+            "affectedAbstraction": "event-schema evolution and restoration contract"
+          },
+          {
+            "itemId": "item-947ca2472899",
+            "rootClass": "INCONSISTENT_CORRECTION_IDENTITY",
+            "confidence": 0.9,
+            "conciseRationale": "Occurrence aggregation and correction processing use different notions of sameness for records that differ only in descriptive abstraction text.",
+            "affectedAbstraction": "correction-target identity boundary"
+          },
+          {
+            "itemId": "item-b3bfdbc72ca4",
+            "rootClass": "HEAD_CONTEXT_NOT_INTEGRATED",
+            "confidence": 0.9,
+            "conciseRationale": "The system derives head-relative partitions outside the recurrence contract, so the decision cannot consume the state they represent.",
+            "affectedAbstraction": "repository-head projection contract"
+          },
+          {
+            "itemId": "item-d1870bd04a50",
+            "rootClass": "COMMIT_ROLES_NOT_DISJOINT",
+            "confidence": 0.92,
+            "conciseRationale": "The lifecycle lacks an invariant preventing the same commit identity from occupying observation and correction roles.",
+            "affectedAbstraction": "commit-role validity boundary"
+          },
+          {
+            "itemId": "item-641b99358635",
+            "rootClass": "UNSTRUCTURED_AGGREGATE_DISPLAY",
+            "confidence": 0.86,
+            "conciseRationale": "A list is flattened with an unescaped delimiter, so distinct description collections lack distinct display representations.",
+            "affectedAbstraction": "aggregate-description presentation contract"
+          },
+          {
+            "itemId": "item-5f2f1d019506",
+            "rootClass": "DUPLICATED_RESTORATION_VALIDATION",
+            "confidence": 0.95,
+            "conciseRationale": "Two stages independently enforce the same identifier mismatch invariant during restoration.",
+            "affectedAbstraction": "restoration validation pipeline"
+          },
+          {
+            "itemId": "item-1b9f06e7b080",
+            "rootClass": "UNCONSUMED_PUBLIC_API_SURFACE",
+            "confidence": 0.96,
+            "conciseRationale": "The module contract exposes symbols without any corresponding consumer dependency.",
+            "affectedAbstraction": "extension export contract"
+          },
+          {
+            "itemId": "item-499a69824f00",
+            "rootClass": "HEAD_CONTEXT_NOT_INTEGRATED",
+            "confidence": 0.96,
+            "conciseRationale": "The current repository head is not an independent input, so an event's commit identity is incorrectly made authoritative for head-relative state.",
+            "affectedAbstraction": "repository-head authority boundary"
+          },
+          {
+            "itemId": "item-6b54c6516c14",
+            "rootClass": "READ_MODEL_COUPLED_TO_TOTAL_RESTORATION",
+            "confidence": 0.92,
+            "conciseRationale": "A read-only status projection requires successful restoration of every historical event rather than isolating restoration failures.",
+            "affectedAbstraction": "status read-model availability boundary"
+          }
+        ],
+        "pairs": [
+          {
+            "pairId": "pair-ca8b1c1142",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Global terminal-state scope and order-sensitive object comparison require unrelated architectural remediations."
+          },
+          {
+            "pairId": "pair-ce4d25d3f4",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Text canonicalization for identity does not address a truncation check applied to statically bounded output."
+          },
+          {
+            "pairId": "pair-8bcc15fc51",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "A response-size contract and repository-head authority are separate design boundaries."
+          },
+          {
+            "pairId": "pair-2dd88829ae",
+            "decision": "SAME_ROOT",
+            "confidence": 0.78,
+            "conciseRationale": "Both arise from flattening an abstraction-description collection into one unstructured display field; a structured, bounded rendering contract plausibly addresses both."
+          },
+          {
+            "pairId": "pair-5b24fe3ab8",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Incorrect temporal ordering in recurrence processing is unrelated to an unused export surface."
+          },
+          {
+            "pairId": "pair-4fa2b2b948",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Commit-role exclusivity and collision-free list presentation are independent invariants."
+          },
+          {
+            "pairId": "pair-888ef856a9",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.82,
+            "conciseRationale": "Version-aware historical validation prevents rule-evolution failures, while status-read resilience requires isolating restoration failures more generally."
+          },
+          {
+            "pairId": "pair-fd55174c35",
+            "decision": "SAME_ROOT",
+            "confidence": 0.91,
+            "conciseRationale": "Both result from correction processing using descriptive abstraction identity inconsistently with canonical occurrence identity."
+          },
+          {
+            "pairId": "pair-79bb8547e2",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Duplicate correction effects concern identity and deduplication, whereas quadratic copying concerns history persistence complexity."
+          },
+          {
+            "pairId": "pair-95d891cd78",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Historical schema evolution is unrelated to the breadth of the extension's exported API."
+          },
+          {
+            "pairId": "pair-8e297bb382",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "History-copy complexity and finding-status semantics require different remediations."
+          },
+          {
+            "pairId": "pair-5f8fdb905d",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "An unencoded operation precondition is unrelated to conflating event commit identity with repository-head authority."
+          },
+          {
+            "pairId": "pair-a32f142911",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.95,
+            "conciseRationale": "Discarding additional qualifying groups is a reporting-cardinality defect; computing unread partitions is a disconnected dataflow contract."
+          },
+          {
+            "pairId": "pair-b9d7d7d8af",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Read-model failure isolation and commit-role validity are separate architectural concerns."
+          },
+          {
+            "pairId": "pair-80ac4fa066",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.98,
+            "conciseRationale": "Correction-target identity does not determine whether unresolved records are semantically stale."
+          },
+          {
+            "pairId": "pair-a21e13518c",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Evidence retraction in recurrence counts is unrelated to the representation of aggregated display descriptions."
+          }
+        ]
+      },
+      "claude": {
+        "classifications": [
+          {
+            "itemId": "item-35c3b67009bb",
+            "rootClass": "STALE_EVIDENCE_RETENTION",
+            "affectedAbstraction": "observation validity lifecycle",
+            "confidence": 0.72,
+            "conciseRationale": "The observation's contribution to recurrence counts is never revoked when contradicting evidence arrives, indicating a missing invalidation mechanism in the observation validity lifecycle."
+          },
+          {
+            "itemId": "item-3966afa09ad1",
+            "rootClass": "MISSING_ERROR_CONTEXT",
+            "affectedAbstraction": "recurrence state error reporting",
+            "confidence": 0.78,
+            "conciseRationale": "The terminal-state error lacks the aggregate group identifier needed for diagnosis. The error-reporting contract omits causal attribution to the triggering group."
+          },
+          {
+            "itemId": "item-bbb7c7ac73c2",
+            "rootClass": "QUADRATIC_HISTORY_TRAVERSAL",
+            "affectedAbstraction": "event history copy operation",
+            "confidence": 0.82,
+            "conciseRationale": "Event-copy work scales O(n^2) with history length, indicating a naive full-copy approach where incremental or reference-based strategies are needed."
+          },
+          {
+            "itemId": "item-b7c6f6de4069",
+            "rootClass": "UNNORMALIZED_IDENTITY_KEY",
+            "affectedAbstraction": "aggregate group identity",
+            "confidence": 0.85,
+            "conciseRationale": "Case-sensitive comparison of abstraction text creates spurious distinct groups. The identity key lacks canonical normalization before grouping."
+          },
+          {
+            "itemId": "item-a588e8cfef87",
+            "rootClass": "UNREACHABLE_VALIDATION",
+            "affectedAbstraction": "response truncation guard",
+            "confidence": 0.8,
+            "conciseRationale": "A statically bounded three-line constant is checked against a 2000-line/50KB threshold it can never exceed. The guard is structurally unreachable."
+          },
+          {
+            "itemId": "item-e5f809536c80",
+            "rootClass": "INCORRECT_TEMPORAL_ORDERING",
+            "affectedAbstraction": "recurrence temporal ordering",
+            "confidence": 0.78,
+            "conciseRationale": "Recurrence determination uses record insertion order rather than commit timestamp, so a record with an earlier commit added after a correction is misclassified as a later recurrence."
+          },
+          {
+            "itemId": "item-8e66ef6bf977",
+            "rootClass": "REDUNDANT_GUARD",
+            "affectedAbstraction": "occurrence existence check",
+            "confidence": 0.82,
+            "conciseRationale": "The branch checks for at least one occurrence in a context that structurally guarantees a prior occurrence exists. The guard is logically redundant given the surrounding operation's preconditions."
+          },
+          {
+            "itemId": "item-a36bcf847909",
+            "rootClass": "ORDER_SENSITIVE_COMPARISON",
+            "affectedAbstraction": "state restoration comparator",
+            "confidence": 0.83,
+            "conciseRationale": "Restoration acceptance depends on object-key ordering, which storage round-trips do not preserve. The comparison lacks order-independent semantics for unordered data."
+          },
+          {
+            "itemId": "item-9c3adb9fcc4e",
+            "rootClass": "UNSTRUCTURED_LIST_SERIALIZATION",
+            "affectedAbstraction": "description list display serialization",
+            "confidence": 0.73,
+            "conciseRationale": "All distinct abstraction descriptions are concatenated into one display field with no length or item bound. The naive flat-string representation provides no structural boundary for limiting output."
+          },
+          {
+            "itemId": "item-72de0587137f",
+            "rootClass": "INCONSISTENT_IDENTITY_BOUNDARY",
+            "affectedAbstraction": "correction event deduplication across abstractions",
+            "confidence": 0.74,
+            "conciseRationale": "A single correction commit advances the recurrence counter twice because per-abstraction tracking does not deduplicate by commit identity. The identity boundary for correction counting is inconsistent with aggregation grouping."
+          },
+          {
+            "itemId": "item-b0d3b9485cf6",
+            "rootClass": "INCORRECT_STALENESS_CLASSIFICATION",
+            "affectedAbstraction": "finding lifecycle classification",
+            "confidence": 0.65,
+            "conciseRationale": "An unresolved but still-valid record from an earlier commit is classified as stale based on commit age rather than resolution status, conflating recency with staleness."
+          },
+          {
+            "itemId": "item-e617c2f887d8",
+            "rootClass": "TRUNCATED_RESULT_SET",
+            "affectedAbstraction": "aggregate group reporting iteration",
+            "confidence": 0.8,
+            "conciseRationale": "Only the first qualifying aggregate group is included in results; remaining qualifying groups are silently dropped. The reporting path exits after the first match instead of collecting all."
+          },
+          {
+            "itemId": "item-4711f03203e5",
+            "rootClass": "CROSS_GROUP_STATE_LEAK",
+            "affectedAbstraction": "recurrence state scope isolation",
+            "confidence": 0.82,
+            "conciseRationale": "A terminal recurrence state reached by one aggregate group is applied globally, blocking correction requests for unrelated groups. State is scoped globally where per-group isolation is required."
+          },
+          {
+            "itemId": "item-32ff81ae4886",
+            "rootClass": "UNVERSIONED_VALIDATION_RULES",
+            "affectedAbstraction": "event validation lifecycle",
+            "confidence": 0.78,
+            "conciseRationale": "Historical events fail restoration when current validation rules reject data that was valid under the rules at recording time. Validation rules are not versioned with the events they govern."
+          },
+          {
+            "itemId": "item-947ca2472899",
+            "rootClass": "INCONSISTENT_IDENTITY_BOUNDARY",
+            "affectedAbstraction": "record identity across aggregation and correction",
+            "confidence": 0.75,
+            "conciseRationale": "Aggregation treats records with different descriptive text as one category, but correction requires separate events per description. The identity boundary is inconsistent between aggregation and correction operations."
+          },
+          {
+            "itemId": "item-b3bfdbc72ca4",
+            "rootClass": "DEAD_COMPUTATION",
+            "affectedAbstraction": "finding partition computation",
+            "confidence": 0.82,
+            "conciseRationale": "Four head-based finding partitions are computed but never consumed by the recurrence decision logic. The computation has no downstream reader."
+          },
+          {
+            "itemId": "item-d1870bd04a50",
+            "rootClass": "INVALID_STATE_TRANSITION",
+            "affectedAbstraction": "commit identifier lifecycle across observation states",
+            "confidence": 0.72,
+            "conciseRationale": "After an observation is closed, its review commit identifier becomes eligible for recording as a correction commit identifier. The state machine does not guard against cross-state identifier reuse."
+          },
+          {
+            "itemId": "item-641b99358635",
+            "rootClass": "UNSTRUCTURED_LIST_SERIALIZATION",
+            "affectedAbstraction": "description list display serialization",
+            "confidence": 0.85,
+            "conciseRationale": "Comma-joining descriptions that themselves contain commas produces ambiguous output where different input lists yield identical display text. The flat-string serialization lacks escaping or structural delimiters."
+          },
+          {
+            "itemId": "item-5f2f1d019506",
+            "rootClass": "REDUNDANT_COMPUTATION",
+            "affectedAbstraction": "event restoration pipeline",
+            "confidence": 0.75,
+            "conciseRationale": "Restoration recomputes expected record identifiers and then a canonical event comparison repeats the same mismatch check. The pipeline performs the same validation twice."
+          },
+          {
+            "itemId": "item-1b9f06e7b080",
+            "rootClass": "DEAD_EXPORTS",
+            "affectedAbstraction": "extension module public interface",
+            "confidence": 0.88,
+            "conciseRationale": "Thirteen exported symbols have no consumer imports. The module's public API surface exceeds its actual usage."
+          },
+          {
+            "itemId": "item-499a69824f00",
+            "rootClass": "INCORRECT_HEAD_REFERENCE",
+            "affectedAbstraction": "current-head finding resolution",
+            "confidence": 0.8,
+            "conciseRationale": "Current-head findings are determined using the commit identifier of the event being recorded rather than an independently supplied repository head, coupling the finding set to the event's commit context."
+          },
+          {
+            "itemId": "item-6b54c6516c14",
+            "rootClass": "EXCESSIVE_RESTORATION_COUPLING",
+            "affectedAbstraction": "status query dependency on event restoration",
+            "confidence": 0.78,
+            "conciseRationale": "A read-only status request depends on full historical event restoration. Any single restoration failure (from any cause) propagates as an error to the read path, coupling query availability to full history integrity."
+          }
+        ],
+        "pairs": [
+          {
+            "pairId": "pair-ca8b1c1142",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.92,
+            "conciseRationale": "Cross-group state leak (global terminal state blocking unrelated groups) and order-sensitive comparison (key-order affecting restoration acceptance) are independent architectural defects in different subsystems requiring distinct remediations."
+          },
+          {
+            "pairId": "pair-ce4d25d3f4",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.9,
+            "conciseRationale": "Unnormalized identity keys (case-sensitive grouping) and unreachable validation (truncation check on bounded output) operate on different abstractions. Normalizing identity keys does not remove dead validation paths, and vice versa."
+          },
+          {
+            "pairId": "pair-8bcc15fc51",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.92,
+            "conciseRationale": "Unreachable truncation validation on a statically bounded response and incorrect head-reference for finding resolution are unrelated defects in different subsystems with no shared remediation."
+          },
+          {
+            "pairId": "pair-2dd88829ae",
+            "decision": "SAME_ROOT",
+            "confidence": 0.72,
+            "conciseRationale": "Both arise from representing a description list as a naive comma-joined flat string. Replacing this with a structured list representation would simultaneously enable bounding the output and eliminating delimiter ambiguity."
+          },
+          {
+            "pairId": "pair-5b24fe3ab8",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.93,
+            "conciseRationale": "Incorrect temporal ordering in recurrence counting and dead module exports are entirely unrelated defects in different subsystems with no shared architectural cause."
+          },
+          {
+            "pairId": "pair-4fa2b2b948",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.9,
+            "conciseRationale": "Invalid state transition (closed observation's commit ID reused as correction ID) and delimiter collision in description serialization are independent defects in different domain boundaries."
+          },
+          {
+            "pairId": "pair-888ef856a9",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.72,
+            "conciseRationale": "Unversioned validation rules cause restoration failures for historical events; excessive restoration coupling causes read-only status to fail on any restoration error. Though causally linked in one scenario, they require independent fixes: versioning validation doesn't decouple the read path, and decoupling doesn't version validation."
+          },
+          {
+            "pairId": "pair-fd55174c35",
+            "decision": "SAME_ROOT",
+            "confidence": 0.78,
+            "conciseRationale": "Both stem from the inconsistency between aggregation identity (which groups across description variants) and correction/counting identity (which separates by description). Unifying the identity boundary would prevent both double-counting of corrections and requiring separate correction events."
+          },
+          {
+            "pairId": "pair-79bb8547e2",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.9,
+            "conciseRationale": "Double-counting corrections across abstractions (inconsistent identity boundary) and quadratic event-copy growth (naive traversal strategy) are independent architectural defects with different remediations."
+          },
+          {
+            "pairId": "pair-95d891cd78",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.95,
+            "conciseRationale": "Unversioned validation rules breaking historical restoration and unused module exports are entirely unrelated defects with no shared cause or remediation."
+          },
+          {
+            "pairId": "pair-8e297bb382",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.92,
+            "conciseRationale": "Quadratic event-copy complexity and incorrect staleness classification are independent defects: one is a traversal efficiency issue, the other is a classification criteria issue."
+          },
+          {
+            "pairId": "pair-5f8fdb905d",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.9,
+            "conciseRationale": "A redundant existence guard in a context that structurally guarantees the precondition and an incorrect head-reference for finding resolution are independent defects in different subsystems."
+          },
+          {
+            "pairId": "pair-a32f142911",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.75,
+            "conciseRationale": "Truncating results to the first qualifying group and computing partitions that no consumer reads are different defects: one silently drops valid results, the other performs work with no downstream reader. Fixing reporting iteration does not automatically consume the partitions."
+          },
+          {
+            "pairId": "pair-b9d7d7d8af",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.88,
+            "conciseRationale": "Excessive restoration coupling (read path fails on any restoration error) and invalid state transition (closed observation's commit ID reused for correction) are independent defects in different domain boundaries."
+          },
+          {
+            "pairId": "pair-80ac4fa066",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.82,
+            "conciseRationale": "Inconsistent identity boundaries between aggregation and correction, and incorrect staleness classification based on commit age rather than resolution status, are independent defects. Unifying identity boundaries does not fix staleness classification criteria."
+          },
+          {
+            "pairId": "pair-a21e13518c",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.88,
+            "conciseRationale": "Stale evidence retention (contradicted observations still contributing to counts) and unstructured list serialization (unbounded description concatenation) are independent defects: one is a validity lifecycle issue, the other is a display serialization issue."
+          }
+        ],
+        "condition": "B"
+      }
+    }
+  }
+}

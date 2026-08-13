@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "executionAuthorized": false,
+  "independencePolicy": "Two different provider/model families, fresh isolated sessions, byte-identical prompt and schema, no tools, no repository access, and outputs mutually hidden until both are complete and hash-frozen.",
+  "adjudicators": [
+    {
+      "adjudicatorId": "ADJUDICATOR_CODEX",
+      "tool": "codex-cli",
+      "toolVersion": "0.146.0",
+      "provider": "openai",
+      "requestedModel": "gpt-5.6-sol",
+      "reasoningEffort": "medium",
+      "allowedEffectiveModelSets": [
+        [
+          "gpt-5.6-sol"
+        ]
+      ]
+    },
+    {
+      "adjudicatorId": "ADJUDICATOR_CLAUDE",
+      "tool": "Claude Code",
+      "toolVersion": "2.1.228",
+      "provider": "firstParty",
+      "providerVendor": "anthropic",
+      "requestedModel": "claude-opus-5",
+      "effort": "high",
+      "allowedEffectiveModelSets": [
+        [
+          "claude-opus-5"
+        ],
+        [
+          "claude-opus-5",
+          "claude-fable-5"
+        ]
+      ]
+    }
+  ],
+  "shared": {
+    "freshSessionPerAdjudicator": true,
+    "byteIdenticalPrompt": true,
+    "toolCallsAllowed": false,
+    "repositoryAccessAllowed": false,
+    "networkAccessAllowed": false,
+    "outputsMutuallyHiddenUntilFrozen": true,
+    "adjudicatorRerunsAllowed": false,
+    "schemaJsonValueIdentical": true
+  },
+  "failClosedRules": [
+    "Reject the adjudication before finalization if either CLI version, requested invocation route, prompt hash, schema hash, exit code, output hash, or no-tool evidence is absent or outside this closed list. Apply the documented Codex route-identity evidence limit rather than claiming provider telemetry the CLI does not emit.",
+    "Reject any response that does not contain every case exactly once or contains an unknown field, case, decision, proximity value, or out-of-range confidence.",
+    "Do not replace, repair, reinterpret, or rerun a malformed, missing, tool-using, or identity-mismatched output under this preregistration."
+  ],
+  "identityEvidenceLimits": {
+    "ADJUDICATOR_CODEX": "Codex 0.146.0 does not provider-attest model or route in its event stream. The frozen identity is the codex-cli invocation route plus exact gpt-5.6-sol selector; openai and the effective model set are preregistered route identities synthesized from that command, not independent telemetry.",
+    "ADJUDICATOR_CLAUDE": "Claude Code raw modelUsage must attest every nonzero-use canonical model and provider firstParty. Only the closed effective sets listed above are admissible."
+  }
+}

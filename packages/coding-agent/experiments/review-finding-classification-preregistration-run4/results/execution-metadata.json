@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "arm": "RUN_A_CONTROL",
+  "sourceSha": "bd247656aeeabea6b347bc892c0bfb9236fd7663",
+  "preregistrationSha": "9ab6511f5a59667505151f8b34c9fd5d7ad0f8c3",
+  "corpusVersion": "frozen-1",
+  "blindCorpusSha256": "b7b3f5cab0bc588d0a33f560275ff599fcef484287f07c078bc4b763b8043e9b",
+  "goldPairsSha256": "5842ff5334d326252c0d9f7d4f0906ad5f1086333415c60ddf481fc18262695b",
+  "outputsMutuallyHiddenUntilFrozen": true,
+  "executionPreflightArtifact": "raw/execution-preflight.json",
+  "executionPreflightArtifactSha256": "ae34f73d96da37d8d0ca7925b27493c9cc6a90ca808685127b3067669d226e3a",
+  "invocations": [
+    {
+      "condition": "A",
+      "reviewer": "codex",
+      "tool": "codex-cli",
+      "toolVersion": "0.146.0",
+      "requestedModel": "gpt-5.6-sol",
+      "exitCode": 0,
+      "promptSha256": "195cdf794aa2622f006e98dda49e9859a41b52d609996d3d10c22ee3c27b1357",
+      "responseSchemaSha256": "2d9cfaaff9402f16ef0d70c389386a68fddb63b300f416971b83d392bf16b616",
+      "rawArtifact": "raw/condition-a-codex-final.json",
+      "rawArtifactSha256": "c7035d16f813c9a50163245110460650124a1acadc2a2dc2cf1aba7d5faedfc1",
+      "eventsArtifact": "raw/condition-a-codex-events.jsonl",
+      "eventsArtifactSha256": "cb05e8f4440aa73a7c3c50f84f2588c87c14d41f32191eee1cbeae592f4d85f8",
+      "modelUsage": [
+        {
+          "model": "gpt-5.6-sol",
+          "canonicalModel": "gpt-5.6-sol",
+          "provider": "openai",
+          "inputTokens": 18509,
+          "outputTokens": 1578
+        }
+      ]
+    },
+    {
+      "condition": "A",
+      "reviewer": "claude",
+      "tool": "Claude Code",
+      "toolVersion": "2.1.228",
+      "requestedModel": "claude-opus-4-6",
+      "exitCode": 0,
+      "promptSha256": "195cdf794aa2622f006e98dda49e9859a41b52d609996d3d10c22ee3c27b1357",
+      "responseSchemaSha256": "2d9cfaaff9402f16ef0d70c389386a68fddb63b300f416971b83d392bf16b616",
+      "rawArtifact": "raw/condition-a-claude.json",
+      "rawArtifactSha256": "3f56bb18d5cc51c4ab8f0fe1d24d50ceb8060c5166fbdeaaa4724006a2a06eea",
+      "modelUsage": [
+        {
+          "model": "claude-opus-4-6",
+          "canonicalModel": "claude-opus-4-6",
+          "provider": "firstParty",
+          "inputTokens": 2,
+          "outputTokens": 10019
+        }
+      ]
+    },
+    {
+      "condition": "B",
+      "reviewer": "codex",
+      "tool": "codex-cli",
+      "toolVersion": "0.146.0",
+      "requestedModel": "gpt-5.6-sol",
+      "exitCode": 0,
+      "promptSha256": "57ee2b3a0728fd1678fcdd8fcfe0b38f3b6c2b7ec09fbaf9a3e630648cf4a89e",
+      "responseSchemaSha256": "38d3a1d238637fedf867936013817772ea822a57d2e89516974347a96b1af36e",
+      "rawArtifact": "raw/condition-b-codex-final.json",
+      "rawArtifactSha256": "3a9eb6c7d6d202387d9ea7d57f90f06d24852ee57abacef52ef7d5f7cffe5236",
+      "eventsArtifact": "raw/condition-b-codex-events.jsonl",
+      "eventsArtifactSha256": "c02edfa10975873f2cd49caacbebcb2f00f8c2a185d52c0b19c8e4653f4553e6",
+      "modelUsage": [
+        {
+          "model": "gpt-5.6-sol",
+          "canonicalModel": "gpt-5.6-sol",
+          "provider": "openai",
+          "inputTokens": 19795,
+          "outputTokens": 4025
+        }
+      ]
+    },
+    {
+      "condition": "B",
+      "reviewer": "claude",
+      "tool": "Claude Code",
+      "toolVersion": "2.1.228",
+      "requestedModel": "claude-opus-4-6",
+      "exitCode": 0,
+      "promptSha256": "57ee2b3a0728fd1678fcdd8fcfe0b38f3b6c2b7ec09fbaf9a3e630648cf4a89e",
+      "responseSchemaSha256": "38d3a1d238637fedf867936013817772ea822a57d2e89516974347a96b1af36e",
+      "rawArtifact": "raw/condition-b-claude.json",
+      "rawArtifactSha256": "9b373ec664c806acda5c2579cf647d2082cd8b13d82e4818ac6d79c3123c6237",
+      "modelUsage": [
+        {
+          "model": "claude-opus-4-6",
+          "canonicalModel": "claude-opus-4-6",
+          "provider": "firstParty",
+          "inputTokens": 2,
+          "outputTokens": 11830
+        }
+      ]
+    }
+  ]
+}

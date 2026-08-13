@@ -1,0 +1,141 @@
+You are independently classifying genuine software review findings for an evidence-first experiment. Work only from the blind inputs in this prompt. Do not inspect a repository, local files, prior reviews, gold labels, or another reviewer’s output. Do not propose fixes or judge whether a finding was accepted. Return only one JSON object matching the supplied response contract.
+
+CONDITION A — OPEN CLASSIFICATION
+
+For each finding, assign one generalizable architectural root class in UPPER_SNAKE_CASE. No candidate ontology or classification rubric is provided. Choose the dominant root cause represented by the evidence, not a file name. Do not coordinate labels across reviewers. Classify every finding exactly once and preserve finding order.
+
+Response contract: {"condition":"A","classifications":[{"findingId":"F01","rootClass":"UPPER_SNAKE_CASE","conciseRationale":"..."}, ...]}
+
+BLIND CORPUS
+{
+  "schemaVersion": 1,
+  "corpusVersion": "run2-corpus-v1",
+  "findingCount": 25,
+  "findings": [
+    {
+      "findingId": "F01",
+      "title": "Escalation has no exit; PAUSE is implemented as an irreversible HALT",
+      "sourceExcerpt": "- **Evidence:** `review-findings.ts:318-321` — `recordRemediation` throws whenever `checkpointForState(state)` is truthy. `ReviewEvent` is a union of exactly `finding | remediation` (`:54`), so nothing can ever record that the architecture question was answered, and `checkpointForState` re-derives from the whole log (`:227-229`) — the condition is permanently true once reached.\n- **Why it blocks:** the stated policy is *pause*. What ships is *halt for the rest of the session branch*. The only escape is branching the session, i.e. discarding the ledger that justified the checkpoint. An agent that does the architectural work the checkpoint demands has no way to say so and resume."
+    },
+    {
+      "findingId": "F02",
+      "title": "Recurrence identity rests on an unconstrained free-form string",
+      "sourceExcerpt": "- **Evidence:** `review-findings.ts:171-173` — `clusterKey` is `JSON.stringify([rootClass, affectedAbstraction])`. `rootClass` is at least shape-constrained (`:19`, `:143-148`); `affectedAbstraction` is `TextSchema` (`:23`) normalized for whitespace only (`:130-134`) — not case-folded, not vocabulary-bound. `\"assistant content normalization\"` vs `\"Assistant content normalization\"` are two clusters and escalation silently never fires. `NO_ARCHITECTURE_ESCALATION` looks identical to a correct non-escalation.\n- **Untested:** every test uses the single constant `ABSTRACTION` (`test:584`). The determinism claim in the header (`:4-5`) is validated only under an assumption the tests hold fixed."
+    },
+    {
+      "findingId": "F03",
+      "title": "Replay re-runs business validation, bricking old logs on any future logic tweak",
+      "sourceExcerpt": "- **Evidence:** `review-findings.ts:365-389` re-derives `expectedFindingIds` (`:371-379`), string-compares (`:380-382`), re-runs the full record path with its invariants, then demands byte-identical canonical JSON (`:385-387`). With `:440-467`, one replay failure sets the sticky `restoreError`, and `:485` then fails **every** subsequent call — including `assess`, which could still report the checkpoint from events that did parse.\n- **Why it blocks:** events are persisted only after a successful record (`:512-519`), so this defends solely against hand-edited logs — while guaranteeing that a future change to the confirmed/blocking filter turns valid `version: 1` logs into a dead tool, with the version gate at `:456` never firing because the envelope version didn't change."
+    },
+    {
+      "findingId": "F04",
+      "title": "Testable logic and wiring share a file, forcing a wholesale package mock",
+      "sourceExcerpt": "- **Evidence:** `test/review-finding-recurrence.test.ts:578-580` mocks the entire `@earendil-works/pi-coding-agent` package to stub one function. Precedent says otherwise: `examples/extensions/plan-mode/utils.ts` holds pure logic with zero package runtime imports, and `test/plan-mode-utils.test.ts:9` imports it directly, unmocked. The mock isn't stylistic — `package.json:15-19` maps `.` → `./dist/index.js` and `\"test\": \"vitest --run\"` has no build step.\n- **Cost:** the test stays green if the real `truncateHead` export is renamed or removed; the example breaks at runtime with a passing suite."
+    },
+    {
+      "findingId": "F05",
+      "title": "`truncateHead` is dead weight and is the sole cause of the runtime package import",
+      "sourceExcerpt": "- **Evidence:** `review-findings.ts:407-408` truncates output whose defaults are **2000 lines / 50KB** (`src/core/tools/truncate.ts:11-12`). The non-checkpoint branch emits 3 lines (`:406`); the checkpoint branch 7 plus one per evidence item (`:393-405`) — ~1990 findings in one cluster to trip it. It's also the only runtime (non-type) import from the package (`:9-14`)."
+    },
+    {
+      "findingId": "F06",
+      "title": "`non_blocking` is inert",
+      "sourceExcerpt": "- **`non_blocking` is inert.** Defined at `:24`, filtered out of every cluster at `:178-183`. Affects no decision. Delete it or document it as bookkeeping in `promptGuidelines`."
+    },
+    {
+      "findingId": "F07",
+      "title": "Only the first qualifying cluster is reported",
+      "sourceExcerpt": "- **Only the first qualifying cluster is reported.** `:228` uses `.find(...)`; with two clusters past threshold, ordering is Map-insertion-dependent. Say \"a cluster,\" not \"the cluster.\""
+    },
+    {
+      "findingId": "F08",
+      "title": "A JSON string is used as a Map key and parsed back out",
+      "sourceExcerpt": "- **`JSON.stringify` as Map key, `JSON.parse` back out** (`:171-173`, `:214`). Store the tuple in the map value. Boring beats clever."
+    },
+    {
+      "findingId": "F09",
+      "title": "`headSha` is conflated with the SHA of the event just recorded",
+      "sourceExcerpt": "- **`headSha` conflated with \"SHA of the event just recorded.\"** `:312` assesses at the new finding's own `reviewSha`; `:359` at the *remediation* SHA. Coherent, but `currentHeadFindings` answers a different question in a record response than in an `assess` response."
+    },
+    {
+      "findingId": "F10",
+      "title": "Appending an event deep-clones the full log",
+      "sourceExcerpt": "- **`stateWithEvents` deep-clones the full log per append** (`:255-257`, `:339`, `:356`) — O(n²). Ceremony, not a perf issue at this scale."
+    },
+    {
+      "findingId": "F11",
+      "title": "Recurrence and remediation use inconsistent identity boundaries",
+      "sourceExcerpt": "Recurrence is grouped solely by `rootClass` at [review-findings.ts:180]([REPOSITORY]/packages/coding-agent/examples/extensions/review-findings.ts:180), but remediation deduplication includes the descriptive `affectedAbstraction` at [review-findings.ts:323]([REPOSITORY]/packages/coding-agent/examples/extensions/review-findings.ts:323). Every accepted remediation event arms another recurrence at [review-findings.ts:193]([REPOSITORY]/packages/coding-agent/examples/extensions/review-findings.ts:193).\n\n**Reproduction sequence:**\n\n1. Record root `R`, abstraction `A`, review SHA `1…1`.\n2. Remediate `R/A` with SHA `2…2`.\n3. Record root `R`, abstraction `B`, review SHA `3…3`: recurrence count becomes 1.\n4. Remediate `R/B` using the same SHA `2…2`. This is accepted because the abstraction differs.\n5. Record root `R`, abstraction `C`, review SHA `4…4`.\n\nThe reducer reports `blockingRecurrenceCount: 2`, `ARCHITECTURE_CHECKPOINT`, and `PAUSE_LOCAL_REMEDIATION`, despite there being only one distinct remediation identity. This compromises the experiment’s control decision and permits accidental or adversarial false escalation."
+    },
+    {
+      "findingId": "F12",
+      "title": "One concept uses two keys across clustering and remediation",
+      "sourceExcerpt": "- `review-findings.ts:180` — clusters group by `rootClass` only.\n- `review-findings.ts:323-333` — remediation dedup matches `rootClass && affectedAbstraction && remediationSha`.\n- `review-findings.ts:334-340` — findings a remediation closes are filtered by `rootClass && affectedAbstraction`.\n- `review-findings.ts:342` — refusal says \"in this cluster\", but the cluster key is `rootClass`; the message misstates the key that failed to match.\n- `review-findings.ts:238-239` — checkpoint evidence drops `affectedAbstraction`.\n- `review-findings.ts:389-406` — non-checkpoint text output is three count lines; per-finding abstraction strings exist only in `details.assessment`, not in the content an agent reads.\n\n**Demonstrated harm** (hand-traced): with two open blocking findings in one root class under different abstraction phrasings, one remediation commit cannot close both — the second stays `confirmed` forever and keeps surfacing in `currentHeadFindings`/`staleFindings`. Closing it requires a second remediation whose exact string is unrecoverable from the tool's own text output; the caller instead gets a hard error pointing at the wrong key.\n\n**Not claimed:** this does *not* inflate the counter toward a false checkpoint. `remediatedSinceOccurrence` (`:186`, `:191`, `:202-205`) is a boolean, so consecutive remediations collapse to one recurrence opportunity. Traced `F1(A), F2(B)@sha1, R(A), R(B), F3@sha3` → occurrences 2, remediations 2, recurrences 1. Correct.\n\n**Test gap:** scenario G (`review-finding-recurrence.test.ts:145-166`) varies abstraction only *sequentially*, one open at a time. No test has two abstractions open simultaneously in one root class — the case that fails."
+    },
+    {
+      "findingId": "F13",
+      "title": "Truncation ceremony cannot activate for the produced output",
+      "sourceExcerpt": "`truncateHead` (`:12`, `:405-406`) defaults to 2000 lines / 50 KB (`src/core/tools/truncate.ts:11-12`) against a 3–15 line output. It never fires. Its only real effect is forcing `vi.mock(\"@earendil-works/pi-coding-agent\")` (`test:13-15`), which leaves the formatter's only non-trivial branch untested. Deleting it makes the package import type-only (erased at runtime), the mock unnecessary, and the example more portable. Truncation *direction* is correct — the `ARCHITECTURE_CHECKPOINT` banner survives — so this is waste, not a safety bug."
+    },
+    {
+      "findingId": "F14",
+      "title": "The module exposes an unconsumed export surface",
+      "sourceExcerpt": "`:56-84` and `:171` export 13 names nothing imports. An example publishing a library API reads as a core module that hasn't moved yet."
+    },
+    {
+      "findingId": "F15",
+      "title": "Stale conflates obsolete with open",
+      "sourceExcerpt": "`:266-267` files any open confirmed blocker whose `reviewSha !== headSha` under `staleFindings`, printed as \"Stale findings: N\" (`:394`). An unremediated blocker at an older SHA is open, not stale. Rename to `priorShaFindings` or emit an `openFindings` count."
+    },
+    {
+      "findingId": "F16",
+      "title": "One class globally pauses remediation for unrelated classes",
+      "sourceExcerpt": "`:317-319` refuses *all* remediation once any cluster checkpoints, including unrelated root classes. Plausibly intended by an unqualified `PAUSE_LOCAL_REMEDIATION`; confirm and state it in the header comment."
+    },
+    {
+      "findingId": "F17",
+      "title": "Recurrence ordering is record order rather than commit order",
+      "sourceExcerpt": "Recurrence is defined by insertion order (`:191-205`). A finding recorded late against a new SHA that is an *ancestor* of a remediation counts as recurrence. `promptGuidelines:476` delegates ancestry explicitly and `seenReviewShas` (`:199`) blocks the common re-report case, so the window is narrow. Honest delegation — name it in the header."
+    },
+    {
+      "findingId": "F18",
+      "title": "Affected abstractions are joined without a bound",
+      "sourceExcerpt": "`:207-213` joins every distinct abstraction string into one field that reaches checkpoint output. Display-only after the P1 fix; cap or drop."
+    },
+    {
+      "findingId": "F19",
+      "title": "Checkpoint scope overreaches and hides the triggering class",
+      "sourceExcerpt": "`review-findings.ts:311-313` throws for **any** `rootClass` once **any** cluster reaches 2. Reachable — `recordFinding` isn't gated on checkpoint, so an unrelated class can accumulate confirmed blocking findings that can never be remediated. The message names no class. Defensible under a literal reading of PAUSE_LOCAL_REMEDIATION, and the failure mode is safe (a paused class can't falsely escalate), hence P2."
+    },
+    {
+      "findingId": "F20",
+      "title": "Replay performs a redundant pre-check",
+      "sourceExcerpt": "Root class `DUPLICATED_VALIDATION` · abstraction: strict replay.\n`:355-365` recomputes expected `findingIds`; the canonical comparison at `:368` already subsumes it — differing ids cannot stringify-equal. Cost: 11 lines plus a second copy of the `:324-327` predicate that must stay in sync, which is the exact defect shape this extension exists to detect."
+    },
+    {
+      "findingId": "F21",
+      "title": "An ordered event log is used where a snapshot could represent the state",
+      "sourceExcerpt": "Root class `PERSISTENCE_MODEL_OVERBUILD` · abstraction: session-state restore.\n`todo.ts:118-133` stores a snapshot (last write wins); `review-findings.ts:456-482` stores events needing ordered replay. The replay validates the extension's own prior writes, and `:368` makes correctness depend on JSON key ordering surviving a round-trip. Snapshotting `ReviewState` deletes `replayReviewEvent` (~24 lines), the version envelope, and the ordering fragility. *Line count, not the fail-closed behavior.*"
+    },
+    {
+      "findingId": "F22",
+      "title": "The export surface exists for the test rather than users",
+      "sourceExcerpt": "Root class `TEST_DRIVEN_API_LEAKAGE` · abstraction: example module boundary.\n`:85-152` exports ~14 types and 6 functions; a user copying the file to `~/.prime/agent/extensions/` consumes only the default export. A reader learning the extension API walks past a type module first."
+    },
+    {
+      "findingId": "F23",
+      "title": "The remediation SHA self-check has an inconsistent scope",
+      "sourceExcerpt": "- `remediationSha` self-check (`:331`) compares only *open* findings: `F1@sha1 → remediate@sha2 → F2@sha3 → remediate@sha1` passes. Widen to all findings in the class, or drop it as inconsistent with the ancestry delegation.\n- Dead branch: `:193` `occurrenceCount > 0` is always true (a remediation requires preceding confirmed findings in the same cluster). Simplify to `= true`.\n- `recordFinding`/`recordRemediation` (`:304`, `:343`) assess against the event's own SHA, not repo HEAD. Harmless — the split drives nothing — but the naming invites misreading.\n- The head-SHA partition (`:253-261`) is never consulted by `checkpointForState`. Four arrays and a validation the policy doesn't need.\n- `test:13-15` mocks the entire `@earendil-works/pi-coding-agent` module with one stub; a future import from it silently becomes `undefined` with no failure signal. Use `importOriginal`."
+    },
+    {
+      "findingId": "F24",
+      "title": "Record transitions assess against event SHAs rather than repository HEAD",
+      "sourceExcerpt": "- `recordFinding`/`recordRemediation` (`:304`, `:343`) assess against the event's own SHA, not repo HEAD. Harmless — the split drives nothing — but the naming invites misreading.\n- The head-SHA partition (`:253-261`) is never consulted by `checkpointForState`. Four arrays and a validation the policy doesn't need.\n- `test:13-15` mocks the entire `@earendil-works/pi-coding-agent` module with one stub; a future import from it silently becomes `undefined` with no failure signal. Use `importOriginal`."
+    },
+    {
+      "findingId": "F25",
+      "title": "A whole-package mock can hide future runtime import failures",
+      "sourceExcerpt": "- `test:13-15` mocks the entire `@earendil-works/pi-coding-agent` module with one stub; a future import from it silently becomes `undefined` with no failure signal. Use `importOriginal`."
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "auditVersion": "corpus-validity-audit-v1",
+  "blindCorpusSha256": "cf9ff7daf90217134586f8e5485c8d405b939d35f69aeb3fe8b165f7dc2bfa8b",
+  "items": [
+    {
+      "itemId": "item-35c3b67009bb",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "Single observable outcome (a contradicted observation still counted in recurrence). No cause label, severity, fix, or provenance. Nearest neighbours (e5f8, d187, 72de) turn on different triggers and different counted effects."
+    },
+    {
+      "itemId": "item-3966afa09ad1",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One manifestation: the error text omits the triggering group. Domain nouns only. Distinct from 4711f, which is cross-group blocking rather than missing identification in the message."
+    },
+    {
+      "itemId": "item-bbb7c7ac73c2",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One measurable behaviour (quadratic growth of copy work). States observed scaling, not a diagnosis, severity, or remedy. No other item reports a growth characteristic."
+    },
+    {
+      "itemId": "item-b7c6f6de4069",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: case-only text difference yields separate groups. Neutral wording. 947ca states the opposite grouping situation (treated as one category) and a different effect, so no overlap."
+    },
+    {
+      "itemId": "item-a588e8cfef87",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "Single observed configuration/data-path fact. Literal state and thresholds, no evaluative term such as unnecessary or overbuilt, so it stays inside the rubric's literal-state carve-out. No counterpart."
+    },
+    {
+      "itemId": "item-e5f809536c80",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: ordering by insertion rather than commit time yields a spurious later recurrence. Distinct from 35c3 (contradicted evidence) and 72de (double increment from one commit)."
+    },
+    {
+      "itemId": "item-8e66ef6bf977",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One branch condition described as observed. Literal state, no 'dead code' or other evaluative label. No other item describes this branch."
+    },
+    {
+      "itemId": "item-a36bcf847909",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: key-order sensitivity of restoration acceptance. Distinct trigger and effect from 32ff (validation-rule change), 5f2f (repeated check), and 6b54 (status request error)."
+    },
+    {
+      "itemId": "item-9c3adb9fcc4e",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: unbounded concatenation into a display field. Shares the join site with 641b9 but that item's observable is ambiguity between different description lists, independently observable from unbounded length."
+    },
+    {
+      "itemId": "item-72de0587137f",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: a single correction commit advancing the counter twice. Shares a plausible cause with 947ca (abstraction-text keying) but the observed effect there is separate correction events required, not counter double-advance."
+    },
+    {
+      "itemId": "item-b0d3b9485cf6",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One display outcome; the collection name is quoted as a literal field name, which the rubric permits. Distinct from 499a6 (how the current-head set is determined) and b3bfd (unread partitions)."
+    },
+    {
+      "itemId": "item-f1e3dcff42a5",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: the test still passes while a runtime export is missing under its expected name. Nearest neighbour 1bd61 reports a different observable (an import resolving to undefined under a specific test double); shared cause alone does not make them duplicates."
+    },
+    {
+      "itemId": "item-e617c2f887d8",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: only the first qualifying group appears in the result. Neutral statement of observed behaviour. No counterpart item reports truncation of the reported group set."
+    },
+    {
+      "itemId": "item-4711f03203e5",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: one group's terminal state blocks correction requests for unrelated groups. Distinct from 3966a, which concerns the content of the resulting error message."
+    },
+    {
+      "itemId": "item-32ff81ae4886",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: restoration of historical events fails after rule change. Independently observable from 6b54 (a read-only status request erroring) and from a36bc (key-order sensitivity)."
+    },
+    {
+      "itemId": "item-947ca2472899",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One manifestation (separate correction events required); the aggregation clause is minimal context, not a second outcome. No disposition or fix language. Distinct effect from 72de and b7c6."
+    },
+    {
+      "itemId": "item-b3bfdbc72ca4",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One observed fact: computed partitions not read by the recurrence decision. Literal state without an evaluative label. Distinct from 1b9f0 (unimported exports)."
+    },
+    {
+      "itemId": "item-d1870bd04a50",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: a review commit identifier later recorded as a correction commit identifier. Neutral field-level description. Distinct from the other recurrence-counting items' observables."
+    },
+    {
+      "itemId": "item-1bd6123e21c4",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: an unstubbed import resolving to undefined under a one-function package double. Nearest neighbour f1e3 reports a test-result observable instead; establishing shared source evidence would require provenance this audit does not have."
+    },
+    {
+      "itemId": "item-641b99358635",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: comma-containing descriptions producing ambiguous joined text. Independently observable from 9c3ad's unbounded-length outcome despite the shared display field."
+    },
+    {
+      "itemId": "item-5f2f1d019506",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One observed fact: the same mismatch check performed twice during restoration. Literal sequence, no evaluative or remedial wording. Distinct from a36bc and 32ff, which report restoration failures."
+    },
+    {
+      "itemId": "item-1b9f06e7b080",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One counted observation: thirteen exports with no importer. Literal state, no 'dead code' framing. Distinct from b3bfd (unread computed partitions)."
+    },
+    {
+      "itemId": "item-499a69824f00",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: the reported current-head set varies with the just-recorded event's commit identifier; the contrast clause is context, not a second manifestation. Distinct from b0d3 and b3bfd."
+    },
+    {
+      "itemId": "item-6b54c6516c14",
+      "atomicity": "PASS",
+      "leakage": "PASS",
+      "duplicateManifestation": "PASS",
+      "duplicateItemIds": [],
+      "conciseRationale": "One outcome: a read-only status request returns an error. Independently observable from 32ff's restoration failure, which is the stated precondition rather than the same outcome."
+    }
+  ],
+  "corpusPass": true,
+  "corpusConcerns": [
+    "blindCorpusSha256 is echoed from the task statement, not independently computed: this seat has no permitted hashing capability, so hash-pinning (corpus gate 9) is unverified here.",
+    "Corpus-level gates 1-5 (dual-auditor coverage, adjudication record, rewrite/re-audit of failures, mechanical validation with seeded leakage/atomicity/duplicate canaries) cannot be checked from a single blind auditor's position; no seeded canary was identifiable in the 24 supplied items, which is itself unverifiable from this seat.",
+    "Gates 6-8 and 10 (ID opacity vs provenance, identical ID sets across separate files, gold-pair label hygiene, absence of classification output) require artifacts not supplied; item IDs and ordering showed no discernible provenance or grouping signal, which is the most that can be asserted blind.",
+    "Nearest-duplicate pair is item-f1e3dcff42a5 / item-1bd6123e21c4 (both touch test doubles and a missing runtime export). Resolved as distinct under the shared-cause rule because each outcome is observable without the other; if provenance shows the same test and the same source excerpt, this pair should be re-examined against the repeated-source-evidence clause.",
+    "Second-nearest pairs, all resolved distinct on independently observable outcomes but worth a provenance-informed re-check: item-947ca2472899 / item-72de0587137f, item-32ff81ae4886 / item-6b54c6516c14, and item-9c3adb9fcc4e / item-641b99358635.",
+    "Several items state literal unused or unread structure (item-a588e8cfef87, item-8e66ef6bf977, item-b3bfdbc72ca4, item-1b9f06e7b080). They pass under the rubric's literal-state carve-out, but they sit closest to the evaluative-language line and would fail if any were reworded with a judgment term."
+  ]
+}

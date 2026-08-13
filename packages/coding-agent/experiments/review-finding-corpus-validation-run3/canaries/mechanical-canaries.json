@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "leakage": [
+    {
+      "text": "Root class: SPLIT_IDENTITY_BOUNDARY.",
+      "expectedRule": "classification-label"
+    },
+    {
+      "text": "This is a P1 blocking finding.",
+      "expectedRule": "severity-or-disposition"
+    },
+    {
+      "text": "Use a snapshot instead.",
+      "expectedRule": "recommendation-or-remediation"
+    },
+    {
+      "text": "Claude identified this behavior.",
+      "expectedRule": "reviewer-or-model"
+    },
+    {
+      "text": "An architecture checkpoint activates.",
+      "expectedRule": "checkpoint-or-escalation"
+    },
+    {
+      "text": "The source is module.ts:42 in Run 2.",
+      "expectedRule": "provenance"
+    },
+    {
+      "text": "The expected relation is SAME_ROOT.",
+      "expectedRule": "gold-relationship"
+    }
+  ],
+  "atomicity": [
+    {
+      "text": "One manifestation. Another manifestation.",
+      "expectedRule": "not-one-sentence"
+    },
+    {
+      "text": "- first\n- second",
+      "expectedRule": "multi-part-format"
+    }
+  ],
+  "duplicates": [
+    {
+      "left": {
+        "itemId": "item-000000000001",
+        "manifestation": "A stored record is omitted from the displayed collection."
+      },
+      "right": {
+        "itemId": "item-000000000002",
+        "manifestation": "A stored record is omitted from the displayed collection."
+      },
+      "minimumScore": 1
+    }
+  ]
+}

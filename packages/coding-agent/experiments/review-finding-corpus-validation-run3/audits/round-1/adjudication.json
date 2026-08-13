@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "round": 1,
+  "blindCorpusSha256": "dbe19e63c8ebb97e4698dd7ad5f26833d5c4450cc219855b2f57597ec4b5aaed",
+  "disagreementCount": 10,
+  "disagreements": [
+    {
+      "itemId": "item-2eb6628a4df3",
+      "gate": "duplicateManifestation",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "EXCLUDE"
+    },
+    {
+      "itemId": "item-bbb7c7ac73c2",
+      "gate": "atomicity",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "REWRITE_AND_REAUDIT"
+    },
+    {
+      "itemId": "item-e5f809536c80",
+      "gate": "atomicity",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "REWRITE_AND_REAUDIT"
+    },
+    {
+      "itemId": "item-a36bcf847909",
+      "gate": "atomicity",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "REWRITE_AND_REAUDIT"
+    },
+    {
+      "itemId": "item-72de0587137f",
+      "gate": "atomicity",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "REWRITE_AND_REAUDIT"
+    },
+    {
+      "itemId": "item-4711f03203e5",
+      "gate": "duplicateManifestation",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "RETAIN_AS_INDEPENDENTLY_OBSERVABLE_SCOPE_MANIFESTATION",
+      "resolution": "READJUDICATE_AND_REAUDIT_UNCHANGED"
+    },
+    {
+      "itemId": "item-32ff81ae4886",
+      "gate": "atomicity",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "REWRITE_AND_REAUDIT"
+    },
+    {
+      "itemId": "item-1bd6123e21c4",
+      "gate": "atomicity",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "REWRITE_AND_REAUDIT"
+    },
+    {
+      "itemId": "item-6b54c6516c14",
+      "gate": "atomicity",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "REWRITE_AND_REAUDIT"
+    },
+    {
+      "itemId": "item-6b54c6516c14",
+      "gate": "duplicateManifestation",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "REWRITE_AND_REAUDIT"
+    }
+  ],
+  "corpusConcerns": [
+    {
+      "source": "codex",
+      "concern": "Three terminal-state items were reported as duplicate manifestations.",
+      "adjudication": "Excluded the general session-branch item; narrowed the read-only restore item; retained cross-group scope and diagnostic-content items as independently observable outcomes for re-audit."
+    },
+    {
+      "source": "claude",
+      "concern": "Truncation and unbounded display aggregation could conflict if they refer to the same output.",
+      "adjudication": "Rewrote truncation item to the fixed three-line response only and retained unbounded aggregate display as a separate output path."
+    },
+    {
+      "source": "claude",
+      "concern": "Hash and corpus-level process gates were not observable from blind audit.",
+      "adjudication": "Accepted as expected auditor boundary; mechanical validation and manifests supply this evidence."
+    },
+    {
+      "source": "claude",
+      "concern": "Terminal-state facets could invite duplicate disagreement.",
+      "adjudication": "Clarified diagnostic-content wording and excluded the broadest overlapping item before re-audit."
+    }
+  ],
+  "excluded": [
+    {
+      "itemId": "item-2eb6628a4df3",
+      "reason": "Overlaps the narrower cross-group terminal-state manifestation."
+    }
+  ],
+  "added": [
+    {
+      "itemId": "item-35c3b67009bb",
+      "reason": "Atomic distinct manifestation from an authorized source; added to preserve corpus size after exclusion."
+    }
+  ],
+  "rewritten": [
+    {
+      "itemId": "item-32ff81ae4886",
+      "constructionKey": "M03",
+      "newManifestation": "State restoration fails for historical events after validation rules change."
+    },
+    {
+      "itemId": "item-6b54c6516c14",
+      "constructionKey": "M04",
+      "newManifestation": "A read-only status request returns an error after any historical event fails restoration."
+    },
+    {
+      "itemId": "item-a588e8cfef87",
+      "constructionKey": "M06",
+      "newManifestation": "A constant three-line response is passed through a truncation check configured for 2000 lines or 50 KB."
+    },
+    {
+      "itemId": "item-bbb7c7ac73c2",
+      "constructionKey": "M10",
+      "newManifestation": "Total event-copy work grows quadratically with history length."
+    },
+    {
+      "itemId": "item-72de0587137f",
+      "constructionKey": "M12",
+      "newManifestation": "One correction commit can advance the recurrence counter twice when recorded under two descriptive abstractions."
+    },
+    {
+      "itemId": "item-e5f809536c80",
+      "constructionKey": "M15",
+      "newManifestation": "A record added after a correction is counted as a later recurrence even when its commit predates that correction."
+    },
+    {
+      "itemId": "item-a36bcf847909",
+      "constructionKey": "M19",
+      "newManifestation": "Restoration acceptance changes when object-key order differs after the storage round trip."
+    },
+    {
+      "itemId": "item-1bd6123e21c4",
+      "constructionKey": "M24",
+      "newManifestation": "An unstubbed runtime import resolves to an undefined value in tests that use a one-function full-package test double."
+    },
+    {
+      "itemId": "item-3966afa09ad1",
+      "constructionKey": "M27",
+      "newManifestation": "An error produced by the terminal recurrence state does not identify which aggregate group triggered that state."
+    }
+  ],
+  "candidateVersion": "candidate-1",
+  "requiresIndependentReaudit": true,
+  "goldPairChanges": [
+    {
+      "pairId": "pair-a21e13518c",
+      "change": "Replaced excluded item item-2eb6628a4df3 with added item item-35c3b67009bb before candidate re-audit.",
+      "relation": "DIFFERENT_ROOT",
+      "rationale": "Persistent contribution after contradictory evidence and unbounded display aggregation are distinct lifecycle and formatting boundaries."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Evaluator design
+
+`evaluate.ts` is a fail-closed, deterministic evaluator. It accepts the frozen Run 3 `gold-pairs.json`, normalized reviewer outputs, execution metadata, and an output path.
+
+Before reading relations into scoring, it verifies the gold file hash, corpus version, pair count, pair order, relation counts, source SHA, blind/gold identities, the authorization SHA against the captured clean HEAD, actual prompt and response-schema bytes, captured CLI-version outputs, requested models, provider identities, effective model sets, raw-artifact hashes and envelopes, absence of tool events/use, successful exits, four unique reviewer-condition invocations, and identical effective composition across a reviewer's two conditions. Claude model usage and its `firstParty` telemetry provider are checked against the raw envelope. Codex's `openai` provider identity remains selector-attested because the CLI event stream does not provider-attest it. Codex events are validated recursively against the closed set and order `thread.started`, `turn.started`, completed reasoning/final-message items, and `turn.completed`; unknown fields, event/item types, failures, duplicate IDs, extra final messages, and incomplete usage are rejected. Any mismatch throws and produces no metrics.
+
+`normalize-results.ts` unwraps Codex's final JSON and Claude Code's `structured_output` or JSON `result` without semantic transformation. The evaluator then enforces exact item and pair order, complete coverage, confidence bounds, nonempty rationales, and Condition B affected-abstraction coverage.
+
+The evaluator performs formatting-only root-label normalization. It has no semantic aliases, ontology mapping, prompt tuning, gold repair, missing-value imputation, or post-result exclusions. Every reviewer/condition report includes exact accuracy, abstention count, failure pair IDs, and abstention pair IDs. Confidence summaries and Wilson intervals are descriptive and do not participate in the gate.
+
+The evaluator does not invoke a model, access a provider API, mutate the corpus, publish results, or change Prime core. Synthetic unit tests exercise scoring, normalization, interval calculation, and model-composition rejection without producing classifications for the real corpus.

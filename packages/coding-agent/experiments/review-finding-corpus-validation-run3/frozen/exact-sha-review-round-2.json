@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "baseSha": "57283d1b01378f12bbb05e19653cdfa89a1aa796",
+  "reviewSha": "522037cc087059bea9bb8fe24141a132298a8be5",
+  "verdict": "NO_BLOCKER_OR_P1_FINDINGS",
+  "codex": {
+    "toolVersion": "codex-cli 0.146.0",
+    "model": "gpt-5.6-sol",
+    "rawArtifact": "/Users/mccully/.prime/agent/session-artifacts/019ff7e1-c290-758a-90ad-ec347e214225/reviews/run3-instrument-rereview/codex-raw.txt",
+    "rawSha256": "ea971a2df5ac0568cad2afe9d55334805a76d67d9e1df91d4e74a2eb999944f3",
+    "findingCount": 0,
+    "gateDecision": "PASS"
+  },
+  "claude": {
+    "toolVersion": "Claude Code 2.1.228",
+    "requestedModel": "claude-opus-5",
+    "rawArtifact": "/Users/mccully/.prime/agent/session-artifacts/019ff7e1-c290-758a-90ad-ec347e214225/reviews/run3-instrument-rereview/claude-raw.txt",
+    "rawSha256": "b4be9d85bd69d757a5afcc4b58535f174e106192c5ed2b69a421964af103df32",
+    "findingCount": 0,
+    "gateDecision": "PASS"
+  },
+  "classificationAuthorized": false
+}

@@ -1,0 +1,195 @@
+You are independently classifying atomic software-review manifestations for a preregistered evidence experiment. Work only from the blind inputs in this prompt. Do not inspect a repository, local files, provenance, gold relations, prior experiment outputs, or another reviewer's output. Do not use tools. Do not propose fixes, infer severity, or judge acceptance. Return only one JSON object matching the supplied response schema. Preserve the supplied item and pair order exactly.
+
+CONDITION B — MINIMAL MODEL-NEUTRAL RUBRIC
+
+Definitions:
+- Manifestation: the concrete observed defect, behavior, or code symptom.
+- Affected abstraction: the nearest design boundary, invariant, state machine, persistence model, identity boundary, authority boundary, or module contract where the cause operates. It is descriptive and is not recurrence identity.
+- Architectural root cause: the underlying design property or missing invariant that plausibly permits the manifestation and would be addressed by one coherent architectural remediation.
+- Root class: a compact, project-neutral UPPER_SNAKE_CASE name for that cause. Reuse a root class only when one coherent architectural remediation would plausibly address both manifestations.
+- Distinguish identity (what is considered the same), validity (what evidence or data is admissible), authority (who may decide or act), and state/lifecycle (which transitions are possible) where applicable. Do not force unrelated manifestations into these distinctions.
+
+For every item, return `rootClass`, `affectedAbstraction`, `confidence`, and a concise rationale. For every designated pair, decide `SAME_ROOT` when one coherent architectural remediation would plausibly address both, `DIFFERENT_ROOT` when it would not, or `AMBIGUOUS` only when the supplied evidence is insufficient to choose either binary relation. Pair decisions must be reasoned from the manifestations, not from exact label equality.
+
+For an item, `confidence` is your subjective probability that its root class is the best class under this rubric. For a binary pair decision, it is the subjective probability that the selected relation is correct. For `AMBIGUOUS`, it is the subjective probability that the evidence is insufficient. Confidence is descriptive and will not change the preregistered pass/fail rule.
+
+DESIGNATED PAIRS — GOLD RELATIONS WITHHELD
+[
+  {
+    "pairId": "pair-ca8b1c1142",
+    "leftItemId": "item-4711f03203e5",
+    "rightItemId": "item-a36bcf847909"
+  },
+  {
+    "pairId": "pair-ce4d25d3f4",
+    "leftItemId": "item-b7c6f6de4069",
+    "rightItemId": "item-a588e8cfef87"
+  },
+  {
+    "pairId": "pair-8bcc15fc51",
+    "leftItemId": "item-a588e8cfef87",
+    "rightItemId": "item-499a69824f00"
+  },
+  {
+    "pairId": "pair-2dd88829ae",
+    "leftItemId": "item-9c3adb9fcc4e",
+    "rightItemId": "item-641b99358635"
+  },
+  {
+    "pairId": "pair-5b24fe3ab8",
+    "leftItemId": "item-e5f809536c80",
+    "rightItemId": "item-1b9f06e7b080"
+  },
+  {
+    "pairId": "pair-4fa2b2b948",
+    "leftItemId": "item-d1870bd04a50",
+    "rightItemId": "item-641b99358635"
+  },
+  {
+    "pairId": "pair-888ef856a9",
+    "leftItemId": "item-32ff81ae4886",
+    "rightItemId": "item-6b54c6516c14"
+  },
+  {
+    "pairId": "pair-fd55174c35",
+    "leftItemId": "item-947ca2472899",
+    "rightItemId": "item-72de0587137f"
+  },
+  {
+    "pairId": "pair-79bb8547e2",
+    "leftItemId": "item-72de0587137f",
+    "rightItemId": "item-bbb7c7ac73c2"
+  },
+  {
+    "pairId": "pair-95d891cd78",
+    "leftItemId": "item-32ff81ae4886",
+    "rightItemId": "item-1b9f06e7b080"
+  },
+  {
+    "pairId": "pair-8e297bb382",
+    "leftItemId": "item-bbb7c7ac73c2",
+    "rightItemId": "item-b0d3b9485cf6"
+  },
+  {
+    "pairId": "pair-5f8fdb905d",
+    "leftItemId": "item-8e66ef6bf977",
+    "rightItemId": "item-499a69824f00"
+  },
+  {
+    "pairId": "pair-a32f142911",
+    "leftItemId": "item-e617c2f887d8",
+    "rightItemId": "item-b3bfdbc72ca4"
+  },
+  {
+    "pairId": "pair-b9d7d7d8af",
+    "leftItemId": "item-6b54c6516c14",
+    "rightItemId": "item-d1870bd04a50"
+  },
+  {
+    "pairId": "pair-80ac4fa066",
+    "leftItemId": "item-947ca2472899",
+    "rightItemId": "item-b0d3b9485cf6"
+  },
+  {
+    "pairId": "pair-a21e13518c",
+    "leftItemId": "item-35c3b67009bb",
+    "rightItemId": "item-9c3adb9fcc4e"
+  }
+]
+
+BLIND CORPUS
+{
+  "schemaVersion": 1,
+  "corpusVersion": "frozen-1",
+  "itemCount": 22,
+  "items": [
+    {
+      "itemId": "item-35c3b67009bb",
+      "manifestation": "An observation continues contributing to recurrence counts after later evidence contradicts it."
+    },
+    {
+      "itemId": "item-3966afa09ad1",
+      "manifestation": "An error produced by the terminal recurrence state does not identify which aggregate group triggered that state."
+    },
+    {
+      "itemId": "item-bbb7c7ac73c2",
+      "manifestation": "Total event-copy work grows quadratically with history length."
+    },
+    {
+      "itemId": "item-b7c6f6de4069",
+      "manifestation": "Two otherwise identical records whose abstraction text differs only by capitalization produce separate aggregate groups."
+    },
+    {
+      "itemId": "item-a588e8cfef87",
+      "manifestation": "A constant three-line response is passed through a truncation check configured for 2000 lines or 50 KB."
+    },
+    {
+      "itemId": "item-e5f809536c80",
+      "manifestation": "A record added after a correction is counted as a later recurrence even when its commit predates that correction."
+    },
+    {
+      "itemId": "item-8e66ef6bf977",
+      "manifestation": "A branch tests whether at least one occurrence exists in a state where the surrounding operation cannot exist without a prior occurrence."
+    },
+    {
+      "itemId": "item-a36bcf847909",
+      "manifestation": "Restoration acceptance changes when object-key order differs after the storage round trip."
+    },
+    {
+      "itemId": "item-9c3adb9fcc4e",
+      "manifestation": "Every distinct abstraction description is concatenated into one display field without a length or item bound."
+    },
+    {
+      "itemId": "item-72de0587137f",
+      "manifestation": "One correction commit can advance the recurrence counter twice when recorded under two descriptive abstractions."
+    },
+    {
+      "itemId": "item-b0d3b9485cf6",
+      "manifestation": "An unresolved record from an earlier commit is displayed in a collection named stale findings."
+    },
+    {
+      "itemId": "item-e617c2f887d8",
+      "manifestation": "When more than one aggregate group meets the reporting condition, the result includes only the first group."
+    },
+    {
+      "itemId": "item-4711f03203e5",
+      "manifestation": "A terminal recurrence state reached by one aggregate group prevents correction requests for unrelated groups."
+    },
+    {
+      "itemId": "item-32ff81ae4886",
+      "manifestation": "State restoration fails for historical events after validation rules change."
+    },
+    {
+      "itemId": "item-947ca2472899",
+      "manifestation": "Two open records that differ only in descriptive abstraction text require separate correction events even though occurrence aggregation treats them as one category."
+    },
+    {
+      "itemId": "item-b3bfdbc72ca4",
+      "manifestation": "The system computes four head-based finding partitions that the recurrence decision does not read."
+    },
+    {
+      "itemId": "item-d1870bd04a50",
+      "manifestation": "After an earlier observation is closed, its review commit identifier can later be recorded as a correction commit identifier."
+    },
+    {
+      "itemId": "item-641b99358635",
+      "manifestation": "Two abstraction descriptions containing commas can produce the same comma-joined display text as a different list of descriptions."
+    },
+    {
+      "itemId": "item-5f2f1d019506",
+      "manifestation": "Restoration recomputes the expected record identifiers before a canonical event comparison repeats the same mismatch check."
+    },
+    {
+      "itemId": "item-1b9f06e7b080",
+      "manifestation": "The extension exports thirteen symbols that no consumer imports."
+    },
+    {
+      "itemId": "item-499a69824f00",
+      "manifestation": "The set reported as current-head findings changes according to the commit identifier of the event just recorded rather than an independently supplied repository head."
+    },
+    {
+      "itemId": "item-6b54c6516c14",
+      "manifestation": "A read-only status request returns an error after any historical event fails restoration."
+    }
+  ]
+}

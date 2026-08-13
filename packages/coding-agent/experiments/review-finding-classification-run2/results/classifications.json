@@ -1,0 +1,968 @@
+{
+  "conditions": {
+    "A": {
+      "codex": {
+        "condition": "A",
+        "classifications": [
+          {
+            "findingId": "F01",
+            "rootClass": "IRREVERSIBLE_STATE_TRANSITION",
+            "conciseRationale": "The checkpoint state has no event or transition that can resolve it, turning a temporary pause into a permanent halt."
+          },
+          {
+            "findingId": "F02",
+            "rootClass": "UNSTABLE_DOMAIN_IDENTITY",
+            "conciseRationale": "Recurrence identity depends on an unconstrained, weakly normalized display string, so equivalent concepts can form different clusters."
+          },
+          {
+            "findingId": "F03",
+            "rootClass": "REPLAY_COUPLED_TO_CURRENT_BUSINESS_RULES",
+            "conciseRationale": "Restoration revalidates historical events with current logic, making persisted logs incompatible with later rule changes."
+          },
+          {
+            "findingId": "F04",
+            "rootClass": "POOR_MODULE_BOUNDARY",
+            "conciseRationale": "Pure logic is coupled to runtime package wiring, forcing tests to replace an entire package to isolate one dependency."
+          },
+          {
+            "findingId": "F05",
+            "rootClass": "UNNECESSARY_DEPENDENCY",
+            "conciseRationale": "A practically unreachable truncation path introduces the module's sole runtime package dependency without meaningful benefit."
+          },
+          {
+            "findingId": "F06",
+            "rootClass": "INERT_DOMAIN_STATE",
+            "conciseRationale": "The non-blocking classification is represented but has no effect on any decision or observable policy."
+          },
+          {
+            "findingId": "F07",
+            "rootClass": "INCOMPLETE_AGGREGATION",
+            "conciseRationale": "A first-match lookup reports only one qualifying cluster even when multiple clusters satisfy the checkpoint condition."
+          },
+          {
+            "findingId": "F08",
+            "rootClass": "STRINGLY_TYPED_COMPOSITE_KEY",
+            "conciseRationale": "Structured identity is serialized into a string key and later parsed, obscuring the underlying tuple model."
+          },
+          {
+            "findingId": "F09",
+            "rootClass": "AMBIGUOUS_STATE_SEMANTICS",
+            "conciseRationale": "The same headSha concept denotes the triggering event SHA in record responses but repository-head context in assessment responses."
+          },
+          {
+            "findingId": "F10",
+            "rootClass": "QUADRATIC_STATE_COPYING",
+            "conciseRationale": "Every append deep-copies the complete accumulated event log, causing total work to grow quadratically."
+          },
+          {
+            "findingId": "F11",
+            "rootClass": "INCONSISTENT_IDENTITY_BOUNDARIES",
+            "conciseRationale": "Recurrence and remediation use different identity dimensions, allowing one remediation SHA to be counted as distinct remediation opportunities."
+          },
+          {
+            "findingId": "F12",
+            "rootClass": "INCONSISTENT_IDENTITY_BOUNDARIES",
+            "conciseRationale": "Clustering, closure, deduplication, evidence, and errors disagree on whether affected abstraction belongs to concept identity."
+          },
+          {
+            "findingId": "F13",
+            "rootClass": "UNREACHABLE_INFRASTRUCTURE",
+            "conciseRationale": "Truncation infrastructure cannot realistically activate for the bounded formatter output yet imposes runtime and testing complexity."
+          },
+          {
+            "findingId": "F14",
+            "rootClass": "UNNECESSARY_PUBLIC_API",
+            "conciseRationale": "The example exposes a large unused export surface that is not part of its actual consumer contract."
+          },
+          {
+            "findingId": "F15",
+            "rootClass": "MISLEADING_DOMAIN_TERMINOLOGY",
+            "conciseRationale": "The stale label conflates an unresolved finding from an earlier SHA with a finding that is obsolete."
+          },
+          {
+            "findingId": "F16",
+            "rootClass": "OVERBROAD_GLOBAL_GATING",
+            "conciseRationale": "A checkpoint in one class disables remediation globally, including work on unrelated classes."
+          },
+          {
+            "findingId": "F17",
+            "rootClass": "ORDERING_MODEL_MISMATCH",
+            "conciseRationale": "Recurrence chronology follows event insertion order even though the domain relationship is commit ancestry."
+          },
+          {
+            "findingId": "F18",
+            "rootClass": "UNBOUNDED_OUTPUT_AGGREGATION",
+            "conciseRationale": "All distinct free-form abstraction strings are concatenated into checkpoint output without a size bound."
+          },
+          {
+            "findingId": "F19",
+            "rootClass": "OVERBROAD_GLOBAL_GATING",
+            "conciseRationale": "A checkpoint triggered by one class blocks all classes while omitting the triggering class from the diagnostic."
+          },
+          {
+            "findingId": "F20",
+            "rootClass": "DUPLICATED_VALIDATION",
+            "conciseRationale": "A separate finding-ID pre-check duplicates a condition already guaranteed by canonical event comparison."
+          },
+          {
+            "findingId": "F21",
+            "rootClass": "PERSISTENCE_MODEL_OVERBUILD",
+            "conciseRationale": "Ordered event sourcing and strict replay are used for state that can be represented directly as a last-write-wins snapshot."
+          },
+          {
+            "findingId": "F22",
+            "rootClass": "TEST_DRIVEN_API_LEAKAGE",
+            "conciseRationale": "Internal types and helpers are exported primarily to support tests rather than the module's user-facing extension contract."
+          },
+          {
+            "findingId": "F23",
+            "rootClass": "INCONSISTENT_VALIDATION_SCOPE",
+            "conciseRationale": "The remediation SHA collision check considers only currently open findings, allowing equivalent historical conflicts to pass."
+          },
+          {
+            "findingId": "F24",
+            "rootClass": "MISMODELED_CONTEXT_PARAMETER",
+            "conciseRationale": "Transition assessments pass an event SHA as head context even though the resulting head partition is not used by checkpoint policy."
+          },
+          {
+            "findingId": "F25",
+            "rootClass": "OVERBROAD_TEST_DOUBLE",
+            "conciseRationale": "Replacing the entire package with one stub can conceal missing or newly introduced runtime exports."
+          }
+        ]
+      },
+      "claude": {
+        "classifications": [
+          {
+            "findingId": "F01",
+            "rootClass": "IRREVERSIBLE_STATE_TRANSITION",
+            "conciseRationale": "Checkpoint sets a permanently true condition (recordRemediation always throws once checkpointForState is truthy) with no event type that can clear it, making PAUSE an irrecoverable HALT."
+          },
+          {
+            "findingId": "F02",
+            "rootClass": "UNSTABLE_IDENTITY_KEY",
+            "conciseRationale": "Cluster identity depends on affectedAbstraction, a free-form string normalized only for whitespace — not case-folded or vocabulary-bound — so trivial casing differences silently split clusters and suppress escalation."
+          },
+          {
+            "findingId": "F03",
+            "rootClass": "REPLAY_VALIDATION_COUPLING",
+            "conciseRationale": "Replay re-derives business predicates (expectedFindingIds, canonical JSON) against current code, so any future logic change retroactively invalidates legitimately persisted v1 logs with no version-gate escape."
+          },
+          {
+            "findingId": "F04",
+            "rootClass": "MISSING_MODULE_BOUNDARY",
+            "conciseRationale": "Pure domain logic and runtime package wiring coexist in one file, forcing tests to mock the entire package for a single function — a problem the codebase's own utils pattern already solves."
+          },
+          {
+            "findingId": "F05",
+            "rootClass": "DEAD_CODE",
+            "conciseRationale": "truncateHead's 2000-line/50KB threshold is unreachable given the 3–15 line output, yet it is the sole reason for a runtime (non-type) package import."
+          },
+          {
+            "findingId": "F06",
+            "rootClass": "DEAD_CODE",
+            "conciseRationale": "non_blocking is defined as a severity but filtered out of every cluster; it affects no decision and has no behavioral consequence."
+          },
+          {
+            "findingId": "F07",
+            "rootClass": "SILENT_DATA_LOSS",
+            "conciseRationale": ".find() returns only the first qualifying cluster; additional clusters past threshold are silently unreported, with ordering dependent on Map insertion."
+          },
+          {
+            "findingId": "F08",
+            "rootClass": "UNNECESSARY_INDIRECTION",
+            "conciseRationale": "JSON.stringify produces a Map key that must be JSON.parsed back to extract the tuple — a serialize/deserialize round-trip avoidable by storing the tuple directly in the map value."
+          },
+          {
+            "findingId": "F09",
+            "rootClass": "SEMANTIC_AMBIGUITY",
+            "conciseRationale": "headSha means 'the SHA of the event just recorded' in record responses but 'the SHA the caller passed' in assess responses — same name, different semantics depending on call site."
+          },
+          {
+            "findingId": "F10",
+            "rootClass": "UNNECESSARY_COPYING",
+            "conciseRationale": "stateWithEvents deep-clones the entire event log on every append, producing O(n squared) allocation — correct but wasteful ceremony at any scale."
+          },
+          {
+            "findingId": "F11",
+            "rootClass": "INCONSISTENT_IDENTITY",
+            "conciseRationale": "Recurrence groups by rootClass only, but remediation dedup includes affectedAbstraction; each accepted remediation arms another recurrence opportunity, enabling false escalation from a single actual remediation identity."
+          },
+          {
+            "findingId": "F12",
+            "rootClass": "INCONSISTENT_IDENTITY",
+            "conciseRationale": "Clustering, remediation dedup, remediation closure, checkpoint evidence, and text output each use a different subset of (rootClass, affectedAbstraction) as the identity key for the same logical concept."
+          },
+          {
+            "findingId": "F13",
+            "rootClass": "DEAD_CODE",
+            "conciseRationale": "Truncation has a 2000-line default against 3–15 line output, can never fire, and its only real effect is forcing a whole-package mock in tests that leaves the sole non-trivial branch untested."
+          },
+          {
+            "findingId": "F14",
+            "rootClass": "UNUSED_EXPORT_SURFACE",
+            "conciseRationale": "13 exported names have zero consumers; the module reads as a library API but only the default export is used, bloating the public surface for no benefit."
+          },
+          {
+            "findingId": "F15",
+            "rootClass": "MISLEADING_NAMING",
+            "conciseRationale": "'staleFindings' labels any open confirmed blocker at a prior SHA as stale, but an unremediated blocker is open, not stale — the name misrepresents the finding's actual status."
+          },
+          {
+            "findingId": "F16",
+            "rootClass": "MISSING_SCOPE_ISOLATION",
+            "conciseRationale": "Once any cluster checkpoints, recordRemediation refuses all remediation globally — including for unrelated root classes that have no checkpoint."
+          },
+          {
+            "findingId": "F17",
+            "rootClass": "INCORRECT_ORDERING",
+            "conciseRationale": "Recurrence is determined by event insertion order rather than commit ancestry; a finding recorded late against an ancestor of a remediation SHA incorrectly counts as recurrence."
+          },
+          {
+            "findingId": "F18",
+            "rootClass": "MISSING_BOUNDS",
+            "conciseRationale": "Every distinct abstraction string for a cluster is joined into one unbounded field that reaches checkpoint output with no cap."
+          },
+          {
+            "findingId": "F19",
+            "rootClass": "MISSING_SCOPE_ISOLATION",
+            "conciseRationale": "Checkpoint triggers on any cluster reaching threshold 2 but applies the block to all root classes globally; the error message names no class, so the caller cannot identify which cluster triggered it."
+          },
+          {
+            "findingId": "F20",
+            "rootClass": "DUPLICATED_VALIDATION",
+            "conciseRationale": "The pre-check recomputing expectedFindingIds is already subsumed by the byte-identical canonical JSON comparison 13 lines later — 11 redundant lines plus a second copy of a predicate that must stay in sync."
+          },
+          {
+            "findingId": "F21",
+            "rootClass": "OVER_ENGINEERED_PERSISTENCE",
+            "conciseRationale": "An ordered event log with replay validation is used where a last-write-wins snapshot (as done by todo.ts) would suffice, adding ~24 lines plus JSON key-ordering fragility for no behavioral gain."
+          },
+          {
+            "findingId": "F22",
+            "rootClass": "TEST_DRIVEN_API_LEAKAGE",
+            "conciseRationale": "~14 types and 6 functions are exported solely to serve tests; the actual consumer (a user copying the extension) uses only the default export, making the API surface test infrastructure disguised as public API."
+          },
+          {
+            "findingId": "F23",
+            "rootClass": "INCONSISTENT_VALIDATION_SCOPE",
+            "conciseRationale": "The remediationSha self-check compares only open findings, so a previously remediated SHA passes validation even when reused against a different finding — scope doesn't match the policy's stated intent."
+          },
+          {
+            "findingId": "F24",
+            "rootClass": "SEMANTIC_MISMATCH",
+            "conciseRationale": "recordFinding/recordRemediation assess against the event's own SHA while naming suggests repo HEAD; the head-SHA partition (4 arrays) is computed but never consulted by checkpointForState."
+          },
+          {
+            "findingId": "F25",
+            "rootClass": "OVERLY_BROAD_TEST_MOCK",
+            "conciseRationale": "vi.mock of the entire package with one stub means any future import from that package silently resolves to undefined with no test failure signal — use importOriginal to preserve real exports."
+          }
+        ],
+        "condition": "A"
+      }
+    },
+    "B": {
+      "codex": {
+        "condition": "B",
+        "classifications": [
+          {
+            "findingId": "F01",
+            "rootClass": "MISSING_RESUME_TRANSITION",
+            "affectedAbstraction": "architecture-checkpoint lifecycle",
+            "confidence": 0.99,
+            "conciseRationale": "The checkpoint state is derivable from permanent history, but the event model contains no transition that resolves it and permits remediation to resume."
+          },
+          {
+            "findingId": "F02",
+            "rootClass": "UNSTABLE_RECURRENCE_IDENTITY",
+            "affectedAbstraction": "recurrence cluster identity",
+            "confidence": 0.98,
+            "conciseRationale": "A descriptive, merely whitespace-normalized string participates in identity, so semantically identical abstractions can form different clusters."
+          },
+          {
+            "findingId": "F03",
+            "rootClass": "REPLAY_COUPLED_TO_CURRENT_RULES",
+            "affectedAbstraction": "persisted-event compatibility contract",
+            "confidence": 0.98,
+            "conciseRationale": "Restore re-executes current business invariants against historical events, making previously valid logs invalid when rules evolve."
+          },
+          {
+            "findingId": "F04",
+            "rootClass": "TEST_BOUNDARY_COUPLED_TO_RUNTIME_WIRING",
+            "affectedAbstraction": "example module and package-runtime boundary",
+            "confidence": 0.96,
+            "conciseRationale": "Pure behavior is colocated with package wiring, forcing tests to replace the entire runtime package to exercise the logic."
+          },
+          {
+            "findingId": "F05",
+            "rootClass": "INAPPLICABLE_OUTPUT_TRUNCATION",
+            "affectedAbstraction": "tool-output formatting boundary",
+            "confidence": 0.99,
+            "conciseRationale": "Truncation is applied to output that cannot realistically reach its thresholds, creating a runtime dependency without useful behavior."
+          },
+          {
+            "findingId": "F06",
+            "rootClass": "INERT_DOMAIN_FIELD",
+            "affectedAbstraction": "finding classification model",
+            "confidence": 0.98,
+            "conciseRationale": "The non_blocking state is accepted by the model but excluded from all policy decisions, leaving its contract behaviorally undefined."
+          },
+          {
+            "findingId": "F07",
+            "rootClass": "SINGLE_CLUSTER_CHECKPOINT_SELECTION",
+            "affectedAbstraction": "checkpoint aggregation policy",
+            "confidence": 0.96,
+            "conciseRationale": "The policy selects the first qualifying cluster rather than representing all qualifying clusters, making reporting depend on insertion order."
+          },
+          {
+            "findingId": "F08",
+            "rootClass": "SERIALIZED_COMPOSITE_KEY",
+            "affectedAbstraction": "in-memory cluster representation",
+            "confidence": 0.98,
+            "conciseRationale": "Structured identity is encoded as JSON solely to serve as a map key and then decoded, conflating representation with identity."
+          },
+          {
+            "findingId": "F09",
+            "rootClass": "AMBIGUOUS_HEAD_CONTEXT",
+            "affectedAbstraction": "assessment SHA context",
+            "confidence": 0.98,
+            "conciseRationale": "Record responses label the event SHA as headSha, so the same assessment field denotes different repository contexts across operations."
+          },
+          {
+            "findingId": "F10",
+            "rootClass": "FULL_HISTORY_COPY_ON_APPEND",
+            "affectedAbstraction": "event-log state update model",
+            "confidence": 0.99,
+            "conciseRationale": "Each append deep-copies the complete accumulated event history, producing quadratic work as the log grows."
+          },
+          {
+            "findingId": "F11",
+            "rootClass": "INCONSISTENT_RECURRENCE_IDENTITY_BOUNDARY",
+            "affectedAbstraction": "recurrence and remediation identity model",
+            "confidence": 0.99,
+            "conciseRationale": "Recurrence uses root class identity while remediation uniqueness also uses abstraction, allowing one remediation identity to be counted through multiple abstraction variants."
+          },
+          {
+            "findingId": "F12",
+            "rootClass": "INCONSISTENT_RECURRENCE_IDENTITY_BOUNDARY",
+            "affectedAbstraction": "recurrence and remediation identity model",
+            "confidence": 0.99,
+            "conciseRationale": "Clustering, closure, deduplication, evidence, and diagnostics use incompatible keys for what is presented as one cluster concept."
+          },
+          {
+            "findingId": "F13",
+            "rootClass": "INAPPLICABLE_OUTPUT_TRUNCATION",
+            "affectedAbstraction": "tool-output formatting boundary",
+            "confidence": 0.99,
+            "conciseRationale": "The formatter invokes truncation whose thresholds are unreachable for produced output, adding dependency and test ceremony without effective behavior."
+          },
+          {
+            "findingId": "F14",
+            "rootClass": "TEST_DRIVEN_API_LEAKAGE",
+            "affectedAbstraction": "example module public API boundary",
+            "confidence": 0.97,
+            "conciseRationale": "The example exports a broad surface that has no production consumers and does not reflect its actual extension contract."
+          },
+          {
+            "findingId": "F15",
+            "rootClass": "OPEN_STATE_MISCLASSIFIED_AS_STALE",
+            "affectedAbstraction": "finding lifecycle taxonomy",
+            "confidence": 0.98,
+            "conciseRationale": "An unresolved finding from another SHA is labeled stale even though SHA difference does not establish obsolescence."
+          },
+          {
+            "findingId": "F16",
+            "rootClass": "GLOBALIZED_CHECKPOINT_SCOPE",
+            "affectedAbstraction": "checkpoint enforcement scope",
+            "confidence": 0.98,
+            "conciseRationale": "A checkpoint triggered by one recurrence class disables remediation authority for every unrelated class."
+          },
+          {
+            "findingId": "F17",
+            "rootClass": "RECURRENCE_ORDER_DISCONNECTED_FROM_COMMIT_HISTORY",
+            "affectedAbstraction": "recurrence temporal-ordering model",
+            "confidence": 0.96,
+            "conciseRationale": "Recurrence chronology follows event insertion rather than delegated commit ancestry, so late recording can invert the relevant causal order."
+          },
+          {
+            "findingId": "F18",
+            "rootClass": "UNBOUNDED_EVIDENCE_AGGREGATION",
+            "affectedAbstraction": "checkpoint evidence presentation",
+            "confidence": 0.98,
+            "conciseRationale": "Every distinct abstraction is concatenated into one displayed field without a size or cardinality bound."
+          },
+          {
+            "findingId": "F19",
+            "rootClass": "GLOBALIZED_CHECKPOINT_SCOPE",
+            "affectedAbstraction": "checkpoint enforcement scope",
+            "confidence": 0.99,
+            "conciseRationale": "Once any class checkpoints, unrelated classes become unremediable and the error omits the class whose state granted the global prohibition."
+          },
+          {
+            "findingId": "F20",
+            "rootClass": "DUPLICATED_REPLAY_VALIDATION",
+            "affectedAbstraction": "strict replay validation pipeline",
+            "confidence": 0.99,
+            "conciseRationale": "Replay separately validates finding IDs even though canonical event equality already enforces the same property."
+          },
+          {
+            "findingId": "F21",
+            "rootClass": "PERSISTENCE_MODEL_OVERBUILD",
+            "affectedAbstraction": "session-state persistence model",
+            "confidence": 0.98,
+            "conciseRationale": "A state use case is represented as an ordered, strictly replayed event log, introducing replay and serialization-order dependencies absent from snapshot storage."
+          },
+          {
+            "findingId": "F22",
+            "rootClass": "TEST_DRIVEN_API_LEAKAGE",
+            "affectedAbstraction": "example module public API boundary",
+            "confidence": 0.99,
+            "conciseRationale": "Types and helpers are exported primarily for tests even though users consume only the default extension entry point."
+          },
+          {
+            "findingId": "F23",
+            "rootClass": "INCONSISTENT_REMEDIATION_SHA_VALIDITY",
+            "affectedAbstraction": "remediation evidence validity boundary",
+            "confidence": 0.86,
+            "conciseRationale": "The principal defect checks remediation SHA reuse only against currently open findings, despite related history and ancestry rules having broader scopes; the excerpt also contains secondary cleanup concerns."
+          },
+          {
+            "findingId": "F24",
+            "rootClass": "AMBIGUOUS_HEAD_CONTEXT",
+            "affectedAbstraction": "assessment SHA context",
+            "confidence": 0.97,
+            "conciseRationale": "Record transitions assess using their event SHA while naming and partitioning the result as repository-head state, despite that partition not driving policy."
+          },
+          {
+            "findingId": "F25",
+            "rootClass": "TEST_BOUNDARY_COUPLED_TO_RUNTIME_WIRING",
+            "affectedAbstraction": "package mock boundary",
+            "confidence": 0.94,
+            "conciseRationale": "Replacing the entire package to stub one runtime dependency makes tests insensitive to missing or newly introduced package exports."
+          }
+        ],
+        "pairs": [
+          {
+            "pairId": "P01",
+            "decision": "SAME_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Both identify unreachable truncation as useless formatter behavior whose main effect is an unnecessary runtime dependency."
+          },
+          {
+            "pairId": "P02",
+            "decision": "SAME_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Both arise because recurrence clustering and remediation operations disagree on the identity key for one conceptual cluster."
+          },
+          {
+            "pairId": "P03",
+            "decision": "SAME_ROOT",
+            "confidence": 0.98,
+            "conciseRationale": "Both describe a public export surface created for tests rather than the example's actual consumers."
+          },
+          {
+            "pairId": "P04",
+            "decision": "SAME_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Both concern a checkpoint in one class globally prohibiting remediation in unrelated classes."
+          },
+          {
+            "pairId": "P05",
+            "decision": "SAME_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Both identify event SHAs being presented or partitioned as repository-head assessment context."
+          },
+          {
+            "pairId": "P06",
+            "decision": "SAME_ROOT",
+            "confidence": 0.94,
+            "conciseRationale": "The whole-package mock blind spot results from the same failure to separate testable logic from runtime package wiring."
+          },
+          {
+            "pairId": "P07",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "F01 lacks a lifecycle exit from checkpoint, while F16 concerns the authority scope of checkpoint enforcement."
+          },
+          {
+            "pairId": "P08",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "F02 concerns unstable free-form cluster identity; F11 concerns inconsistent identity boundaries across recurrence and remediation."
+          },
+          {
+            "pairId": "P09",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Inapplicable output truncation and an unconsumed public API surface require distinct architectural changes."
+          },
+          {
+            "pairId": "P10",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "An inert classification field is unrelated to recurrence chronology being based on record order."
+          },
+          {
+            "pairId": "P11",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.98,
+            "conciseRationale": "A serialized map key is a representation issue; copying the full log on append is a state-update complexity issue."
+          },
+          {
+            "pairId": "P12",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Finding lifecycle terminology and assessment SHA context are separate contracts."
+          },
+          {
+            "pairId": "P13",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.84,
+            "conciseRationale": "F17 defines recurrence chronology, while F21 challenges the persistence representation; replacing persistence alone does not define commit ancestry semantics."
+          },
+          {
+            "pairId": "P14",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Unbounded evidence aggregation is unrelated to public API leakage."
+          },
+          {
+            "pairId": "P15",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.98,
+            "conciseRationale": "A missing checkpoint-resume transition is distinct from replay compatibility being coupled to current rules."
+          },
+          {
+            "pairId": "P16",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Unstable recurrence identity and unreachable output truncation operate at unrelated boundaries."
+          },
+          {
+            "pairId": "P17",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.96,
+            "conciseRationale": "F04 concerns runtime/test wiring that forces a package mock; F22 concerns exports exposed for test access."
+          },
+          {
+            "pairId": "P18",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Selecting only one qualifying cluster is unrelated to misclassifying unresolved prior-SHA findings."
+          },
+          {
+            "pairId": "P19",
+            "decision": "SAME_ROOT",
+            "confidence": 0.86,
+            "conciseRationale": "The full-history append cost is a direct consequence of maintaining an ordered event log where snapshot state could satisfy the persistence contract."
+          },
+          {
+            "pairId": "P20",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Evidence display cardinality and assessment SHA meaning are independent concerns."
+          },
+          {
+            "pairId": "P21",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "An inert domain field and JSON-encoded composite keys affect different abstractions."
+          },
+          {
+            "pairId": "P22",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Finding lifecycle classification is separate from global checkpoint enforcement scope."
+          },
+          {
+            "pairId": "P23",
+            "decision": "SAME_ROOT",
+            "confidence": 0.72,
+            "conciseRationale": "Both expose SHA validity decisions that lack one coherent commit-history boundary; an explicit ancestry-aware evidence model could address record ordering and remediation-SHA admissibility together."
+          },
+          {
+            "pairId": "P24",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.99,
+            "conciseRationale": "Checkpoint lifecycle incompleteness and test-driven API leakage are unrelated."
+          },
+          {
+            "pairId": "P25",
+            "decision": "SAME_ROOT",
+            "confidence": 0.82,
+            "conciseRationale": "Both are consequences of strict replay duplicating current validation over persisted events; a compatibility-oriented replay boundary would remove the redundant pre-check as well."
+          },
+          {
+            "pairId": "P26",
+            "decision": "SAME_ROOT",
+            "confidence": 0.88,
+            "conciseRationale": "The brittle business-rule replay is enabled by the overbuilt ordered-event persistence model; snapshot persistence with explicit migration would address both."
+          },
+          {
+            "pairId": "P27",
+            "decision": "SAME_ROOT",
+            "confidence": 0.78,
+            "conciseRationale": "Both stem from modeling checkpoint state as one global result rather than a collection of class-scoped checkpoint states."
+          },
+          {
+            "pairId": "P28",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.94,
+            "conciseRationale": "F11 concerns remediation identity and deduplication keys; F23 concerns whether remediation SHA evidence is admissible across history."
+          }
+        ]
+      },
+      "claude": {
+        "classifications": [
+          {
+            "findingId": "F01",
+            "rootClass": "MISSING_STATE_TRANSITION",
+            "affectedAbstraction": "escalation/checkpoint state machine lifecycle",
+            "confidence": 0.85,
+            "conciseRationale": "Checkpoint state has no exit transition; recordRemediation throws permanently once checkpoint is reached, making PAUSE semantically identical to HALT. The state machine lacks a resume arc."
+          },
+          {
+            "findingId": "F02",
+            "rootClass": "UNCONSTRAINED_IDENTITY_KEY",
+            "affectedAbstraction": "cluster key derivation for recurrence identity",
+            "confidence": 0.85,
+            "conciseRationale": "affectedAbstraction is free-form text normalized only for whitespace, not case-folded or vocabulary-bound. Case-variant strings silently create distinct clusters, defeating escalation without any observable signal."
+          },
+          {
+            "findingId": "F03",
+            "rootClass": "COUPLED_REPLAY_VALIDATION",
+            "affectedAbstraction": "event replay and log versioning",
+            "confidence": 0.8,
+            "conciseRationale": "Replay re-derives and re-validates against current business logic, so any future logic change (e.g. filter predicate) bricks valid version-1 logs. One failure sets a sticky error that kills all subsequent calls including assess."
+          },
+          {
+            "findingId": "F04",
+            "rootClass": "MISSING_MODULE_BOUNDARY",
+            "affectedAbstraction": "pure-logic vs runtime-wiring separation",
+            "confidence": 0.8,
+            "conciseRationale": "Testable pure logic and the sole runtime package import coexist in one file, forcing the test to mock the entire package. The test stays green if the real export is renamed or removed."
+          },
+          {
+            "findingId": "F05",
+            "rootClass": "UNNECESSARY_RUNTIME_DEPENDENCY",
+            "affectedAbstraction": "output formatting dependency chain",
+            "confidence": 0.85,
+            "conciseRationale": "truncateHead has thresholds (2000 lines / 50 KB) far beyond the 3-15 line output the module actually produces. It never fires, yet is the sole cause of the runtime package import."
+          },
+          {
+            "findingId": "F06",
+            "rootClass": "DEAD_CODE",
+            "affectedAbstraction": "finding severity classification",
+            "confidence": 0.9,
+            "conciseRationale": "non_blocking is defined as a severity level but filtered out of every cluster, affecting no decision or output. It is inert code that misleads readers about available severity options."
+          },
+          {
+            "findingId": "F07",
+            "rootClass": "NONDETERMINISTIC_SELECTION",
+            "affectedAbstraction": "checkpoint cluster reporting",
+            "confidence": 0.8,
+            "conciseRationale": ".find() returns only the first qualifying cluster from a Map whose insertion order is caller-dependent. With multiple clusters past threshold, which one is reported is nondeterministic."
+          },
+          {
+            "findingId": "F08",
+            "rootClass": "UNNECESSARY_SERIALIZATION",
+            "affectedAbstraction": "cluster key representation",
+            "confidence": 0.85,
+            "conciseRationale": "JSON.stringify is used to create a composite Map key, then JSON.parse extracts the tuple back out. Storing the tuple directly in the value avoids both the serialization overhead and the fragility."
+          },
+          {
+            "findingId": "F09",
+            "rootClass": "AMBIGUOUS_SEMANTIC_BINDING",
+            "affectedAbstraction": "SHA-based state partitioning",
+            "confidence": 0.78,
+            "conciseRationale": "headSha binds to the event's own reviewSha in recordFinding and the remediationSha in recordRemediation. currentHeadFindings answers a different question in a record response vs an assess response due to this conflation."
+          },
+          {
+            "findingId": "F10",
+            "rootClass": "INEFFICIENT_IMMUTABILITY",
+            "affectedAbstraction": "event log mutation strategy",
+            "confidence": 0.75,
+            "conciseRationale": "stateWithEvents deep-clones the full event log on every append, yielding O(n squared) copying. The immutability is ceremony rather than a correctness requirement at this scale."
+          },
+          {
+            "findingId": "F11",
+            "rootClass": "INCONSISTENT_IDENTITY_BOUNDARY",
+            "affectedAbstraction": "finding identity across recurrence and remediation",
+            "confidence": 0.9,
+            "conciseRationale": "Recurrence groups by rootClass only, but remediation dedup includes affectedAbstraction. This mismatch allows one remediation to arm a recurrence via a different abstraction string, enabling false escalation to ARCHITECTURE_CHECKPOINT."
+          },
+          {
+            "findingId": "F12",
+            "rootClass": "INCONSISTENT_IDENTITY_BOUNDARY",
+            "affectedAbstraction": "finding identity across clustering and remediation",
+            "confidence": 0.9,
+            "conciseRationale": "Clustering uses rootClass as the key, but remediation closure filters by rootClass AND affectedAbstraction. Two open findings under different abstractions in one rootClass cannot both be closed by one remediation; the second stays confirmed forever."
+          },
+          {
+            "findingId": "F13",
+            "rootClass": "UNNECESSARY_RUNTIME_DEPENDENCY",
+            "affectedAbstraction": "output formatting pipeline",
+            "confidence": 0.85,
+            "conciseRationale": "truncateHead defaults cannot activate against the module's actual output size. Its only real effect is forcing vi.mock of the entire package in tests, leaving the formatter's non-trivial branch untested. Removing it makes the import type-only."
+          },
+          {
+            "findingId": "F14",
+            "rootClass": "EXCESSIVE_API_SURFACE",
+            "affectedAbstraction": "example module boundary",
+            "confidence": 0.8,
+            "conciseRationale": "13 exported names that nothing imports. An example file publishing a library-sized API surface reads as a core module that hasn't been properly extracted yet."
+          },
+          {
+            "findingId": "F15",
+            "rootClass": "AMBIGUOUS_STATE_CLASSIFICATION",
+            "affectedAbstraction": "finding lifecycle state labeling",
+            "confidence": 0.8,
+            "conciseRationale": "Open confirmed blockers at a prior reviewSha are labeled 'stale', but an unremediated blocker at an older SHA is open, not stale. The label conflates two distinct lifecycle states."
+          },
+          {
+            "findingId": "F16",
+            "rootClass": "OVERBROAD_CHECKPOINT_SCOPE",
+            "affectedAbstraction": "checkpoint remediation gating",
+            "confidence": 0.85,
+            "conciseRationale": "Once any single cluster reaches checkpoint, recordRemediation refuses ALL remediation attempts globally, including for unrelated root classes. The scope exceeds the triggering condition."
+          },
+          {
+            "findingId": "F17",
+            "rootClass": "INCORRECT_ORDERING_MODEL",
+            "affectedAbstraction": "recurrence temporal ordering",
+            "confidence": 0.8,
+            "conciseRationale": "Recurrence is computed by event insertion order, not commit ancestry. A finding recorded late against an ancestor of a prior remediation counts as recurrence. The window is narrow due to seenReviewShas but the model is semantically wrong."
+          },
+          {
+            "findingId": "F18",
+            "rootClass": "UNBOUNDED_AGGREGATION",
+            "affectedAbstraction": "checkpoint output formatting",
+            "confidence": 0.8,
+            "conciseRationale": "All distinct affectedAbstraction strings are joined into one field without any bound, producing unbounded output in the checkpoint evidence. Display-only but still uncapped."
+          },
+          {
+            "findingId": "F19",
+            "rootClass": "OVERBROAD_CHECKPOINT_SCOPE",
+            "affectedAbstraction": "checkpoint remediation gating",
+            "confidence": 0.85,
+            "conciseRationale": "recordFinding is not gated on checkpoint, so an unrelated class can accumulate confirmed blockers that can never be remediated once any cluster checkpoints. The error message also hides the triggering class."
+          },
+          {
+            "findingId": "F20",
+            "rootClass": "DUPLICATED_VALIDATION",
+            "affectedAbstraction": "replay validation logic",
+            "confidence": 0.8,
+            "conciseRationale": "The findingIds pre-check is already subsumed by the canonical JSON comparison that follows. The redundant 11 lines plus a second copy of the filter predicate must stay in sync — the exact defect shape the extension exists to detect."
+          },
+          {
+            "findingId": "F21",
+            "rootClass": "PERSISTENCE_MODEL_OVERBUILD",
+            "affectedAbstraction": "session-state representation",
+            "confidence": 0.8,
+            "conciseRationale": "An ordered event log requiring replay and JSON key-ordering stability is used where a last-write-wins snapshot (as in todo.ts) would suffice. Switching deletes ~24 lines including replay, version envelopes, and ordering fragility."
+          },
+          {
+            "findingId": "F22",
+            "rootClass": "EXCESSIVE_API_SURFACE",
+            "affectedAbstraction": "example module boundary",
+            "confidence": 0.8,
+            "conciseRationale": "~14 types and 6 functions are exported, but a user copying the file consumes only the default export. The exports exist to serve the test, not the consumer, leaking implementation details as API."
+          },
+          {
+            "findingId": "F23",
+            "rootClass": "INCONSISTENT_VALIDATION_SCOPE",
+            "affectedAbstraction": "remediation SHA validation",
+            "confidence": 0.75,
+            "conciseRationale": "The remediationSha self-check compares only open findings, so a remediation at a previously-remediated SHA passes. Multiple sub-issues (dead branch, naming mismatch, unused partitions, overbroad mock) compound the inconsistency."
+          },
+          {
+            "findingId": "F24",
+            "rootClass": "AMBIGUOUS_SEMANTIC_BINDING",
+            "affectedAbstraction": "SHA-based state partitioning",
+            "confidence": 0.78,
+            "conciseRationale": "recordFinding/recordRemediation assess against the event's own SHA rather than the actual repo HEAD. The head-SHA partition (4 arrays) is never consulted by checkpointForState, adding unused structure."
+          },
+          {
+            "findingId": "F25",
+            "rootClass": "OVERBROAD_TEST_MOCK",
+            "affectedAbstraction": "test isolation boundary",
+            "confidence": 0.75,
+            "conciseRationale": "The test mocks the entire package with one stub; any future import from it silently becomes undefined with no test failure. importOriginal would preserve real exports while stubbing only the needed function."
+          }
+        ],
+        "pairs": [
+          {
+            "pairId": "P01",
+            "decision": "SAME_ROOT",
+            "confidence": 0.9,
+            "conciseRationale": "Both F05 and F13 identify truncateHead as an unnecessary runtime dependency that can never activate against the module's actual output. Removing truncateHead addresses both: the dead code (F05) and the forced mock/untested branch (F13)."
+          },
+          {
+            "pairId": "P02",
+            "decision": "SAME_ROOT",
+            "confidence": 0.9,
+            "conciseRationale": "F11 and F12 both stem from the identity boundary being rootClass-only for clustering but rootClass+affectedAbstraction for remediation. F11 shows false escalation, F12 shows unremeditable findings. Unifying the key composition fixes both."
+          },
+          {
+            "pairId": "P03",
+            "decision": "SAME_ROOT",
+            "confidence": 0.85,
+            "conciseRationale": "F14 (unconsumed exports) and F22 (exports for tests not users) both identify the same excessive API surface on the example module boundary. Trimming exports to only the default export addresses both."
+          },
+          {
+            "pairId": "P04",
+            "decision": "SAME_ROOT",
+            "confidence": 0.92,
+            "conciseRationale": "F16 and F19 both describe the checkpoint scope being global rather than per-class. F16 focuses on remediation refusal for unrelated classes; F19 on accumulation of unremeditable findings. Scoping checkpoint per-rootClass fixes both."
+          },
+          {
+            "pairId": "P05",
+            "decision": "SAME_ROOT",
+            "confidence": 0.85,
+            "conciseRationale": "F09 and F24 both identify the same SHA semantic confusion: assessment uses the event's own SHA rather than repo HEAD, and headSha binds to different values in different contexts. Clarifying the SHA model fixes both."
+          },
+          {
+            "pairId": "P06",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.58,
+            "conciseRationale": "F04's root is the module boundary mixing pure logic with runtime wiring, forcing the mock to exist. F25's root is the mock's granularity being too broad (should use importOriginal). Separating modules fixes F04; narrowing the mock fixes F25. Architecturally distinct even though causally linked."
+          },
+          {
+            "pairId": "P07",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.8,
+            "conciseRationale": "F01 is a missing state transition (no way to exit checkpoint/PAUSE). F16 is overbroad scope (one class's checkpoint blocks all classes). Different architectural properties: lifecycle completeness vs scope containment. Different fixes required."
+          },
+          {
+            "pairId": "P08",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.72,
+            "conciseRationale": "F02 is about the identity key material being unconstrained (free-form string, no case folding). F11 is about the identity key composition being inconsistent across operations (rootClass-only vs rootClass+affectedAbstraction). Input validation vs structural consistency."
+          },
+          {
+            "pairId": "P09",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.75,
+            "conciseRationale": "F05 identifies a specific unnecessary runtime dependency (truncateHead import). F14 identifies a broad excessive export surface (13 unconsumed names). Different scopes: one dead import vs overall API surface design."
+          },
+          {
+            "pairId": "P10",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.92,
+            "conciseRationale": "F06 is dead code (non_blocking severity defined but inert). F17 is an incorrect ordering model (insertion order vs commit ancestry for recurrence). Completely unrelated architectural concerns."
+          },
+          {
+            "pairId": "P11",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.8,
+            "conciseRationale": "F08 is about unnecessary serialization for Map keys (JSON.stringify/parse round-trip). F10 is about inefficient immutability strategy (deep clone entire log per append). Different implementation concerns in different data structures."
+          },
+          {
+            "pairId": "P12",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.68,
+            "conciseRationale": "F15 is about state classification labeling (stale vs open). F09 is about SHA semantic binding (event SHA vs HEAD). Both involve SHA-related semantics but F15 is a naming/classification problem while F09 is a parameter binding problem."
+          },
+          {
+            "pairId": "P13",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.72,
+            "conciseRationale": "F17 is about recurrence using insertion order instead of commit ancestry. F21 is about the persistence model being overbuilt (event log vs snapshot). The ordering issue persists regardless of persistence model choice — you still need correct recurrence logic."
+          },
+          {
+            "pairId": "P14",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.88,
+            "conciseRationale": "F18 is about unbounded string aggregation in checkpoint output. F14 is about excessive unconsumed exports on the module boundary. Different concerns: output formatting safety vs API surface design."
+          },
+          {
+            "pairId": "P15",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.82,
+            "conciseRationale": "F01 is a missing state transition in the checkpoint lifecycle (PAUSE has no resume). F03 is about replay coupling to current business logic (version fragility). Different mechanisms: state machine design vs validation coupling."
+          },
+          {
+            "pairId": "P16",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.95,
+            "conciseRationale": "F02 is about unconstrained identity key material (free-form affectedAbstraction). F05 is about an unnecessary runtime dependency (truncateHead). Completely unrelated concerns in different parts of the module."
+          },
+          {
+            "pairId": "P17",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.55,
+            "conciseRationale": "F04 is about module internal structure (pure logic mixed with runtime wiring, forcing a mock). F22 is about the external export surface (exports driven by test needs, not consumer needs). Related module design issues but F04 is dependency coupling while F22 is API surface leakage."
+          },
+          {
+            "pairId": "P18",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.85,
+            "conciseRationale": "F07 is about nondeterministic selection among qualifying clusters (.find on Map). F15 is about ambiguous state classification (stale vs open labeling). Different concerns: selection determinism vs naming semantics."
+          },
+          {
+            "pairId": "P19",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.55,
+            "conciseRationale": "F10 is about the immutability strategy (deep clone per append). F21 is about the persistence model choice (event log vs snapshot). F10 could be fixed independently (structural sharing or mutable push) without changing the persistence model. Different architectural layers."
+          },
+          {
+            "pairId": "P20",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.9,
+            "conciseRationale": "F18 is about unbounded string aggregation in output. F24 is about SHA semantic binding (event SHA vs HEAD). Completely different concerns: output safety vs parameter semantics."
+          },
+          {
+            "pairId": "P21",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.92,
+            "conciseRationale": "F06 is dead code (inert non_blocking severity). F08 is unnecessary serialization (JSON.stringify as Map key). Unrelated: one is unused code, the other is an implementation pattern choice."
+          },
+          {
+            "pairId": "P22",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.82,
+            "conciseRationale": "F15 is about ambiguous state labeling (stale vs open). F16 is about overbroad checkpoint scope (one class blocks all). Different aspects: naming semantics vs scope containment."
+          },
+          {
+            "pairId": "P23",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.75,
+            "conciseRationale": "F17 is about recurrence using insertion order instead of commit ancestry. F23 is about the remediation SHA self-check having inconsistent scope. Different temporal/validation concerns even though both are in the remediation subsystem."
+          },
+          {
+            "pairId": "P24",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.95,
+            "conciseRationale": "F01 is a missing state transition in the checkpoint lifecycle. F14 is excessive unconsumed exports on the module boundary. Completely unrelated: state machine completeness vs API surface design."
+          },
+          {
+            "pairId": "P25",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.6,
+            "conciseRationale": "F03 is about replay coupling to current business logic (version fragility). F20 is about a specific redundant pre-check within replay (duplicated validation). F03 is about coupling across versions; F20 is about redundancy within one version. Both in replay but different root causes."
+          },
+          {
+            "pairId": "P26",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.55,
+            "conciseRationale": "F03 is about replay validation coupling to current logic. F21 is about the event-sourcing model being unnecessary. F21's fix (snapshots) would eliminate replay, incidentally fixing F03, but F03 can also be fixed independently by decoupling replay from current logic. Architecturally distinct."
+          },
+          {
+            "pairId": "P27",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.58,
+            "conciseRationale": "F07 is about nondeterministic selection among qualifying clusters (reporting). F19 is about checkpoint scope blocking all classes (control flow). Both manifest in multi-cluster checkpoint scenarios, but F07 is a selection/reporting bug while F19 is a scope/gating design issue."
+          },
+          {
+            "pairId": "P28",
+            "decision": "DIFFERENT_ROOT",
+            "confidence": 0.7,
+            "conciseRationale": "F11 is about inconsistent identity boundaries between recurrence and remediation (rootClass vs rootClass+affectedAbstraction). F23 is about the remediation SHA self-check comparing only open findings. Different consistency issues: key composition vs validation scope."
+          }
+        ],
+        "condition": "B"
+      }
+    }
+  }
+}

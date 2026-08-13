@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "mappingVersion": "run4-gold-readjudication-map-v1",
+  "sourceEvidenceSha": "f1450e95a197b91998550566e36484f046a2a8ed",
+  "constructionSaltHex": "54573dc10253a6cd6440c88bd5813b4ff3a1ac3553b63d8bb825daf1ab47e55c",
+  "constructionMethod": "HMAC-SHA256 over each source pair ID; digest sorts cases, first 128 bits form case ID, final digest bit determines orientation; relation and rationale fields are not inputs.",
+  "caseCount": 16,
+  "cases": [
+    {
+      "caseId": "case-19eefbbfc02fe684111e8e21a583ed96",
+      "sourcePairId": "pair-5f8fdb905d",
+      "manifestationAItemId": "item-8e66ef6bf977",
+      "manifestationBItemId": "item-499a69824f00"
+    },
+    {
+      "caseId": "case-19f2d21d0b9a82f377626f0d84369513",
+      "sourcePairId": "pair-a32f142911",
+      "manifestationAItemId": "item-e617c2f887d8",
+      "manifestationBItemId": "item-b3bfdbc72ca4"
+    },
+    {
+      "caseId": "case-2267fb996430336c1e093346f9fb9feb",
+      "sourcePairId": "pair-888ef856a9",
+      "manifestationAItemId": "item-6b54c6516c14",
+      "manifestationBItemId": "item-32ff81ae4886"
+    },
+    {
+      "caseId": "case-246735cb35df3b691be9a8ce5963556c",
+      "sourcePairId": "pair-79bb8547e2",
+      "manifestationAItemId": "item-72de0587137f",
+      "manifestationBItemId": "item-bbb7c7ac73c2"
+    },
+    {
+      "caseId": "case-28c7eee63a1a51f1b6165b777562f79c",
+      "sourcePairId": "pair-95d891cd78",
+      "manifestationAItemId": "item-32ff81ae4886",
+      "manifestationBItemId": "item-1b9f06e7b080"
+    },
+    {
+      "caseId": "case-3b82f6d5a2c8160b29f63a3dfba93da3",
+      "sourcePairId": "pair-ca8b1c1142",
+      "manifestationAItemId": "item-a36bcf847909",
+      "manifestationBItemId": "item-4711f03203e5"
+    },
+    {
+      "caseId": "case-3f70ba679f39f42e00c9f9f73fd1d486",
+      "sourcePairId": "pair-b9d7d7d8af",
+      "manifestationAItemId": "item-d1870bd04a50",
+      "manifestationBItemId": "item-6b54c6516c14"
+    },
+    {
+      "caseId": "case-4dd5c3f8482002a78df3f47962f3bf8a",
+      "sourcePairId": "pair-8bcc15fc51",
+      "manifestationAItemId": "item-a588e8cfef87",
+      "manifestationBItemId": "item-499a69824f00"
+    },
+    {
+      "caseId": "case-5d0c8fa443b1cb5d27b95571ac77ad9b",
+      "sourcePairId": "pair-80ac4fa066",
+      "manifestationAItemId": "item-b0d3b9485cf6",
+      "manifestationBItemId": "item-947ca2472899"
+    },
+    {
+      "caseId": "case-6565183016c34d2d2692c3ea5f5a1947",
+      "sourcePairId": "pair-ce4d25d3f4",
+      "manifestationAItemId": "item-a588e8cfef87",
+      "manifestationBItemId": "item-b7c6f6de4069"
+    },
+    {
+      "caseId": "case-7fa10eeb297549a151b4aff4b2c7d431",
+      "sourcePairId": "pair-8e297bb382",
+      "manifestationAItemId": "item-b0d3b9485cf6",
+      "manifestationBItemId": "item-bbb7c7ac73c2"
+    },
+    {
+      "caseId": "case-90ba3e7cd63f1f970bd47beff1aeed96",
+      "sourcePairId": "pair-a21e13518c",
+      "manifestationAItemId": "item-9c3adb9fcc4e",
+      "manifestationBItemId": "item-35c3b67009bb"
+    },
+    {
+      "caseId": "case-b5e5ff2bb8888484ddc67e4d3bfc8a2a",
+      "sourcePairId": "pair-5b24fe3ab8",
+      "manifestationAItemId": "item-e5f809536c80",
+      "manifestationBItemId": "item-1b9f06e7b080"
+    },
+    {
+      "caseId": "case-c361fe58ce5250bf39c83f30bfe686fc",
+      "sourcePairId": "pair-fd55174c35",
+      "manifestationAItemId": "item-947ca2472899",
+      "manifestationBItemId": "item-72de0587137f"
+    },
+    {
+      "caseId": "case-da79163c405d475b5e2a5718e4a7bd0a",
+      "sourcePairId": "pair-4fa2b2b948",
+      "manifestationAItemId": "item-641b99358635",
+      "manifestationBItemId": "item-d1870bd04a50"
+    },
+    {
+      "caseId": "case-f44d6f97839b50a693bea7112e81dcfb",
+      "sourcePairId": "pair-2dd88829ae",
+      "manifestationAItemId": "item-641b99358635",
+      "manifestationBItemId": "item-9c3adb9fcc4e"
+    }
+  ]
+}

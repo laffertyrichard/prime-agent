@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "experiment": "review-finding-corpus-validation-run3",
+  "phase": "CANDIDATE_1_REAUDIT_PENDING",
+  "branch": "experiment/review-finding-corpus-validation-run3",
+  "baseSha": "57283d1b01378f12bbb05e19653cdfa89a1aa796",
+  "preservedEvidence": {
+    "run1Branch": "experiment/review-finding-recurrence",
+    "run1Sha": "8cc25603ae5115713dc69d7ebdb913994ce291d5",
+    "run2Branch": "experiment/review-finding-classification-run2",
+    "run2Sha": "57283d1b01378f12bbb05e19653cdfa89a1aa796",
+    "pr2Modified": false
+  },
+  "scope": "Corpus validity only. No classification model invocation or classification output is authorized in this run.",
+  "authorizedSources": {
+    "run-1/claude-raw.txt": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+    "run-2/claude-raw.txt": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+    "run-2/codex-raw.txt": "82c466bf99f2ca0e981952091ac296d7ab3797fe947d5bed2da5d97b9041b80b",
+    "run-3/claude-raw.txt": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f"
+  },
+  "draft": {
+    "blindCorpus": "draft/blind-corpus.json",
+    "blindCorpusSha256": "dbe19e63c8ebb97e4698dd7ad5f26833d5c4450cc219855b2f57597ec4b5aaed",
+    "provenanceCorpus": "draft/provenance-corpus.json",
+    "provenanceCorpusSha256": "6c2e10593e595c0cc9438ef6fdfb9b215a0d002ebda04467529f0951c522fe85",
+    "goldPairs": "draft/gold-pairs.json",
+    "goldPairsSha256": "0910b5ceccf02dd53c2fdb323f7afee4bd07aa9ff9551d2fd093fce4a903ce59",
+    "rubric": "rubric/corpus-validity-rubric.md",
+    "rubricSha256": "8d1c514ba183ccb7323a702744f029cf74e7b36549f66148439bac6215b1a39c",
+    "auditPrompt": "prompts/audit-blind-corpus.txt",
+    "auditPromptSha256": "af90c28530f31c4173a68249b72713f71de58990b69f55dc376d95daf41c8a3a"
+  },
+  "auditReviewers": {
+    "codex": {
+      "toolVersion": "codex-cli 0.146.0",
+      "provider": "openai",
+      "model": "gpt-5.6-sol",
+      "role": "corpus-validity-audit-only"
+    },
+    "claude": {
+      "toolVersion": "Claude Code 2.1.228",
+      "provider": "anthropic",
+      "model": "claude-opus-5",
+      "role": "corpus-validity-audit-only"
+    }
+  },
+  "independence": [
+    "Fresh temporary directory per audit.",
+    "Only the frozen audit prompt and response schema are supplied.",
+    "Gold and provenance corpora are not placed in auditor directories.",
+    "Auditor outputs remain mutually hidden until both complete."
+  ],
+  "classificationExecution": {
+    "authorized": false,
+    "invocationCount": 0,
+    "outputCount": 0
+  },
+  "laterClassificationProposal": {
+    "notAuthorizedInThisRun": true,
+    "cleanReplicationControl": {
+      "codexModel": "gpt-5.6-sol",
+      "claudeModel": "claude-opus-4-6",
+      "purpose": "Preserve Run 2 model configuration while changing only the validated corpus."
+    },
+    "separateModelChangeArm": {
+      "claudeModel": "claude-opus-5",
+      "purpose": "Measure the model change only after the clean replication control on the same frozen instrument."
+    }
+  },
+  "round1": {
+    "codexCorpusPass": false,
+    "claudeCorpusPass": true,
+    "disagreementCount": 10,
+    "adjudication": "audits/round-1/adjudication.json"
+  },
+  "candidate": {
+    "version": "candidate-1",
+    "blindCorpus": "candidate/blind-corpus.json",
+    "blindCorpusSha256": "cf9ff7daf90217134586f8e5485c8d405b939d35f69aeb3fe8b165f7dc2bfa8b",
+    "provenanceCorpus": "candidate/provenance-corpus.json",
+    "provenanceCorpusSha256": "8d4f906f33c45d569ed38cbb88dc3a858016873ae66a4db6f4cfd02cf5086976",
+    "goldPairs": "candidate/gold-pairs.json",
+    "goldPairsSha256": "ab40cbdbc9a49b32632ee75f988e4d6f3475918fe77f0a0f11fb333ccd0978bc",
+    "auditPrompt": "prompts/audit-blind-corpus-round-2.txt",
+    "auditPromptSha256": "2374ad90aa3eae88ed08e89ad3f6e52eca87748aa72bc805b5c842641714cc4a",
+    "mechanicalValidation": "candidate/mechanical-validation.json"
+  }
+}

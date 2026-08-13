@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "authorizedPreregistrationSha": "9ab6511f5a59667505151f8b34c9fd5d7ad0f8c3",
+  "actualHead": {
+    "artifact": "raw/git-head.txt",
+    "sha256": "ccd6d78115c11a757e4f40e1553ae1a26ce83e57d437e49c16a06b7ce537058b"
+  },
+  "cleanStatus": {
+    "artifact": "raw/git-status-porcelain-v1-z.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "promptSha256": {
+    "A": "195cdf794aa2622f006e98dda49e9859a41b52d609996d3d10c22ee3c27b1357",
+    "B": "57ee2b3a0728fd1678fcdd8fcfe0b38f3b6c2b7ec09fbaf9a3e630648cf4a89e"
+  },
+  "responseSchemaSha256": {
+    "A": "2d9cfaaff9402f16ef0d70c389386a68fddb63b300f416971b83d392bf16b616",
+    "B": "38d3a1d238637fedf867936013817772ea822a57d2e89516974347a96b1af36e"
+  },
+  "cliVersions": {
+    "codex": {
+      "artifact": "raw/codex-version.txt",
+      "sha256": "446dce03fa8317c76f51ca91da1f075e192a75cf86c889c594034ef9ec2fcc52",
+      "command": "codex --version",
+      "tool": "codex-cli",
+      "version": "0.146.0"
+    },
+    "claude": {
+      "artifact": "raw/claude-version.txt",
+      "sha256": "6e530049604112045b613648e16c32a1b32dc006ad76ccac829b476fd2038157",
+      "command": "claude --version",
+      "tool": "Claude Code",
+      "version": "2.1.228"
+    }
+  }
+}

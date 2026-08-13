@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "reviewSha": "ace208ada6a1be7bb94b3853ef0302343fc0f60a",
+  "baseSha": "57283d1b01378f12bbb05e19653cdfa89a1aa796",
+  "codex": {
+    "toolVersion": "codex-cli 0.146.0",
+    "model": "gpt-5.6-sol",
+    "rawArtifact": "/Users/mccully/.prime/agent/session-artifacts/019ff7e1-c290-758a-90ad-ec347e214225/reviews/run3-instrument/codex-raw.txt",
+    "rawSha256": "dd79b26a2b8283178d4b737d3ea3c9f97a5459eeb57b1fd595b5e94f096417d0",
+    "findings": [
+      {
+        "severity": "P1",
+        "summary": "Later classification proposal referenced unfrozen prompts while Run 2 prompts embed the obsolete corpus.",
+        "disposition": "ACCEPTED",
+        "resolution": "Proposal now requires a separate no-execution preregistration that freezes new prompts and uses byte-identical prompts across both later arms."
+      }
+    ]
+  },
+  "claude": {
+    "toolVersion": "Claude Code 2.1.228",
+    "requestedModel": "claude-opus-5",
+    "rawArtifact": "/Users/mccully/.prime/agent/session-artifacts/019ff7e1-c290-758a-90ad-ec347e214225/reviews/run3-instrument/claude-raw.txt",
+    "rawSha256": "b51c954672c73ec506d3be2b1d74e2aa66ac4e152092625d4db34fb4f3f74c47",
+    "findings": [
+      {
+        "severity": "P1",
+        "summary": "Three positive and thirteen negative pairs cannot express the prior percentage tolerances.",
+        "disposition": "ACCEPTED",
+        "resolution": "Gold adequacy and discrete resolution are explicit; later protocol must preregister attainable exact-count criteria and uncertainty and may not inherit Run 2 thresholds."
+      },
+      {
+        "severity": "P1",
+        "summary": "Gold rationales and audit trail were insufficient for independent verification.",
+        "disposition": "ACCEPTED",
+        "resolution": "Every pair now has a pair-specific rationale and the draft-to-candidate substitution is recorded."
+      },
+      {
+        "severity": "P1",
+        "summary": "Round 1 marked one duplicate disagreement rewrite-and-reaudit although it was re-audited unchanged after scope adjudication.",
+        "disposition": "ACCEPTED",
+        "resolution": "Record corrected to readjudicate-and-reaudit-unchanged; outcome remains dual PASS in Round 2."
+      }
+    ]
+  },
+  "classificationInvocationCount": 0,
+  "classificationOutputCount": 0,
+  "gateStatus": "REMEDIATED_RE_REVIEW_REQUIRED"
+}

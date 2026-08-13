@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "executionAuthorized": false,
+  "sourceSha": "bd247656aeeabea6b347bc892c0bfb9236fd7663",
+  "shared": {
+    "conditions": [
+      "A",
+      "B"
+    ],
+    "freshSessionPerInvocation": true,
+    "outputsMutuallyHiddenUntilAllFourRawOutputsAreFrozen": true,
+    "toolCallsAllowed": false,
+    "sameEffectiveModelSetRequiredAcrossConditions": true,
+    "providerIdentityField": "modelUsage.provider",
+    "providerIdentityClosedWorld": true
+  },
+  "reviewers": {
+    "codex": {
+      "tool": "codex-cli",
+      "toolVersion": "0.146.0",
+      "provider": "openai",
+      "requestedModel": "gpt-5.6-sol",
+      "reasoningEffort": "medium",
+      "allowedEffectiveModelSets": [
+        [
+          "gpt-5.6-sol"
+        ]
+      ],
+      "providerIdentitySemantics": "Invocation-route identity fixed by the codex-cli command and gpt-5.6-sol selector; synthesized as openai because Codex 0.146.0 events do not emit provider identity."
+    },
+    "claude": {
+      "tool": "Claude Code",
+      "toolVersion": "2.1.228",
+      "provider": "firstParty",
+      "effort": "high",
+      "arms": {
+        "RUN_A_CONTROL": {
+          "requestedModel": "claude-opus-4-6",
+          "allowedEffectiveModelSets": [
+            [
+              "claude-opus-4-6"
+            ]
+          ]
+        },
+        "RUN_B_OPUS5": {
+          "requestedModel": "claude-opus-5",
+          "allowedEffectiveModelSets": [
+            [
+              "claude-opus-5"
+            ],
+            [
+              "claude-opus-5",
+              "claude-fable-5"
+            ]
+          ]
+        }
+      },
+      "providerVendor": "anthropic",
+      "providerIdentitySemantics": "Exact Claude Code modelUsage.provider telemetry value. firstParty denotes Claude Code first-party routing for the listed canonical Claude model; it is not normalized to the vendor name anthropic."
+    }
+  },
+  "failClosedRules": [
+    "Reject the arm before evaluation if the authorization SHA, captured clean HEAD, actual prompt or schema bytes, captured CLI-version outputs, requested model, canonical model, provider identity, exit code, raw-artifact hash, or raw tool-use evidence differs from this preregistration.",
+    "Reject a Codex modelUsage provider other than openai or a Claude modelUsage provider other than the raw-envelope value firstParty; provider aliases and vendor-name normalization are not allowed.",
+    "Reject the arm if a reviewer has different effective model sets in Conditions A and B.",
+    "Reject any unlisted auxiliary model. Record every modelUsage entry with nonzero aggregate token use.",
+    "If Run B uses claude-fable-5, interpret Run B as an effective-composition change rather than a pure primary-model substitution."
+  ],
+  "evidenceLimits": {
+    "codex": "The CLI event stream attests token usage and absence of tool-event types but does not provider-attest the effective model or route; openai is the preregistered invocation-route identity implied by the codex-cli command and requested selector.",
+    "claude": "The raw Claude Code envelope must attest every modelUsage entry with provider firstParty; metadata is rejected unless model, canonicalModel, provider, and token counts match the envelope exactly."
+  }
+}

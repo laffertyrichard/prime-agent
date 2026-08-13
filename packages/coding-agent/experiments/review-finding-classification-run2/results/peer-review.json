@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "baseSha": "8cc25603ae5115713dc69d7ebdb913994ce291d5",
+  "codex": {
+    "toolVersion": "codex-cli 0.146.0",
+    "model": "gpt-5.6-sol",
+    "rawSha256": "2120e5bbd89ed0682d55576ef9f4baec86b636861e9382899694ca2bc084742d",
+    "finding": {
+      "severity": "P1",
+      "rootClass": "BLIND_CORPUS_REDACTION_FAILURE",
+      "affectedAbstraction": "blind-input construction and label-stability measurement"
+    }
+  },
+  "claude": {
+    "toolVersion": "Claude Code 2.1.228",
+    "model": "claude-opus-4-6",
+    "rawSha256": "fb2b510f550ddc2d61cdbaa657fa6932b35e4038e592a087b24a47104d25578d",
+    "finding": {
+      "severity": "P1",
+      "rootClass": "INCOMPLETE_BLIND_INPUT_REDACTION",
+      "affectedAbstraction": "blind-corpus construction / redaction boundary"
+    },
+    "architectureConclusion": "CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED"
+  },
+  "disposition": "STOP_CONDITION_PROMPT_LEAKAGE_OR_LABEL_IMITATION_CONTAMINATION_BOUNDARY_UNCLOSED",
+  "sensitivityAnalysis": {
+    "status": "WITHDRAWN_INCOMPLETE_CONTAMINATION_BOUNDARY",
+    "reason": "Repeated exact-SHA review found additional leakage after each exclusion inventory; post-hoc subset metrics are not treated as experiment evidence."
+  },
+  "reviewRounds": [
+    {
+      "reviewSha": "71e9abc4619442e7cacdcdad3364e9cad487d95a",
+      "codexRawSha256": "2120e5bbd89ed0682d55576ef9f4baec86b636861e9382899694ca2bc084742d",
+      "claudeRawSha256": "fb2b510f550ddc2d61cdbaa657fa6932b35e4038e592a087b24a47104d25578d"
+    },
+    {
+      "reviewSha": "ade65d7dd16f6907d5726fbd3c4d8e110cd996e3",
+      "codexRawSha256": "0f3a4b319a22d5fbb3eea8d93097c6bf9c965a537b4f688f9fd723c0ce4dea77",
+      "claudeRawSha256": "70faeffeaf4629e6e4acd3ac311d1f508c45cafa3bd7a21d404997a13fd356d6"
+    },
+    {
+      "reviewSha": "c1e77d418ebde9ef0b5ac40c18200086a0c0f8df",
+      "codexRawSha256": "0ee49564dc8f70a2877dd5b99e157f364c99e21568bfa09b8f9599b8093e94d3",
+      "claudeRawSha256": "f8bb1280fa7492e79f1041e01e0d735422be6e3516a4039345643b6e8b09a9c8"
+    }
+  ],
+  "additionalValidityDefects": [
+    {
+      "findingId": "F23",
+      "defect": "NON_ATOMIC_SOURCE_EXCERPT",
+      "detail": "The excerpt combines advisories separately represented as F24 and F25."
+    },
+    {
+      "findingId": "F24",
+      "defect": "NON_ATOMIC_SOURCE_EXCERPT",
+      "detail": "The excerpt includes the manifestation separately represented as F25."
+    }
+  ],
+  "initialReviewSha": "71e9abc4619442e7cacdcdad3364e9cad487d95a",
+  "latestReviewSha": "c1e77d418ebde9ef0b5ac40c18200086a0c0f8df",
+  "contaminatedFindingIdsStatus": "NON_EXHAUSTIVE_EXAMPLES_ONLY",
+  "knownContaminatedFindingIds": [
+    "F06",
+    "F08",
+    "F13",
+    "F15",
+    "F18",
+    "F19",
+    "F20",
+    "F21",
+    "F22",
+    "F23",
+    "F24",
+    "F25"
+  ],
+  "additionalValidityDefectsStatus": "NON_EXHAUSTIVE_EXAMPLES_ONLY",
+  "architectureConclusion": {
+    "value": "CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED",
+    "qualification": "Run 2 provides no clean support because the blind instrument was invalidated by an unclosed contamination boundary; this is not evidence that the hypothesis is false."
+  },
+  "smallestJustifiedNextExperiment": "Corpus validation only: independently audit a fresh atomic corpus and prove labels, severity, dispositions, recommendations, and duplicate manifestations are absent before any model runs."
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "round": 2,
+  "blindCorpusSha256": "cf9ff7daf90217134586f8e5485c8d405b939d35f69aeb3fe8b165f7dc2bfa8b",
+  "disagreementCount": 2,
+  "disagreements": [
+    {
+      "itemId": "item-f1e3dcff42a5",
+      "gate": "duplicateManifestation",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "EXCLUDE"
+    },
+    {
+      "itemId": "item-1bd6123e21c4",
+      "gate": "duplicateManifestation",
+      "codex": "FAIL",
+      "claude": "PASS",
+      "adjudication": "ACCEPT_STRICTER_FAIL",
+      "resolution": "EXCLUDE"
+    }
+  ],
+  "resolution": {
+    "excludedItemIds": [
+      "item-f1e3dcff42a5",
+      "item-1bd6123e21c4"
+    ],
+    "rationale": "Both sides of the disputed duplicate pair are excluded. Every retained item received PASS from both auditors on all three gates. Removing items cannot introduce item-level leakage, non-atomicity, or duplicate manifestations.",
+    "reauditRequired": false
+  },
+  "corpusConcerns": [
+    {
+      "source": "claude",
+      "concern": "Several nearest-neighbor pairs warranted provenance-informed review.",
+      "adjudication": "Reviewed source excerpts. M11/M12, M03/M04, and M16/M26 have distinct observable outcomes; final provenance excerpts are narrowed to non-overlapping atomic evidence. The disputed M05/M24 pair is excluded."
+    },
+    {
+      "source": "claude",
+      "concern": "Hash and process gates were not visible.",
+      "adjudication": "Supplied by mechanical validation, source verification, and frozen manifests."
+    }
+  ],
+  "classificationInvocationCount": 0,
+  "classificationOutputCount": 0
+}

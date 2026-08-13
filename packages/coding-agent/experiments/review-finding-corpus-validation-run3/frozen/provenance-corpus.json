@@ -1,0 +1,542 @@
+{
+  "schemaVersion": 1,
+  "corpusVersion": "frozen-1",
+  "itemCount": 22,
+  "authorizedSourceSet": "Exact-SHA Run 1 review artifacts from review rounds 1–3, preserved locally and hash-pinned in Run 2",
+  "sourceArtifactSha256": {
+    "run-1/claude-raw.txt": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+    "run-2/claude-raw.txt": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+    "run-2/codex-raw.txt": "82c466bf99f2ca0e981952091ac296d7ab3797fe947d5bed2da5d97b9041b80b",
+    "run-3/claude-raw.txt": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f"
+  },
+  "items": [
+    {
+      "itemId": "item-35c3b67009bb",
+      "constructionKey": "M28",
+      "sourceArtifact": "run-2/claude-raw.txt",
+      "sourceArtifactSha256": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+      "sourceLineRange": [
+        54,
+        54
+      ],
+      "sourceExcerpt": "A `confirmed` finding later proven wrong cannot be flipped; it feeds the counter permanently.",
+      "sourceExcerptSha256": "14ed7c0a24dfaa3c2bbf0e4cf011549f6af9e53af693286f970c668e3292d3b2",
+      "neutralization": {
+        "manifestation": "An observation continues contributing to recurrence counts after later evidence contradicts it.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-3966afa09ad1",
+      "constructionKey": "M27",
+      "sourceArtifact": "run-3/claude-raw.txt",
+      "sourceArtifactSha256": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f",
+      "sourceLineRange": [
+        37,
+        37
+      ],
+      "sourceExcerpt": "The message names no class.",
+      "sourceExcerptSha256": "868ed5d1f05789973ff02b3b84b9fdd6525093e4c0ef2aa5aa86def2074136e0",
+      "neutralization": {
+        "manifestation": "An error produced by the terminal recurrence state does not identify which aggregate group triggered that state.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-bbb7c7ac73c2",
+      "constructionKey": "M10",
+      "sourceArtifact": "run-1/claude-raw.txt",
+      "sourceArtifactSha256": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+      "sourceLineRange": [
+        48,
+        48
+      ],
+      "sourceExcerpt": "`stateWithEvents` deep-clones the full log per append** (`:255-257`, `:339`, `:356`) — O(n²).",
+      "sourceExcerptSha256": "beba835c8528c4edbddd295cde6a252109190d03cd29f139f78b10c8c1cd6a4a",
+      "neutralization": {
+        "manifestation": "Total event-copy work grows quadratically with history length.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-b7c6f6de4069",
+      "constructionKey": "M02",
+      "sourceArtifact": "run-1/claude-raw.txt",
+      "sourceArtifactSha256": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+      "sourceLineRange": [
+        19,
+        19
+      ],
+      "sourceExcerpt": "`\"assistant content normalization\"` vs `\"Assistant content normalization\"` are two clusters and escalation silently never fires.",
+      "sourceExcerptSha256": "3bb4420159f58e7176a89c040181aff36af4bf15cc3eed0251bf480a3f336934",
+      "neutralization": {
+        "manifestation": "Two otherwise identical records whose abstraction text differs only by capitalization produce separate aggregate groups.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-a588e8cfef87",
+      "constructionKey": "M06",
+      "sourceArtifact": "run-1/claude-raw.txt",
+      "sourceArtifactSha256": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+      "sourceLineRange": [
+        37,
+        37
+      ],
+      "sourceExcerpt": "The non-checkpoint branch emits 3 lines (`:406`)",
+      "sourceExcerptSha256": "8c353059bb24c28ab739fac56a0f17cfa8bca198e1a8310b5ee762a8f8d0acac",
+      "neutralization": {
+        "manifestation": "A constant three-line response is passed through a truncation check configured for 2000 lines or 50 KB.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-e5f809536c80",
+      "constructionKey": "M15",
+      "sourceArtifact": "run-2/claude-raw.txt",
+      "sourceArtifactSha256": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+      "sourceLineRange": [
+        48,
+        48
+      ],
+      "sourceExcerpt": "Recurrence is defined by insertion order (`:191-205`). A finding recorded late against a new SHA that is an *ancestor* of a remediation counts as recurrence.",
+      "sourceExcerptSha256": "dc651813b910b6da86b9ad56aab7565d83452fd1a8c8d607c20467b32b87b890",
+      "neutralization": {
+        "manifestation": "A record added after a correction is counted as a later recurrence even when its commit predates that correction.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-8e66ef6bf977",
+      "constructionKey": "M21",
+      "sourceArtifact": "run-3/claude-raw.txt",
+      "sourceArtifactSha256": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f",
+      "sourceLineRange": [
+        58,
+        58
+      ],
+      "sourceExcerpt": "Dead branch: `:193` `occurrenceCount > 0` is always true (a remediation requires preceding confirmed findings in the same cluster).",
+      "sourceExcerptSha256": "a9870fa598647411db410da7ea297958a2297a0c059f1632ea7a1b5f297aa921",
+      "neutralization": {
+        "manifestation": "A branch tests whether at least one occurrence exists in a state where the surrounding operation cannot exist without a prior occurrence.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-a36bcf847909",
+      "constructionKey": "M19",
+      "sourceArtifact": "run-3/claude-raw.txt",
+      "sourceArtifactSha256": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f",
+      "sourceLineRange": [
+        45,
+        45
+      ],
+      "sourceExcerpt": "`:368` makes correctness depend on JSON key ordering surviving a round-trip.",
+      "sourceExcerptSha256": "1d5189306d4ceeebdb74d4f8ee75e51b53cc1843a2cbdd69ee17d94fbd4bceff",
+      "neutralization": {
+        "manifestation": "Restoration acceptance changes when object-key order differs after the storage round trip.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-9c3adb9fcc4e",
+      "constructionKey": "M16",
+      "sourceArtifact": "run-2/claude-raw.txt",
+      "sourceArtifactSha256": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+      "sourceLineRange": [
+        50,
+        50
+      ],
+      "sourceExcerpt": "`:207-213` joins every distinct abstraction string into one field that reaches checkpoint output.",
+      "sourceExcerptSha256": "01dac53fcc709d4c2f287957e7362617330d3e381a1c6445c00b940f3253a7a3",
+      "neutralization": {
+        "manifestation": "Every distinct abstraction description is concatenated into one display field without a length or item bound.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-72de0587137f",
+      "constructionKey": "M12",
+      "sourceArtifact": "run-2/codex-raw.txt",
+      "sourceArtifactSha256": "82c466bf99f2ca0e981952091ac296d7ab3797fe947d5bed2da5d97b9041b80b",
+      "sourceLineRange": [
+        17,
+        17
+      ],
+      "sourceExcerpt": "The reducer reports `blockingRecurrenceCount: 2`, `ARCHITECTURE_CHECKPOINT`, and `PAUSE_LOCAL_REMEDIATION`, despite there being only one distinct remediation identity.",
+      "sourceExcerptSha256": "4e512da19dbe8face00a5ca0cd6d04e1b72e9a8ad305b68db3f2a2c68ed196bd",
+      "neutralization": {
+        "manifestation": "One correction commit can advance the recurrence counter twice when recorded under two descriptive abstractions.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-b0d3b9485cf6",
+      "constructionKey": "M13",
+      "sourceArtifact": "run-2/claude-raw.txt",
+      "sourceArtifactSha256": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+      "sourceLineRange": [
+        44,
+        44
+      ],
+      "sourceExcerpt": "`:266-267` files any open confirmed blocker whose `reviewSha !== headSha` under `staleFindings`, printed as \"Stale findings: N\" (`:394`).",
+      "sourceExcerptSha256": "300e0d533875f4281b47ff4578612786a2c9c9b6d17397649843f852f0cfde89",
+      "neutralization": {
+        "manifestation": "An unresolved record from an earlier commit is displayed in a collection named stale findings.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-e617c2f887d8",
+      "constructionKey": "M08",
+      "sourceArtifact": "run-1/claude-raw.txt",
+      "sourceArtifactSha256": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+      "sourceLineRange": [
+        45,
+        45
+      ],
+      "sourceExcerpt": "**Only the first qualifying cluster is reported.** `:228` uses `.find(...)`; with two clusters past threshold, ordering is Map-insertion-dependent.",
+      "sourceExcerptSha256": "ce62bbcd4ad77c501f50b371e86d571376210d7e3cd0d6e5da2735a5dc2ca107",
+      "neutralization": {
+        "manifestation": "When more than one aggregate group meets the reporting condition, the result includes only the first group.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-4711f03203e5",
+      "constructionKey": "M14",
+      "sourceArtifact": "run-2/claude-raw.txt",
+      "sourceArtifactSha256": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+      "sourceLineRange": [
+        46,
+        46
+      ],
+      "sourceExcerpt": "`:317-319` refuses *all* remediation once any cluster checkpoints, including unrelated root classes.",
+      "sourceExcerptSha256": "6ebb6cb29b41cc91d775cf6fcc4afbf2d955d45452e2e0c93cf37a1a58205957",
+      "neutralization": {
+        "manifestation": "A terminal recurrence state reached by one aggregate group prevents correction requests for unrelated groups.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-32ff81ae4886",
+      "constructionKey": "M03",
+      "sourceArtifact": "run-1/claude-raw.txt",
+      "sourceArtifactSha256": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+      "sourceLineRange": [
+        26,
+        26
+      ],
+      "sourceExcerpt": "while guaranteeing that a future change to the confirmed/blocking filter turns valid `version: 1` logs into a dead tool",
+      "sourceExcerptSha256": "3bb38af988bfe9cf7dced8fdc452062965dca66278fcd85998a31212f7fdf04f",
+      "neutralization": {
+        "manifestation": "State restoration fails for historical events after validation rules change.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-947ca2472899",
+      "constructionKey": "M11",
+      "sourceArtifact": "run-2/claude-raw.txt",
+      "sourceArtifactSha256": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+      "sourceLineRange": [
+        28,
+        28
+      ],
+      "sourceExcerpt": "with two open blocking findings in one root class under different abstraction phrasings, one remediation commit cannot close both — the second stays `confirmed` forever",
+      "sourceExcerptSha256": "69ec320aecbea45add63e35549c9a379403ae052ef527c3d9a0fdb7cdfb9940e",
+      "neutralization": {
+        "manifestation": "Two open records that differ only in descriptive abstraction text require separate correction events even though occurrence aggregation treats them as one category.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-b3bfdbc72ca4",
+      "constructionKey": "M23",
+      "sourceArtifact": "run-3/claude-raw.txt",
+      "sourceArtifactSha256": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f",
+      "sourceLineRange": [
+        60,
+        60
+      ],
+      "sourceExcerpt": "The head-SHA partition (`:253-261`) is never consulted by `checkpointForState`.",
+      "sourceExcerptSha256": "19666fd8624c3203f00be1bd3518fb59493aaa98b8ab1df480458625f60cf42c",
+      "neutralization": {
+        "manifestation": "The system computes four head-based finding partitions that the recurrence decision does not read.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-d1870bd04a50",
+      "constructionKey": "M20",
+      "sourceArtifact": "run-3/claude-raw.txt",
+      "sourceArtifactSha256": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f",
+      "sourceLineRange": [
+        57,
+        57
+      ],
+      "sourceExcerpt": "`remediationSha` self-check (`:331`) compares only *open* findings: `F1@sha1 → remediate@sha2 → F2@sha3 → remediate@sha1` passes.",
+      "sourceExcerptSha256": "81aa1fb31e9c89de36fcf630cac04c779fbba31c62df2ef5903ed08786e88a26",
+      "neutralization": {
+        "manifestation": "After an earlier observation is closed, its review commit identifier can later be recorded as a correction commit identifier.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-641b99358635",
+      "constructionKey": "M26",
+      "sourceArtifact": "run-3/claude-raw.txt",
+      "sourceArtifactSha256": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f",
+      "sourceLineRange": [
+        56,
+        56
+      ],
+      "sourceExcerpt": "Comma-join at `:205-207` is ambiguous for abstractions containing commas.",
+      "sourceExcerptSha256": "4d6f96cab40a9d243953d3498e362f167abc8231741160418f055b7e456879b9",
+      "neutralization": {
+        "manifestation": "Two abstraction descriptions containing commas can produce the same comma-joined display text as a different list of descriptions.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-5f2f1d019506",
+      "constructionKey": "M18",
+      "sourceArtifact": "run-3/claude-raw.txt",
+      "sourceArtifactSha256": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f",
+      "sourceLineRange": [
+        41,
+        41
+      ],
+      "sourceExcerpt": "`:355-365` recomputes expected `findingIds`; the canonical comparison at `:368` already subsumes it",
+      "sourceExcerptSha256": "fc37d0d9d51ba14b656d57f8a0e5a8374baa7ecfcc74097ebde9fda6b1eac11d",
+      "neutralization": {
+        "manifestation": "Restoration recomputes the expected record identifiers before a canonical event comparison repeats the same mismatch check.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-1b9f06e7b080",
+      "constructionKey": "M17",
+      "sourceArtifact": "run-2/claude-raw.txt",
+      "sourceArtifactSha256": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+      "sourceLineRange": [
+        42,
+        42
+      ],
+      "sourceExcerpt": "`:56-84` and `:171` export 13 names nothing imports.",
+      "sourceExcerptSha256": "7f3f3d4b4e2a4faeecdd5037e0e9a09b307f5ad5f377592624a731aee1eafb45",
+      "neutralization": {
+        "manifestation": "The extension exports thirteen symbols that no consumer imports.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-499a69824f00",
+      "constructionKey": "M09",
+      "sourceArtifact": "run-1/claude-raw.txt",
+      "sourceArtifactSha256": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+      "sourceLineRange": [
+        47,
+        47
+      ],
+      "sourceExcerpt": "`headSha` conflated with \"SHA of the event just recorded.\"** `:312` assesses at the new finding's own `reviewSha`; `:359` at the *remediation* SHA.",
+      "sourceExcerptSha256": "453d3a47454b49eb99cdcda9eebf9ef048ff7354ac5f00e36f397757e5730d4c",
+      "neutralization": {
+        "manifestation": "The set reported as current-head findings changes according to the commit identifier of the event just recorded rather than an independently supplied repository head.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    },
+    {
+      "itemId": "item-6b54c6516c14",
+      "constructionKey": "M04",
+      "sourceArtifact": "run-1/claude-raw.txt",
+      "sourceArtifactSha256": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+      "sourceLineRange": [
+        25,
+        25
+      ],
+      "sourceExcerpt": "one replay failure sets the sticky `restoreError`, and `:485` then fails **every** subsequent call — including `assess`",
+      "sourceExcerptSha256": "ee4e4dadfbc25679e5b932f21c7f712dbd38e2b55dfde11aff668cf7099e632f",
+      "neutralization": {
+        "manifestation": "A read-only status request returns an error after any historical event fails restoration.",
+        "removed": [
+          "root-cause labels",
+          "severity or priority",
+          "dispositions",
+          "recommendations",
+          "reviewer identity",
+          "checkpoint terminology",
+          "file and line provenance"
+        ]
+      }
+    }
+  ]
+}

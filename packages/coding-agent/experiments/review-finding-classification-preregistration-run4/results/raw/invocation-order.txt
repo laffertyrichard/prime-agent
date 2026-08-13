@@ -1,0 +1,9 @@
+RUN_A_CONTROL invocation order; outputs not inspected before raw freeze manifest.
+2026-08-13T18:12:11Z condition-a-codex start
+2026-08-13T18:12:49Z condition-a-codex end exit=0
+2026-08-13T18:12:49Z condition-a-claude start
+2026-08-13T18:15:44Z condition-a-claude end exit=0
+2026-08-13T18:15:44Z condition-b-codex start
+2026-08-13T18:17:06Z condition-b-codex end exit=0
+2026-08-13T18:17:06Z condition-b-claude start
+2026-08-13T18:20:30Z condition-b-claude end exit=0

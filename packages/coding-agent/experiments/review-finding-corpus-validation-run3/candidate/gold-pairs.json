@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "corpusVersion": "candidate-1",
+  "policy": "Only binary relations are admitted. Any pair not confidently resolvable is excluded rather than labeled ambiguous.",
+  "pairCount": 20,
+  "pairs": [
+    {
+      "pairId": "pair-ca8b1c1142",
+      "leftItemId": "item-4711f03203e5",
+      "rightItemId": "item-a36bcf847909",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-ce4d25d3f4",
+      "leftItemId": "item-b7c6f6de4069",
+      "rightItemId": "item-a588e8cfef87",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-8bcc15fc51",
+      "leftItemId": "item-a588e8cfef87",
+      "rightItemId": "item-499a69824f00",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-2dd88829ae",
+      "leftItemId": "item-9c3adb9fcc4e",
+      "rightItemId": "item-641b99358635",
+      "relation": "SAME_ROOT",
+      "adjudicationRationale": "Both are distinct display outcomes of encoding a list as unbounded comma-joined text: growth and ambiguity."
+    },
+    {
+      "pairId": "pair-5b24fe3ab8",
+      "leftItemId": "item-e5f809536c80",
+      "rightItemId": "item-1b9f06e7b080",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-4fa2b2b948",
+      "leftItemId": "item-d1870bd04a50",
+      "rightItemId": "item-641b99358635",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-404c12dbc4",
+      "leftItemId": "item-1bd6123e21c4",
+      "rightItemId": "item-641b99358635",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-888ef856a9",
+      "leftItemId": "item-32ff81ae4886",
+      "rightItemId": "item-6b54c6516c14",
+      "relation": "SAME_ROOT",
+      "adjudicationRationale": "Both are distinct restore-time outcomes caused by historical replay failure: restore incompatibility and loss of read-only status access."
+    },
+    {
+      "pairId": "pair-fd55174c35",
+      "leftItemId": "item-947ca2472899",
+      "rightItemId": "item-72de0587137f",
+      "relation": "SAME_ROOT",
+      "adjudicationRationale": "Both are distinct operational outcomes of inconsistent identity boundaries: incomplete closure and duplicate correction counting."
+    },
+    {
+      "pairId": "pair-455183d0f1",
+      "leftItemId": "item-3966afa09ad1",
+      "rightItemId": "item-f1e3dcff42a5",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-79bb8547e2",
+      "leftItemId": "item-72de0587137f",
+      "rightItemId": "item-bbb7c7ac73c2",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-95d891cd78",
+      "leftItemId": "item-32ff81ae4886",
+      "rightItemId": "item-1b9f06e7b080",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-2e8d96f493",
+      "leftItemId": "item-5f2f1d019506",
+      "rightItemId": "item-1bd6123e21c4",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-8e297bb382",
+      "leftItemId": "item-bbb7c7ac73c2",
+      "rightItemId": "item-b0d3b9485cf6",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-5f8fdb905d",
+      "leftItemId": "item-8e66ef6bf977",
+      "rightItemId": "item-499a69824f00",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-66aa6e3801",
+      "leftItemId": "item-f1e3dcff42a5",
+      "rightItemId": "item-1bd6123e21c4",
+      "relation": "SAME_ROOT",
+      "adjudicationRationale": "Both are distinct test outcomes of replacing the full runtime module: an unavailable current export is missed and a later import resolves undefined."
+    },
+    {
+      "pairId": "pair-a32f142911",
+      "leftItemId": "item-e617c2f887d8",
+      "rightItemId": "item-b3bfdbc72ca4",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-b9d7d7d8af",
+      "leftItemId": "item-6b54c6516c14",
+      "rightItemId": "item-d1870bd04a50",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-80ac4fa066",
+      "leftItemId": "item-947ca2472899",
+      "rightItemId": "item-b0d3b9485cf6",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    },
+    {
+      "pairId": "pair-a21e13518c",
+      "leftItemId": "item-35c3b67009bb",
+      "rightItemId": "item-9c3adb9fcc4e",
+      "relation": "DIFFERENT_ROOT",
+      "adjudicationRationale": "The two manifestations operate at different architectural boundaries and would not be addressed by one coherent change."
+    }
+  ]
+}

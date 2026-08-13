@@ -1,0 +1,1 @@
+[2m2026-08-12T21:43:29.944190Z[0m [31mERROR[0m [2mcodex_models_manager::cache[0m[2m:[0m failed to load models cache: missing field `base_instructions` at line 94 column 5

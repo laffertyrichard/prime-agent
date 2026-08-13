@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "experiment": "review-finding-classification-run2",
+  "frozenAtUtc": "2026-08-12T21:43:06.119102+00:00",
+  "branch": "experiment/review-finding-classification-run2",
+  "baseSha": "8cc25603ae5115713dc69d7ebdb913994ce291d5",
+  "question": "Can independent Codex and Claude reviews assign stable, generalizable architectural root classes to real findings well enough for deterministic recurrence detection to be useful?",
+  "corpus": {
+    "version": "run2-corpus-v1",
+    "findingCount": 25,
+    "contentFile": "blind-corpus.json",
+    "contentSha256": "d641e6ade46bc677c3167783867fb70f61c3535e707457263fd83e9d5e0f2592",
+    "provenanceFile": "corpus.json",
+    "provenanceSha256": "209405f38f3ec169bbc2998395271ee8250e8e1337f56fd02e881c0de99f2878",
+    "sourceArtifactSha256": {
+      "run-1/claude-raw.txt": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
+      "run-2/codex-raw.txt": "82c466bf99f2ca0e981952091ac296d7ab3797fe947d5bed2da5d97b9041b80b",
+      "run-2/claude-raw.txt": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",
+      "run-3/claude-raw.txt": "e8ec3f882cc73ea41d3a8a02047c0695d4211804ae54435af350de2fef75208f"
+    }
+  },
+  "gold": {
+    "file": "gold-pairs.json",
+    "sha256": "0cf8376111e2668bb32ef68aa5140640b4f5d7c2771dfce1c11aaeda3b159d2f",
+    "sameRootPairs": 6,
+    "differentRootPairs": 18,
+    "ambiguousPairs": 4
+  },
+  "conditions": {
+    "A": {
+      "prompt": "prompts/condition-a.txt",
+      "promptSha256": "a9e93569fb0dda7c0fb5b7fbb88b2b69e654dadcd4fdc99ccf9ae1cdc8af3a5e",
+      "schema": "schemas/condition-a.schema.json",
+      "schemaSha256": "d344043b375569c5511fe9a9f95db384de1b02367261c8429e3fb5d6e358a8ac",
+      "pairDecisionSource": "Exact equality after frozen formatting-only root-class normalization."
+    },
+    "B": {
+      "prompt": "prompts/condition-b.txt",
+      "promptSha256": "26f15aaacf0e288e8a67ab4ce858a78d04cd3242fbeb4a3b08cf76015428457a",
+      "schema": "schemas/condition-b.schema.json",
+      "schemaSha256": "8b5bf17b8da4050ed07e8148e64106513e81df98c4b59756c1321bf152626a7e",
+      "pairDecisionSource": "Explicit reviewer pair decisions; raw-label replay remains separately measured."
+    }
+  },
+  "reviewers": {
+    "codex": {
+      "provider": "openai",
+      "model": "gpt-5.6-sol",
+      "tool": "codex-cli",
+      "toolVersion": "0.146.0",
+      "reasoningEffort": "medium"
+    },
+    "claude": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-6",
+      "tool": "Claude Code",
+      "toolVersion": "2.1.228",
+      "effort": "high"
+    }
+  },
+  "independence": [
+    "Each reviewer-condition invocation starts a new non-persistent session.",
+    "Each invocation runs in a separate temporary directory containing no repository or gold files.",
+    "Only the frozen condition prompt and response schema are supplied.",
+    "No reviewer output is shown to another reviewer before all four raw outputs are frozen."
+  ],
+  "normalization": "Unicode NFKC; trim; uppercase; replace each non-alphanumeric run with underscore; trim outer underscores. No semantic alias mapping.",
+  "metrics": {
+    "exactNormalizedRootClassAgreement": "Fraction of corpus findings with equal normalized labels across reviewers.",
+    "pairwisePositiveClass": "SAME_ROOT; gold AMBIGUOUS pairs excluded from precision/recall/F1 and checkpoint error denominators.",
+    "pairwisePrecisionRecallF1": "Binary metrics with reviewer AMBIGUOUS treated as not-SAME.",
+    "interReviewerPairwiseAgreement": "Raw exact decision agreement across non-gold-AMBIGUOUS pairs; reviewer AMBIGUOUS remains a distinct decision and therefore agrees only with AMBIGUOUS.",
+    "falseCheckpointRate": "Gold DIFFERENT_ROOT pairs that activate the Run 1 checkpoint divided by all gold DIFFERENT_ROOT pairs.",
+    "missedCheckpointRate": "Gold SAME_ROOT pairs that do not activate the Run 1 checkpoint divided by all gold SAME_ROOT pairs.",
+    "ambiguousCaseRate": "Reviewer AMBIGUOUS decisions divided by all designated pairs.",
+    "replaySequence": "left finding@SHA1; left-class remediation@SHA2; right finding@SHA3; right-class remediation@SHA4; left manifestation@SHA5. The unchanged Run 1 projector checkpoints iff supplied recurrence identity is shared.",
+    "errorTaxonomy": "Naming disagreement means explicit SAME_ROOT but unequal normalized labels; substantive disagreement means explicit pair decision differs from non-ambiguous gold."
+  },
+  "thresholds": {
+    "pairwiseF1EachReviewer": 0.8,
+    "interReviewerPairwiseAgreement": 0.8,
+    "falseCheckpointRateMax": 0.05,
+    "missedCheckpointRateMax": 0.1,
+    "openExactLabelAgreementForConclusionA": 0.8
+  },
+  "decisionRule": {
+    "A": "EXTENSION_SUFFICIENT_WITH_EXPLICIT_CLASSES only if Condition A raw-label replay and pair metrics pass every threshold for both reviewers, inter-reviewer pair agreement passes, and exact normalized item-label agreement is at least 0.80.",
+    "B": "Otherwise EXTENSION_SUFFICIENT_WITH_RUBRIC_OR_HUMAN_GATE only if Condition B explicit pair metrics pass checkpoint thresholds for both reviewers, explicit inter-reviewer agreement passes, and decision-gated replay through the unchanged projector passes.",
+    "C": "Otherwise CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED.",
+    "D": "CORE_HOOK_EVIDENCE_REQUIRED only if execution reveals a concrete capability unavailable through existing extension/session surfaces; classification error alone cannot select D."
+  },
+  "frozenImplementationHashes": {
+    "evaluate.ts": "543aae7b8c7b8e5df00f598cfa3d98369fecb21e406ce2da5bb939e513064d42",
+    "evaluate.test.ts": "1240cf2a23812f6efbcabeff63a7e5cf4704ccca7c32ee1f41e770b366c89339",
+    "normalize-results.ts": "50b663e3f84208bb279fa2de2efe64fef612f404f3602b5b82c07766628e4f09",
+    "run1-import-stubs.ts": "43fa8ddb9c00202e11152b89917ce3e39f40748e4d37624f67eb1f07dc4cdbec",
+    "tsconfig.json": "4762f768db5047906a044d61bd7960e2bf998d83465bdc75351ef8b843c627ed"
+  },
+  "executionNotes": [
+    "An initial no-output invocation was rejected by both CLIs before inference because the frozen JSON Schemas used unsupported draft/const syntax. The schemas were compatibility-adjusted without changing fields, prompts, metrics, gold, or model selectors; failed command artifacts are preserved under results/failed-attempt-0."
+  ]
+}

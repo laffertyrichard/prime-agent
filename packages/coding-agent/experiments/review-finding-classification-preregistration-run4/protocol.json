@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "experiment": "review-finding-classification-preregistration-run4",
+  "phase": "PREREGISTRATION_COMPLETE_AWAITING_REVIEW",
+  "createdAtUtc": "2026-08-13T14:11:20.519662+00:00",
+  "branch": "experiment/review-finding-classification-preregistration-run4-remediation",
+  "branchPointSha": "bd247656aeeabea6b347bc892c0bfb9236fd7663",
+  "question": "Can independent Codex and Claude classifications of the validated atomic corpus support deterministic review-finding recurrence detection under open classification or a minimal rubric?",
+  "source": {
+    "sha": "bd247656aeeabea6b347bc892c0bfb9236fd7663",
+    "run3Branch": "experiment/review-finding-corpus-validation-run3",
+    "run3Protocol": "../review-finding-corpus-validation-run3/frozen/protocol.json",
+    "corpusVersion": "frozen-1",
+    "itemCount": 22,
+    "goldPairCount": 16,
+    "sameRootPairs": 3,
+    "differentRootPairs": 13,
+    "blindCorpus": "../review-finding-corpus-validation-run3/frozen/blind-corpus.json",
+    "blindCorpusSha256": "b7b3f5cab0bc588d0a33f560275ff599fcef484287f07c078bc4b763b8043e9b",
+    "provenanceCorpus": "../review-finding-corpus-validation-run3/frozen/provenance-corpus.json",
+    "provenanceCorpusSha256": "06e4e64e98730e1c487078761d947a31ce7754edbf8f23150cd73f68c32ead19",
+    "goldPairs": "../review-finding-corpus-validation-run3/frozen/gold-pairs.json",
+    "goldPairsSha256": "5842ff5334d326252c0d9f7d4f0906ad5f1086333415c60ddf481fc18262695b",
+    "rubricSha256": "8d1c514ba183ccb7323a702744f029cf74e7b36549f66148439bac6215b1a39c",
+    "run1Sha": "8cc25603ae5115713dc69d7ebdb913994ce291d5",
+    "run2Sha": "57283d1b01378f12bbb05e19653cdfa89a1aa796"
+  },
+  "conditions": {
+    "A": {
+      "design": "Open project-neutral root-class assignment without an ontology or rubric.",
+      "prompt": "prompts/condition-a.txt",
+      "promptSha256": "195cdf794aa2622f006e98dda49e9859a41b52d609996d3d10c22ee3c27b1357",
+      "responseSchema": "schemas/condition-a-response.schema.json",
+      "responseSchemaSha256": "2d9cfaaff9402f16ef0d70c389386a68fddb63b300f416971b83d392bf16b616",
+      "pairDecisionSource": "Formatting-normalized root-class equality."
+    },
+    "B": {
+      "design": "Minimal model-neutral root/abstraction rubric plus explicit designated-pair decisions.",
+      "prompt": "prompts/condition-b.txt",
+      "promptSha256": "57ee2b3a0728fd1678fcdd8fcfe0b38f3b6c2b7ec09fbaf9a3e630648cf4a89e",
+      "responseSchema": "schemas/condition-b-response.schema.json",
+      "responseSchemaSha256": "38d3a1d238637fedf867936013817772ea822a57d2e89516974347a96b1af36e",
+      "pairDecisionSource": "Explicit binary or abstaining pair decision; label-derived relations are diagnostic only."
+    }
+  },
+  "scoring": {
+    "authority": "scoring-rules.md",
+    "reviewerExactGate": {
+      "correctSame": 3,
+      "minimumCorrectDifferent": 12
+    },
+    "minimumInterReviewerPairAgreementCount": 15,
+    "minimumConditionAExactItemLabelAgreementCount": 18,
+    "uncertaintyAuthority": "uncertainty-reporting.md",
+    "interval": "two-sided Wilson 95 percent, descriptive only",
+    "priorRun2PercentageThresholdsInherited": false,
+    "postExecutionExclusionsAllowed": false,
+    "promptTuningAgainstOutcomesAllowed": false
+  },
+  "evaluator": {
+    "design": "evaluator-design.md",
+    "implementation": "evaluate.ts",
+    "normalizer": "normalize-results.ts",
+    "metadataBuilder": "build-execution-metadata.ts",
+    "failClosed": true,
+    "semanticAliasMapping": false,
+    "missingValueImputation": false,
+    "confidenceAffectsGate": false,
+    "rawEvidenceRecursivelyValidated": true,
+    "executionPreflight": "execution-preflight.ts",
+    "executionEvidenceTest": "execution-evidence.test.ts"
+  },
+  "modelComposition": {
+    "authority": "model-composition.json",
+    "executionPlan": "execution-plan.md",
+    "promptsAndEvaluatorByteIdenticalAcrossArms": true,
+    "runA": {
+      "sequence": 1,
+      "status": "UNAUTHORIZED",
+      "codexRequestedModel": "gpt-5.6-sol",
+      "claudeRequestedModel": "claude-opus-4-6",
+      "purpose": "Clean replication control preserving prior model configuration while changing the corpus."
+    },
+    "runB": {
+      "sequence": 2,
+      "status": "UNAUTHORIZED",
+      "codexRequestedModel": "gpt-5.6-sol",
+      "claudeRequestedModel": "claude-opus-5",
+      "purpose": "Separate model-change arm from the same preregistration SHA.",
+      "precondition": "Run A must be frozen and Run B must receive separate authorization."
+    }
+  },
+  "executionBoundary": {
+    "classificationAuthorized": false,
+    "modelApiInvocationCount": 0,
+    "classificationOutputCount": 0,
+    "resultsDirectoryPresent": false,
+    "corpusLabelingAuthorized": false,
+    "resultGenerationAuthorized": false,
+    "mergeAuthorized": false,
+    "publicationAuthorized": false,
+    "nextAction": "Stop for independent review of the exact preregistration SHA. Execution requires separate authorization naming the reviewed SHA and arm."
+  },
+  "artifacts": {
+    "README.md": "7e7fe81bf7cd1f3aadb49e82d72a1e48417516672322ccecc847c4cc0b0ebd9d",
+    "build-execution-metadata.ts": "f6d16a4c5abe562ca76053c1b2d15c8fd58176600915339d23b9e6ceddd514a9",
+    "evaluate.test.ts": "ce690555c37408cedec937d5342fa86a90dbe3d47969274bc49e43f460a0ca54",
+    "evaluate.ts": "506ca3acf7538f2069c4d1256b5b4d7a7933fd1fc58c40782d64eb15939ee50e",
+    "evaluator-design.md": "a3adcfed09382f586858ea464438e5bc69da0ffba44c668f98f4e6d1ca49dc34",
+    "execution-evidence.test.ts": "1a3f256564f3018e0b1ba0053d54edc803e3f0d53eb4f4bfce57a4145c36efd1",
+    "execution-plan.md": "a445b284875326cd80e6ba3cc258234043328fde327b44986440fae61d017dab",
+    "execution-preflight.ts": "43f182f56daed7a6d0dd4787c30fe3a16d316a6775c01b8c3b76db39f3b4433a",
+    "model-composition.json": "21101d734dcbf790d4a7d3be7ec4c3bb70f25258cf64dbdd1ee12d0bb3a2f250",
+    "normalize-results.ts": "77fc993c5be2c274049cf73bfcddd5d69ff2fa42dfee32537a37751a79cff6e3",
+    "prompts/condition-a.txt": "195cdf794aa2622f006e98dda49e9859a41b52d609996d3d10c22ee3c27b1357",
+    "prompts/condition-b.txt": "57ee2b3a0728fd1678fcdd8fcfe0b38f3b6c2b7ec09fbaf9a3e630648cf4a89e",
+    "schemas/condition-a-response.schema.json": "2d9cfaaff9402f16ef0d70c389386a68fddb63b300f416971b83d392bf16b616",
+    "schemas/condition-b-response.schema.json": "38d3a1d238637fedf867936013817772ea822a57d2e89516974347a96b1af36e",
+    "schemas/execution-metadata.schema.json": "5c7560d1e849938bb380eeac1aa2df47ca8e350057b25883db2159dc2deb771a",
+    "schemas/normalized-results.schema.json": "67c44344b3d30adde64bd4860a17e8cebb2d6a56d1dbb151c842d7144cdeb84a",
+    "scoring-rules.md": "2f8965ba549f53bd7fab921ab9662effc884709bd2697f457a5efa0272d87b9d",
+    "tsconfig.json": "7f8c3c342b1ae63792596e79c66615582832373b67a8082b0fc2e249f7a38ff2",
+    "uncertainty-reporting.md": "a9643e1db2f356997b02837e3bbe307dfcb9296f66139f79b67d5dfe6929f7be",
+    "validate-preregistration.test.ts": "ab53134c75610356a28b3c220d6b1da31c2cfc1f543577fa247a102528a7e70c",
+    "validate-preregistration.ts": "4287b110faf0fde83d96a2e6c96a2915c5c0644af5108832aad8041929eef622"
+  }
+}

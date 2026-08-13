@@ -1,0 +1,139 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "condition",
+    "classifications",
+    "pairs"
+  ],
+  "properties": {
+    "condition": {
+      "type": "string",
+      "enum": [
+        "B"
+      ]
+    },
+    "classifications": {
+      "type": "array",
+      "minItems": 22,
+      "maxItems": 22,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "itemId",
+          "rootClass",
+          "affectedAbstraction",
+          "confidence",
+          "conciseRationale"
+        ],
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "enum": [
+              "item-35c3b67009bb",
+              "item-3966afa09ad1",
+              "item-bbb7c7ac73c2",
+              "item-b7c6f6de4069",
+              "item-a588e8cfef87",
+              "item-e5f809536c80",
+              "item-8e66ef6bf977",
+              "item-a36bcf847909",
+              "item-9c3adb9fcc4e",
+              "item-72de0587137f",
+              "item-b0d3b9485cf6",
+              "item-e617c2f887d8",
+              "item-4711f03203e5",
+              "item-32ff81ae4886",
+              "item-947ca2472899",
+              "item-b3bfdbc72ca4",
+              "item-d1870bd04a50",
+              "item-641b99358635",
+              "item-5f2f1d019506",
+              "item-1b9f06e7b080",
+              "item-499a69824f00",
+              "item-6b54c6516c14"
+            ]
+          },
+          "rootClass": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]*$",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "conciseRationale": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "affectedAbstraction": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        }
+      }
+    },
+    "pairs": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pairId",
+          "decision",
+          "confidence",
+          "conciseRationale"
+        ],
+        "properties": {
+          "pairId": {
+            "type": "string",
+            "enum": [
+              "pair-ca8b1c1142",
+              "pair-ce4d25d3f4",
+              "pair-8bcc15fc51",
+              "pair-2dd88829ae",
+              "pair-5b24fe3ab8",
+              "pair-4fa2b2b948",
+              "pair-888ef856a9",
+              "pair-fd55174c35",
+              "pair-79bb8547e2",
+              "pair-95d891cd78",
+              "pair-8e297bb382",
+              "pair-5f8fdb905d",
+              "pair-a32f142911",
+              "pair-b9d7d7d8af",
+              "pair-80ac4fa066",
+              "pair-a21e13518c"
+            ]
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "SAME_ROOT",
+              "DIFFERENT_ROOT",
+              "AMBIGUOUS"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "conciseRationale": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        }
+      }
+    }
+  }
+}

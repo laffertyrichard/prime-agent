@@ -1,0 +1,119 @@
+You are independently adjudicating 16 blinded pairs of observable software manifestations.
+
+Return JSON matching the supplied response schema with packetSha256 `19d7bd0711161df9122cde29dfe47360c9904328026a7a936801833c9a7d5a63`. Return exactly one entry for every case, in packet order. Do not use tools, repository access, web access, prior knowledge of this experiment, or another adjudicator's output. You are given only the manifestations below. Original pair identities, original relations, original rationales, prior experiment outputs and metrics, and all prior reviewer decisions are intentionally withheld.
+
+FROZEN RELATION CRITERION
+
+Assign SAME_ROOT only when one coherent architectural remediation plausibly addresses both manifestations. A coherent remediation may require coordinated edits, but those edits must implement one architectural invariant at one responsibility boundary and explain both outcomes without an independent second fix. Do not call two independent fixes coherent merely because they can be shipped together, share a module, share vocabulary or data, share an upstream event or failure path, or can be described under a broad theme.
+
+Assign DIFFERENT_ROOT when addressing both manifestations plausibly requires independent remediation decisions, even if the manifestations are causally close, occur in the same subsystem, or one can cause, expose, mask, or prevent access to the other.
+
+Assign ABSTAIN when the manifestation text does not provide enough evidence to distinguish those alternatives. Do not force a binary answer. Explain the missing fact and both plausible alternatives in coherentRemediation and rationale. Do not abstain merely because a case is difficult or confidence is low.
+
+CAUSAL PROXIMITY IS SEPARATE
+
+Report causalProximity independently from decision:
+- CLOSE: the manifestations appear adjacent in a causal chain or responsibility boundary.
+- INTERMEDIATE: they share some mechanism or context but are not adjacent.
+- DISTANT: they appear causally separate.
+- UNCERTAIN: the text is insufficient to assess proximity.
+
+Causal proximity is not evidence by itself of a shared architectural root. CLOSE may still be DIFFERENT_ROOT when two independent corrections are needed. Conversely, SAME_ROOT must rest on a specific coherent remediation, not on proximity or thematic similarity.
+
+RESPONSE FIELDS
+
+- caseId: exact case identity.
+- decision: SAME_ROOT, DIFFERENT_ROOT, or ABSTAIN.
+- causalProximity: CLOSE, INTERMEDIATE, DISTANT, or UNCERTAIN.
+- confidence: number from 0 through 1 reporting epistemic confidence; it never substitutes for abstention and does not change the decision rule.
+- coherentRemediation: for SAME_ROOT, state the single architectural remediation; for DIFFERENT_ROOT, state why no single coherent remediation plausibly covers both; for ABSTAIN, state what evidence is missing and the two plausible accounts.
+- rationale: concise case-specific application of the criterion. Do not infer or discuss original labels or experiment outcomes.
+
+BLIND PACKET
+{
+  "schemaVersion": 1,
+  "packetVersion": "run4-gold-readjudication-blind-v1",
+  "caseCount": 16,
+  "cases": [
+    {
+      "caseId": "case-19eefbbfc02fe684111e8e21a583ed96",
+      "manifestationA": "A branch tests whether at least one occurrence exists in a state where the surrounding operation cannot exist without a prior occurrence.",
+      "manifestationB": "The set reported as current-head findings changes according to the commit identifier of the event just recorded rather than an independently supplied repository head."
+    },
+    {
+      "caseId": "case-19f2d21d0b9a82f377626f0d84369513",
+      "manifestationA": "When more than one aggregate group meets the reporting condition, the result includes only the first group.",
+      "manifestationB": "The system computes four head-based finding partitions that the recurrence decision does not read."
+    },
+    {
+      "caseId": "case-2267fb996430336c1e093346f9fb9feb",
+      "manifestationA": "A read-only status request returns an error after any historical event fails restoration.",
+      "manifestationB": "State restoration fails for historical events after validation rules change."
+    },
+    {
+      "caseId": "case-246735cb35df3b691be9a8ce5963556c",
+      "manifestationA": "One correction commit can advance the recurrence counter twice when recorded under two descriptive abstractions.",
+      "manifestationB": "Total event-copy work grows quadratically with history length."
+    },
+    {
+      "caseId": "case-28c7eee63a1a51f1b6165b777562f79c",
+      "manifestationA": "State restoration fails for historical events after validation rules change.",
+      "manifestationB": "The extension exports thirteen symbols that no consumer imports."
+    },
+    {
+      "caseId": "case-3b82f6d5a2c8160b29f63a3dfba93da3",
+      "manifestationA": "Restoration acceptance changes when object-key order differs after the storage round trip.",
+      "manifestationB": "A terminal recurrence state reached by one aggregate group prevents correction requests for unrelated groups."
+    },
+    {
+      "caseId": "case-3f70ba679f39f42e00c9f9f73fd1d486",
+      "manifestationA": "After an earlier observation is closed, its review commit identifier can later be recorded as a correction commit identifier.",
+      "manifestationB": "A read-only status request returns an error after any historical event fails restoration."
+    },
+    {
+      "caseId": "case-4dd5c3f8482002a78df3f47962f3bf8a",
+      "manifestationA": "A constant three-line response is passed through a truncation check configured for 2000 lines or 50 KB.",
+      "manifestationB": "The set reported as current-head findings changes according to the commit identifier of the event just recorded rather than an independently supplied repository head."
+    },
+    {
+      "caseId": "case-5d0c8fa443b1cb5d27b95571ac77ad9b",
+      "manifestationA": "An unresolved record from an earlier commit is displayed in a collection named stale findings.",
+      "manifestationB": "Two open records that differ only in descriptive abstraction text require separate correction events even though occurrence aggregation treats them as one category."
+    },
+    {
+      "caseId": "case-6565183016c34d2d2692c3ea5f5a1947",
+      "manifestationA": "A constant three-line response is passed through a truncation check configured for 2000 lines or 50 KB.",
+      "manifestationB": "Two otherwise identical records whose abstraction text differs only by capitalization produce separate aggregate groups."
+    },
+    {
+      "caseId": "case-7fa10eeb297549a151b4aff4b2c7d431",
+      "manifestationA": "An unresolved record from an earlier commit is displayed in a collection named stale findings.",
+      "manifestationB": "Total event-copy work grows quadratically with history length."
+    },
+    {
+      "caseId": "case-90ba3e7cd63f1f970bd47beff1aeed96",
+      "manifestationA": "Every distinct abstraction description is concatenated into one display field without a length or item bound.",
+      "manifestationB": "An observation continues contributing to recurrence counts after later evidence contradicts it."
+    },
+    {
+      "caseId": "case-b5e5ff2bb8888484ddc67e4d3bfc8a2a",
+      "manifestationA": "A record added after a correction is counted as a later recurrence even when its commit predates that correction.",
+      "manifestationB": "The extension exports thirteen symbols that no consumer imports."
+    },
+    {
+      "caseId": "case-c361fe58ce5250bf39c83f30bfe686fc",
+      "manifestationA": "Two open records that differ only in descriptive abstraction text require separate correction events even though occurrence aggregation treats them as one category.",
+      "manifestationB": "One correction commit can advance the recurrence counter twice when recorded under two descriptive abstractions."
+    },
+    {
+      "caseId": "case-da79163c405d475b5e2a5718e4a7bd0a",
+      "manifestationA": "Two abstraction descriptions containing commas can produce the same comma-joined display text as a different list of descriptions.",
+      "manifestationB": "After an earlier observation is closed, its review commit identifier can later be recorded as a correction commit identifier."
+    },
+    {
+      "caseId": "case-f44d6f97839b50a693bea7112e81dcfb",
+      "manifestationA": "Two abstraction descriptions containing commas can produce the same comma-joined display text as a different list of descriptions.",
+      "manifestationB": "Every distinct abstraction description is concatenated into one display field without a length or item bound."
+    }
+  ]
+}

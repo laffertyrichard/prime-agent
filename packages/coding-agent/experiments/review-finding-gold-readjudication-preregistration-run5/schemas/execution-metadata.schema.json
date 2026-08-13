@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "authorizedPreregistrationSha",
+    "sourceEvidenceSha",
+    "rawPrefreezeManifestSha256",
+    "executionPreflightSha256",
+    "promptSha256",
+    "responseSchemaSha256",
+    "outputsMutuallyHiddenUntilFrozen",
+    "adjudicators"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "authorizedPreregistrationSha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sourceEvidenceSha": {
+      "type": "string",
+      "const": "f1450e95a197b91998550566e36484f046a2a8ed"
+    },
+    "promptSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "responseSchemaSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "outputsMutuallyHiddenUntilFrozen": {
+      "type": "boolean",
+      "const": true
+    },
+    "adjudicators": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "adjudicatorId",
+          "tool",
+          "toolVersion",
+          "requestedModel",
+          "effectiveModels",
+          "provider",
+          "exitCode",
+          "outputSha256",
+          "toolUseObserved",
+          "rawEvidenceSha256",
+          "telemetrySha256"
+        ],
+        "properties": {
+          "adjudicatorId": {
+            "type": "string",
+            "enum": [
+              "ADJUDICATOR_CODEX",
+              "ADJUDICATOR_CLAUDE"
+            ]
+          },
+          "tool": {
+            "type": "string"
+          },
+          "toolVersion": {
+            "type": "string"
+          },
+          "requestedModel": {
+            "type": "string"
+          },
+          "effectiveModels": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "provider": {
+            "type": "string"
+          },
+          "exitCode": {
+            "type": "integer",
+            "const": 0
+          },
+          "outputSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "toolUseObserved": {
+            "type": "boolean",
+            "const": false
+          },
+          "rawEvidenceSha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "telemetrySha256": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "executionPreflightSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "rawPrefreezeManifestSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

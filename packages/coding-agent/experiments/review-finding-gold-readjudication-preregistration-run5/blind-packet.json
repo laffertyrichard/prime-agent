@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "packetVersion": "run4-gold-readjudication-blind-v1",
+  "caseCount": 16,
+  "cases": [
+    {
+      "caseId": "case-19eefbbfc02fe684111e8e21a583ed96",
+      "manifestationA": "A branch tests whether at least one occurrence exists in a state where the surrounding operation cannot exist without a prior occurrence.",
+      "manifestationB": "The set reported as current-head findings changes according to the commit identifier of the event just recorded rather than an independently supplied repository head."
+    },
+    {
+      "caseId": "case-19f2d21d0b9a82f377626f0d84369513",
+      "manifestationA": "When more than one aggregate group meets the reporting condition, the result includes only the first group.",
+      "manifestationB": "The system computes four head-based finding partitions that the recurrence decision does not read."
+    },
+    {
+      "caseId": "case-2267fb996430336c1e093346f9fb9feb",
+      "manifestationA": "A read-only status request returns an error after any historical event fails restoration.",
+      "manifestationB": "State restoration fails for historical events after validation rules change."
+    },
+    {
+      "caseId": "case-246735cb35df3b691be9a8ce5963556c",
+      "manifestationA": "One correction commit can advance the recurrence counter twice when recorded under two descriptive abstractions.",
+      "manifestationB": "Total event-copy work grows quadratically with history length."
+    },
+    {
+      "caseId": "case-28c7eee63a1a51f1b6165b777562f79c",
+      "manifestationA": "State restoration fails for historical events after validation rules change.",
+      "manifestationB": "The extension exports thirteen symbols that no consumer imports."
+    },
+    {
+      "caseId": "case-3b82f6d5a2c8160b29f63a3dfba93da3",
+      "manifestationA": "Restoration acceptance changes when object-key order differs after the storage round trip.",
+      "manifestationB": "A terminal recurrence state reached by one aggregate group prevents correction requests for unrelated groups."
+    },
+    {
+      "caseId": "case-3f70ba679f39f42e00c9f9f73fd1d486",
+      "manifestationA": "After an earlier observation is closed, its review commit identifier can later be recorded as a correction commit identifier.",
+      "manifestationB": "A read-only status request returns an error after any historical event fails restoration."
+    },
+    {
+      "caseId": "case-4dd5c3f8482002a78df3f47962f3bf8a",
+      "manifestationA": "A constant three-line response is passed through a truncation check configured for 2000 lines or 50 KB.",
+      "manifestationB": "The set reported as current-head findings changes according to the commit identifier of the event just recorded rather than an independently supplied repository head."
+    },
+    {
+      "caseId": "case-5d0c8fa443b1cb5d27b95571ac77ad9b",
+      "manifestationA": "An unresolved record from an earlier commit is displayed in a collection named stale findings.",
+      "manifestationB": "Two open records that differ only in descriptive abstraction text require separate correction events even though occurrence aggregation treats them as one category."
+    },
+    {
+      "caseId": "case-6565183016c34d2d2692c3ea5f5a1947",
+      "manifestationA": "A constant three-line response is passed through a truncation check configured for 2000 lines or 50 KB.",
+      "manifestationB": "Two otherwise identical records whose abstraction text differs only by capitalization produce separate aggregate groups."
+    },
+    {
+      "caseId": "case-7fa10eeb297549a151b4aff4b2c7d431",
+      "manifestationA": "An unresolved record from an earlier commit is displayed in a collection named stale findings.",
+      "manifestationB": "Total event-copy work grows quadratically with history length."
+    },
+    {
+      "caseId": "case-90ba3e7cd63f1f970bd47beff1aeed96",
+      "manifestationA": "Every distinct abstraction description is concatenated into one display field without a length or item bound.",
+      "manifestationB": "An observation continues contributing to recurrence counts after later evidence contradicts it."
+    },
+    {
+      "caseId": "case-b5e5ff2bb8888484ddc67e4d3bfc8a2a",
+      "manifestationA": "A record added after a correction is counted as a later recurrence even when its commit predates that correction.",
+      "manifestationB": "The extension exports thirteen symbols that no consumer imports."
+    },
+    {
+      "caseId": "case-c361fe58ce5250bf39c83f30bfe686fc",
+      "manifestationA": "Two open records that differ only in descriptive abstraction text require separate correction events even though occurrence aggregation treats them as one category.",
+      "manifestationB": "One correction commit can advance the recurrence counter twice when recorded under two descriptive abstractions."
+    },
+    {
+      "caseId": "case-da79163c405d475b5e2a5718e4a7bd0a",
+      "manifestationA": "Two abstraction descriptions containing commas can produce the same comma-joined display text as a different list of descriptions.",
+      "manifestationB": "After an earlier observation is closed, its review commit identifier can later be recorded as a correction commit identifier."
+    },
+    {
+      "caseId": "case-f44d6f97839b50a693bea7112e81dcfb",
+      "manifestationA": "Two abstraction descriptions containing commas can produce the same comma-joined display text as a different list of descriptions.",
+      "manifestationB": "Every distinct abstraction description is concatenated into one display field without a length or item bound."
+    }
+  ]
+}

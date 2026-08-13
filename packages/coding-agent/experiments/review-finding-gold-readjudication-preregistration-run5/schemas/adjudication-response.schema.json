@@ -1,0 +1,95 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packetSha256",
+    "adjudications"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "packetSha256": {
+      "type": "string",
+      "enum": [
+        "19d7bd0711161df9122cde29dfe47360c9904328026a7a936801833c9a7d5a63"
+      ]
+    },
+    "adjudications": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "caseId",
+          "decision",
+          "causalProximity",
+          "confidence",
+          "coherentRemediation",
+          "rationale"
+        ],
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "enum": [
+              "case-19eefbbfc02fe684111e8e21a583ed96",
+              "case-19f2d21d0b9a82f377626f0d84369513",
+              "case-2267fb996430336c1e093346f9fb9feb",
+              "case-246735cb35df3b691be9a8ce5963556c",
+              "case-28c7eee63a1a51f1b6165b777562f79c",
+              "case-3b82f6d5a2c8160b29f63a3dfba93da3",
+              "case-3f70ba679f39f42e00c9f9f73fd1d486",
+              "case-4dd5c3f8482002a78df3f47962f3bf8a",
+              "case-5d0c8fa443b1cb5d27b95571ac77ad9b",
+              "case-6565183016c34d2d2692c3ea5f5a1947",
+              "case-7fa10eeb297549a151b4aff4b2c7d431",
+              "case-90ba3e7cd63f1f970bd47beff1aeed96",
+              "case-b5e5ff2bb8888484ddc67e4d3bfc8a2a",
+              "case-c361fe58ce5250bf39c83f30bfe686fc",
+              "case-da79163c405d475b5e2a5718e4a7bd0a",
+              "case-f44d6f97839b50a693bea7112e81dcfb"
+            ]
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "SAME_ROOT",
+              "DIFFERENT_ROOT",
+              "ABSTAIN"
+            ]
+          },
+          "causalProximity": {
+            "type": "string",
+            "enum": [
+              "CLOSE",
+              "INTERMEDIATE",
+              "DISTANT",
+              "UNCERTAIN"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "coherentRemediation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 600
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 800
+          }
+        }
+      }
+    }
+  }
+}

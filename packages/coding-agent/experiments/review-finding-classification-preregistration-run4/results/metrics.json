@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "arm": "RUN_A_CONTROL",
+  "sourceSha": "bd247656aeeabea6b347bc892c0bfb9236fd7663",
+  "preregistrationSha": "9ab6511f5a59667505151f8b34c9fd5d7ad0f8c3",
+  "corpus": {
+    "version": "frozen-1",
+    "blindCorpusSha256": "b7b3f5cab0bc588d0a33f560275ff599fcef484287f07c078bc4b763b8043e9b",
+    "goldPairsSha256": "5842ff5334d326252c0d9f7d4f0906ad5f1086333415c60ddf481fc18262695b"
+  },
+  "composition": {
+    "arm": "RUN_A_CONTROL",
+    "effectiveModels": {
+      "codex": [
+        "gpt-5.6-sol"
+      ],
+      "claude": [
+        "claude-opus-4-6"
+      ]
+    }
+  },
+  "criteria": {
+    "correctSameEachReviewer": 3,
+    "minimumCorrectDifferentEachReviewer": 12,
+    "minimumInterReviewerPairAgreement": 15,
+    "minimumOpenExactItemLabelAgreement": 18
+  },
+  "uncertaintyPolicy": "Two-sided Wilson 95% intervals are descriptive only; exact counts determine the gate.",
+  "conditions": {
+    "A": {
+      "pass": false,
+      "interReviewerPairAgreement": {
+        "equal": 15,
+        "total": 16,
+        "wilson95": {
+          "lower": 0.7167126242970107,
+          "upper": 0.9888806552353575
+        }
+      },
+      "exactItemLabelAgreement": {
+        "equal": 0,
+        "total": 22,
+        "wilson95": {
+          "lower": 0,
+          "upper": 0.14865487460862087
+        }
+      },
+      "codex": {
+        "pairScore": {
+          "correctSame": 0,
+          "missedSame": 3,
+          "ambiguousSame": 0,
+          "correctDifferent": 13,
+          "falseSame": 0,
+          "ambiguousDifferent": 0,
+          "correct": 13,
+          "total": 16,
+          "abstentions": 0,
+          "accuracy": 0.8125,
+          "precision": 0,
+          "sensitivity": 0,
+          "specificity": 1,
+          "f1": 0,
+          "abstentionRate": 0,
+          "sensitivityWilson95": {
+            "lower": 4.8683609171202235e-17,
+            "upper": 0.5614970317550455
+          },
+          "specificityWilson95": {
+            "lower": 0.7719046276458015,
+            "upper": 1
+          },
+          "accuracyWilson95": {
+            "lower": 0.5699111903802586,
+            "upper": 0.9340840092857186
+          }
+        },
+        "failurePairIds": [
+          "pair-2dd88829ae",
+          "pair-888ef856a9",
+          "pair-fd55174c35"
+        ],
+        "abstentionPairIds": [],
+        "itemConfidence": {
+          "count": 22,
+          "mean": 0.948181818181818,
+          "median": 0.96,
+          "bins": {
+            "[0,0.5)": 0,
+            "[0.5,0.7)": 0,
+            "[0.7,0.85)": 1,
+            "[0.85,1]": 21
+          }
+        }
+      },
+      "claude": {
+        "pairScore": {
+          "correctSame": 1,
+          "missedSame": 2,
+          "ambiguousSame": 0,
+          "correctDifferent": 13,
+          "falseSame": 0,
+          "ambiguousDifferent": 0,
+          "correct": 14,
+          "total": 16,
+          "abstentions": 0,
+          "accuracy": 0.875,
+          "precision": 1,
+          "sensitivity": 0.3333333333333333,
+          "specificity": 1,
+          "f1": 0.5,
+          "abstentionRate": 0,
+          "sensitivityWilson95": {
+            "lower": 0.061491944720396215,
+            "upper": 0.7923403991979523
+          },
+          "specificityWilson95": {
+            "lower": 0.7719046276458015,
+            "upper": 1
+          },
+          "accuracyWilson95": {
+            "lower": 0.6397717273424132,
+            "upper": 0.9650225122567595
+          }
+        },
+        "failurePairIds": [
+          "pair-2dd88829ae",
+          "pair-888ef856a9"
+        ],
+        "abstentionPairIds": [],
+        "itemConfidence": {
+          "count": 22,
+          "mean": 0.7600000000000001,
+          "median": 0.775,
+          "bins": {
+            "[0,0.5)": 0,
+            "[0.5,0.7)": 3,
+            "[0.7,0.85)": 17,
+            "[0.85,1]": 2
+          }
+        }
+      }
+    },
+    "B": {
+      "pass": false,
+      "interReviewerPairAgreement": {
+        "equal": 16,
+        "total": 16,
+        "wilson95": {
+          "lower": 0.8063923194655636,
+          "upper": 1.0000000000000002
+        }
+      },
+      "codex": {
+        "pairScore": {
+          "correctSame": 2,
+          "missedSame": 1,
+          "ambiguousSame": 0,
+          "correctDifferent": 13,
+          "falseSame": 0,
+          "ambiguousDifferent": 0,
+          "correct": 15,
+          "total": 16,
+          "abstentions": 0,
+          "accuracy": 0.9375,
+          "precision": 1,
+          "sensitivity": 0.6666666666666666,
+          "specificity": 1,
+          "f1": 0.8,
+          "abstentionRate": 0,
+          "sensitivityWilson95": {
+            "lower": 0.20765960080204768,
+            "upper": 0.9385080552796037
+          },
+          "specificityWilson95": {
+            "lower": 0.7719046276458015,
+            "upper": 1
+          },
+          "accuracyWilson95": {
+            "lower": 0.7167126242970107,
+            "upper": 0.9888806552353575
+          }
+        },
+        "failurePairIds": [
+          "pair-888ef856a9"
+        ],
+        "abstentionPairIds": [],
+        "itemConfidence": {
+          "count": 22,
+          "mean": 0.9245454545454547,
+          "median": 0.935,
+          "bins": {
+            "[0,0.5)": 0,
+            "[0.5,0.7)": 0,
+            "[0.7,0.85)": 2,
+            "[0.85,1]": 20
+          }
+        },
+        "pairConfidence": {
+          "count": 16,
+          "mean": 0.9581250000000001,
+          "median": 0.99,
+          "bins": {
+            "[0,0.5)": 0,
+            "[0.5,0.7)": 0,
+            "[0.7,0.85)": 2,
+            "[0.85,1]": 14
+          }
+        },
+        "pairCalibration": {
+          "brierScore": 0.045806249999999986,
+          "scored": 16,
+          "ambiguousExcluded": 0
+        }
+      },
+      "claude": {
+        "pairScore": {
+          "correctSame": 2,
+          "missedSame": 1,
+          "ambiguousSame": 0,
+          "correctDifferent": 13,
+          "falseSame": 0,
+          "ambiguousDifferent": 0,
+          "correct": 15,
+          "total": 16,
+          "abstentions": 0,
+          "accuracy": 0.9375,
+          "precision": 1,
+          "sensitivity": 0.6666666666666666,
+          "specificity": 1,
+          "f1": 0.8,
+          "abstentionRate": 0,
+          "sensitivityWilson95": {
+            "lower": 0.20765960080204768,
+            "upper": 0.9385080552796037
+          },
+          "specificityWilson95": {
+            "lower": 0.7719046276458015,
+            "upper": 1
+          },
+          "accuracyWilson95": {
+            "lower": 0.7167126242970107,
+            "upper": 0.9888806552353575
+          }
+        },
+        "failurePairIds": [
+          "pair-888ef856a9"
+        ],
+        "abstentionPairIds": [],
+        "itemConfidence": {
+          "count": 22,
+          "mean": 0.7850000000000001,
+          "median": 0.79,
+          "bins": {
+            "[0,0.5)": 0,
+            "[0.5,0.7)": 1,
+            "[0.7,0.85)": 18,
+            "[0.85,1]": 3
+          }
+        },
+        "pairConfidence": {
+          "count": 16,
+          "mean": 0.8618750000000002,
+          "median": 0.9,
+          "bins": {
+            "[0,0.5)": 0,
+            "[0.5,0.7)": 0,
+            "[0.7,0.85)": 5,
+            "[0.85,1]": 11
+          }
+        },
+        "pairCalibration": {
+          "brierScore": 0.052218749999999994,
+          "scored": 16,
+          "ambiguousExcluded": 0
+        }
+      }
+    }
+  },
+  "conclusion": "CLASSIFICATION_HYPOTHESIS_NOT_SUPPORTED"
+}

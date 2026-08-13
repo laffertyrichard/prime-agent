@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "experiment": "review-finding-corpus-validation-run3",
-  "phase": "FROZEN_PENDING_EXACT_SHA_REVIEW",
-  "validationVerdict": "PASS_PENDING_EXACT_SHA_REVIEW",
+  "phase": "FROZEN",
+  "validationVerdict": "PASS",
   "branch": "experiment/review-finding-corpus-validation-run3",
   "baseSha": "57283d1b01378f12bbb05e19653cdfa89a1aa796",
   "boundaries": {
@@ -17,7 +17,7 @@
     "blindCorpus": "frozen/blind-corpus.json",
     "blindCorpusSha256": "b7b3f5cab0bc588d0a33f560275ff599fcef484287f07c078bc4b763b8043e9b",
     "provenanceCorpus": "frozen/provenance-corpus.json",
-    "provenanceCorpusSha256": "5523196519c05c5e57d6ab9d3fecb4400d0e062f8e81d6774c536f90d860f0a6",
+    "provenanceCorpusSha256": "06e4e64e98730e1c487078761d947a31ce7754edbf8f23150cd73f68c32ead19",
     "goldPairs": "frozen/gold-pairs.json",
     "goldPairsSha256": "5842ff5334d326252c0d9f7d4f0906ad5f1086333415c60ddf481fc18262695b",
     "goldPairCount": 16,
@@ -77,7 +77,8 @@
       "codex": 22,
       "claude": 22
     },
-    "unresolvedDisagreements": 0
+    "unresolvedDisagreements": 0,
+    "goldAdjudication": "Single operator adjudication with pair-specific rationales; gold withheld from blind item auditors."
   },
   "executionBoundary": {
     "classificationAuthorized": false,
@@ -106,11 +107,15 @@
       "constraint": "Run only after the clean replication control is frozen; use the identical corpus and protocol."
     },
     "thresholdPolicy": "Run 2 percentage thresholds are not inherited. A separate no-execution preregistration must freeze attainable exact-count criteria and uncertainty reporting.",
-    "promptPolicy": "Classification prompts are not frozen or authorized by Run 3. A later preregistration branch must freeze new prompts; both model arms must use byte-identical prompt and evaluator artifacts."
+    "promptPolicy": "Classification prompts are not frozen or authorized by Run 3. A later preregistration branch must freeze new prompts; both model arms must use byte-identical prompt and evaluator artifacts.",
+    "modelCompositionPolicy": "Preregistration must record and constrain effective model composition, not only the requested selector, including auxiliary Claude Code model usage."
   },
   "exactShaReview": {
     "round1ReviewSha": "ace208ada6a1be7bb94b3853ef0302343fc0f60a",
     "record": "frozen/exact-sha-review-round-1.json",
-    "status": "REMEDIATED_RE_REVIEW_REQUIRED"
+    "status": "NO_BLOCKER_OR_P1_FINDINGS",
+    "round1Status": "P1_FINDINGS_REMEDIATED",
+    "round2ReviewSha": "522037cc087059bea9bb8fe24141a132298a8be5",
+    "round2Record": "frozen/exact-sha-review-round-2.json"
   }
 }

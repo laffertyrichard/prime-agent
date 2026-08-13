@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "corpusVersion": "frozen-1",
   "itemCount": 22,
-  "authorizedSourceSet": "Run 1 exact-SHA review artifacts preserved locally and hash-pinned in Run 2",
+  "authorizedSourceSet": "Exact-SHA Run 1 review artifacts from review rounds 1–3, preserved locally and hash-pinned in Run 2",
   "sourceArtifactSha256": {
     "run-1/claude-raw.txt": "75a4bc01988ce06814d1de8b98d4528fd0270cc89ea95cd69fdb7c3eabdf7c9e",
     "run-2/claude-raw.txt": "9eaa40122d597dc7ee6cffab29374a63508652cbe976e479369df4421b52c081",

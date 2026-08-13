@@ -2,7 +2,7 @@
 
 ## Verdict
 
-`PASS_PENDING_EXACT_SHA_REVIEW`
+`PASS`
 
 The frozen corpus contains 22 opaque, randomly ordered atomic manifestations. Blind and provenance corpora are separate. The frozen gold set contains 3 `SAME_ROOT` and 13 `DIFFERENT_ROOT` pairs; no ambiguous case is admitted.
 
@@ -21,6 +21,13 @@ Claude Code used canonical primary model `claude-opus-5`; its envelopes also rep
 
 ## Remaining gate
 
-The first exact-SHA reviews found P1 gaps in the later-run prompt plan, gold adequacy/rationales, and one adjudication record. All findings were accepted and remediated without changing the blind corpus or audit outputs. One exact-current-SHA re-review is required before the verdict can become `PASS`.
+The first exact-SHA reviews found P1 gaps in the later-run prompt plan, gold adequacy/rationales, and one adjudication record. All findings were accepted and remediated without changing the blind corpus or audit outputs. Independent Codex and Claude re-reviews at `522037cc087059bea9bb8fe24141a132298a8be5` both reported `NO_BLOCKER_OR_P1_FINDINGS` and approved the gate as `PASS`.
 
 The gold set is a bounded feasibility instrument: 3 positive and 13 negative pairs cannot estimate the prior percentage tolerances. Run 2 thresholds are not inherited. A later no-execution preregistration must freeze new classification prompts, attainable exact-count criteria, and uncertainty reporting before either model arm.
+
+
+## Limitations
+
+Gold relations are single-operator adjudications with pair-specific rationales; they were withheld from blind item auditors to preserve blindness. The corpus is a bounded feasibility instrument, not a prevalence estimate. Claude Code audit envelopes reported both `claude-opus-5` and substantial `claude-fable-5` auxiliary usage; later preregistration must constrain effective model composition rather than relying only on the requested selector.
+
+Classification remains unauthorized.

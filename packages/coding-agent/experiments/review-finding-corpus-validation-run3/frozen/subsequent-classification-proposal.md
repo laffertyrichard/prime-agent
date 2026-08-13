@@ -4,7 +4,7 @@ No classification run, prompt, metric threshold, or model invocation is authoriz
 
 ## Required preregistration
 
-On a new branch from the final Run 3 SHA, prepare classification prompts that reference the frozen Run 3 corpus without embedding obsolete Run 2 item IDs. Freeze those prompt bytes, response schemas, evaluator, exact-count decision criteria, uncertainty reporting, and commands before execution. The Run 2 percentage thresholds are not inherited: with 3 positive and 13 negative gold pairs, one error changes missed-checkpoint rate by 33.3 points or false-checkpoint rate by 7.7 points.
+On a new branch from the final Run 3 SHA, prepare classification prompts that reference the frozen Run 3 corpus without embedding obsolete Run 2 item IDs. Freeze those prompt bytes, response schemas, evaluator, exact-count decision criteria, uncertainty reporting, effective model-composition constraints, and commands before execution. Claude Code audit evidence shows that a requested Opus selector can also invoke an auxiliary model, so canonical and auxiliary model usage must be recorded and treated as part of the arm configuration. The Run 2 percentage thresholds are not inherited: with 3 positive and 13 negative gold pairs, one error changes missed-checkpoint rate by 33.3 points or false-checkpoint rate by 7.7 points.
 
 The same newly frozen prompts and evaluator must be byte-identical in both arms below. This preregistration is a separate deliverable and requires explicit authorization; it must not execute a model.
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "corpusVersion": "frozen-1",
-  "verdict": "PASS_PENDING_EXACT_SHA_REVIEW",
+  "verdict": "PASS",
   "retainedItemCount": 22,
   "round1": {
     "blindCorpusSha256": "dbe19e63c8ebb97e4698dd7ad5f26833d5c4450cc219855b2f57597ec4b5aaed",
@@ -42,15 +42,21 @@
     "corpusValidityAuditInvocations": 4,
     "classificationInvocations": 0,
     "classificationOutputs": 0,
-    "outputsExposedBeforeAuditsCompleted": false
+    "outputsExposedBeforeAuditsCompleted": false,
+    "classificationAuthorized": false
   },
   "notes": [
     "Claude Code reported claude-opus-5 as the canonical primary audit model and claude-fable-5 as an auxiliary model in both audit envelopes. No audit assigned root classes or pair labels.",
-    "The final corpus is a strict subset of the independently re-audited candidate. Every retained item received PASS from both auditors on all three item gates."
+    "The final corpus is a strict subset of the independently re-audited candidate. Every retained item received PASS from both auditors on all three item gates.",
+    "Gold relations are single-adjudicator decisions with pair-specific rationales; they were withheld from blind auditors by design.",
+    "Later execution must account for effective Claude Code model composition, including auxiliary model usage, during preregistration."
   ],
   "exactShaReview": {
     "round1ReviewSha": "ace208ada6a1be7bb94b3853ef0302343fc0f60a",
-    "status": "P1_FINDINGS_REMEDIATED_RE_REVIEW_REQUIRED"
+    "round1Status": "P1_FINDINGS_REMEDIATED",
+    "round2ReviewSha": "522037cc087059bea9bb8fe24141a132298a8be5",
+    "round2Status": "NO_BLOCKER_OR_P1_FINDINGS",
+    "record": "frozen/exact-sha-review-round-2.json"
   },
   "goldAdequacy": {
     "sameRootPairs": 3,

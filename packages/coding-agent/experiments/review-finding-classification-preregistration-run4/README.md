@@ -20,7 +20,7 @@ The source artifacts remain under `../review-finding-corpus-validation-run3/froz
 - `evaluator-design.md`, `scoring-rules.md`, and `uncertainty-reporting.md`: deterministic evaluator and reporting policy.
 - `model-composition.json`: exact tool/model constraints and fail-closed auxiliary-model policy.
 - `execution-plan.md`: future command templates, frozen but not authorized.
-- `normalize-results.ts`, `build-execution-metadata.ts`, and `evaluate.ts`: formatting-only normalization, raw-evidence metadata construction, and scoring.
+- `execution-preflight.ts`, `normalize-results.ts`, `build-execution-metadata.ts`, and `evaluate.ts`: clean-HEAD and byte/version evidence capture, formatting-only normalization, raw-evidence metadata construction, and scoring.
 - `protocol.json` and `preregistration-manifest.sha256`: identities, boundaries, and hashes.
 
 ## Boundary
@@ -37,6 +37,7 @@ These commands do not invoke a model or provider API:
 cd packages/coding-agent
 npx tsx ../../node_modules/vitest/dist/cli.js --run \
   experiments/review-finding-classification-preregistration-run4/evaluate.test.ts \
+  experiments/review-finding-classification-preregistration-run4/execution-evidence.test.ts \
   experiments/review-finding-classification-preregistration-run4/validate-preregistration.test.ts
 npx tsx experiments/review-finding-classification-preregistration-run4/validate-preregistration.ts \
   experiments/review-finding-classification-preregistration-run4 \

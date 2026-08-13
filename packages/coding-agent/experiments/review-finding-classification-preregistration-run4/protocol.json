@@ -3,7 +3,7 @@
   "experiment": "review-finding-classification-preregistration-run4",
   "phase": "PREREGISTRATION_COMPLETE_AWAITING_REVIEW",
   "createdAtUtc": "2026-08-13T14:11:20.519662+00:00",
-  "branch": "experiment/review-finding-classification-preregistration-run4",
+  "branch": "experiment/review-finding-classification-preregistration-run4-remediation",
   "branchPointSha": "bd247656aeeabea6b347bc892c0bfb9236fd7663",
   "question": "Can independent Codex and Claude classifications of the validated atomic corpus support deterministic review-finding recurrence detection under open classification or a minimal rubric?",
   "source": {
@@ -66,7 +66,9 @@
     "semanticAliasMapping": false,
     "missingValueImputation": false,
     "confidenceAffectsGate": false,
-    "rawEvidenceRecursivelyValidated": true
+    "rawEvidenceRecursivelyValidated": true,
+    "executionPreflight": "execution-preflight.ts",
+    "executionEvidenceTest": "execution-evidence.test.ts"
   },
   "modelComposition": {
     "authority": "model-composition.json",
@@ -100,23 +102,25 @@
     "nextAction": "Stop for independent review of the exact preregistration SHA. Execution requires separate authorization naming the reviewed SHA and arm."
   },
   "artifacts": {
-    "README.md": "81e23edb0c442f551fa0683a671348ef177bcb4aed147caa85244a6eddac5d31",
-    "build-execution-metadata.ts": "c1c92267ddb1db0802b58660d56c504822323496422a8ebc7e20e6ba48d885b5",
-    "evaluate.test.ts": "75a9451ad68a5abfad941d5ebdad618ab522e80fc58c405bffdc68426bc5b925",
-    "evaluate.ts": "54ffcbcbf74dc1593134286e1ae8d731dee9f888f712ad75a116461baf9290e3",
-    "evaluator-design.md": "471ce976cec18339d83abb9a3f44a130ff3209f025dc63d981fcbb21166ee9e4",
-    "execution-plan.md": "73d167fa2c0209a310de3fdfcc6872b270b0f1af7e80d33b12c04ec88bf6ca58",
-    "model-composition.json": "d14a9fd0cfa38354e6bdd31b378bdc4bbffadbb2318bdfeb59b73d2fac362b3b",
+    "README.md": "7e7fe81bf7cd1f3aadb49e82d72a1e48417516672322ccecc847c4cc0b0ebd9d",
+    "build-execution-metadata.ts": "f6d16a4c5abe562ca76053c1b2d15c8fd58176600915339d23b9e6ceddd514a9",
+    "evaluate.test.ts": "ce690555c37408cedec937d5342fa86a90dbe3d47969274bc49e43f460a0ca54",
+    "evaluate.ts": "506ca3acf7538f2069c4d1256b5b4d7a7933fd1fc58c40782d64eb15939ee50e",
+    "evaluator-design.md": "a3adcfed09382f586858ea464438e5bc69da0ffba44c668f98f4e6d1ca49dc34",
+    "execution-evidence.test.ts": "1a3f256564f3018e0b1ba0053d54edc803e3f0d53eb4f4bfce57a4145c36efd1",
+    "execution-plan.md": "a445b284875326cd80e6ba3cc258234043328fde327b44986440fae61d017dab",
+    "execution-preflight.ts": "43f182f56daed7a6d0dd4787c30fe3a16d316a6775c01b8c3b76db39f3b4433a",
+    "model-composition.json": "21101d734dcbf790d4a7d3be7ec4c3bb70f25258cf64dbdd1ee12d0bb3a2f250",
     "normalize-results.ts": "77fc993c5be2c274049cf73bfcddd5d69ff2fa42dfee32537a37751a79cff6e3",
     "prompts/condition-a.txt": "195cdf794aa2622f006e98dda49e9859a41b52d609996d3d10c22ee3c27b1357",
     "prompts/condition-b.txt": "57ee2b3a0728fd1678fcdd8fcfe0b38f3b6c2b7ec09fbaf9a3e630648cf4a89e",
     "schemas/condition-a-response.schema.json": "2d9cfaaff9402f16ef0d70c389386a68fddb63b300f416971b83d392bf16b616",
     "schemas/condition-b-response.schema.json": "38d3a1d238637fedf867936013817772ea822a57d2e89516974347a96b1af36e",
-    "schemas/execution-metadata.schema.json": "0530ad89067d1efa504709e4c12aefe6c9a2cc9024275464b1ab05943c3126ea",
+    "schemas/execution-metadata.schema.json": "5c7560d1e849938bb380eeac1aa2df47ca8e350057b25883db2159dc2deb771a",
     "schemas/normalized-results.schema.json": "67c44344b3d30adde64bd4860a17e8cebb2d6a56d1dbb151c842d7144cdeb84a",
     "scoring-rules.md": "2f8965ba549f53bd7fab921ab9662effc884709bd2697f457a5efa0272d87b9d",
     "tsconfig.json": "7f8c3c342b1ae63792596e79c66615582832373b67a8082b0fc2e249f7a38ff2",
-    "uncertainty-reporting.md": "7725165fd0cd28879a8d6677d28d08ffaee001bef78821302270c6d786b2b697",
+    "uncertainty-reporting.md": "a9643e1db2f356997b02837e3bbe307dfcb9296f66139f79b67d5dfe6929f7be",
     "validate-preregistration.test.ts": "ab53134c75610356a28b3c220d6b1da31c2cfc1f543577fa247a102528a7e70c",
     "validate-preregistration.ts": "4287b110faf0fde83d96a2e6c96a2915c5c0644af5108832aad8041929eef622"
   }

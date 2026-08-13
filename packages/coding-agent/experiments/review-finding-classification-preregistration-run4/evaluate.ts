@@ -3,6 +3,11 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { isDeepStrictEqual } from "node:util";
+import {
+	EXPECTED_PROMPT_SHA256,
+	EXPECTED_RESPONSE_SCHEMA_SHA256,
+	readAndValidateExecutionPreflight,
+} from "./execution-preflight.js";
 
 type Relation = "SAME_ROOT" | "DIFFERENT_ROOT" | "AMBIGUOUS";
 type BinaryRelation = Exclude<Relation, "AMBIGUOUS">;
@@ -10,7 +15,7 @@ type Reviewer = "codex" | "claude";
 type Condition = "A" | "B";
 type Arm = "RUN_A_CONTROL" | "RUN_B_OPUS5";
 
-interface GoldPair {
+export interface GoldPair {
 	pairId: string;
 	leftItemId: string;
 	rightItemId: string;
@@ -83,6 +88,8 @@ export interface ExecutionMetadata {
 	blindCorpusSha256: string;
 	goldPairsSha256: string;
 	outputsMutuallyHiddenUntilFrozen: boolean;
+	executionPreflightArtifact: string;
+	executionPreflightArtifactSha256: string;
 	invocations: InvocationMetadata[];
 }
 
@@ -100,6 +107,8 @@ export interface PairScore {
 	ambiguousDifferent: number;
 	correct: number;
 	total: number;
+	abstentions: number;
+	accuracy: number;
 	precision: number;
 	sensitivity: number;
 	specificity: number;
@@ -113,14 +122,8 @@ export interface PairScore {
 const SOURCE_SHA = "bd247656aeeabea6b347bc892c0bfb9236fd7663";
 const BLIND_CORPUS_SHA256 = "b7b3f5cab0bc588d0a33f560275ff599fcef484287f07c078bc4b763b8043e9b";
 const GOLD_PAIRS_SHA256 = "5842ff5334d326252c0d9f7d4f0906ad5f1086333415c60ddf481fc18262695b";
-const PROMPT_SHA256: Record<Condition, string> = {
-	A: "195cdf794aa2622f006e98dda49e9859a41b52d609996d3d10c22ee3c27b1357",
-	B: "57ee2b3a0728fd1678fcdd8fcfe0b38f3b6c2b7ec09fbaf9a3e630648cf4a89e",
-};
-const RESPONSE_SCHEMA_SHA256: Record<Condition, string> = {
-	A: "2d9cfaaff9402f16ef0d70c389386a68fddb63b300f416971b83d392bf16b616",
-	B: "38d3a1d238637fedf867936013817772ea822a57d2e89516974347a96b1af36e",
-};
+const PROMPT_SHA256 = EXPECTED_PROMPT_SHA256;
+const RESPONSE_SCHEMA_SHA256 = EXPECTED_RESPONSE_SCHEMA_SHA256;
 const EXPECTED_ITEM_IDS = [
 	"item-35c3b67009bb",
 	"item-3966afa09ad1",
@@ -229,6 +232,7 @@ export function scoreRelations(gold: BinaryRelation[], predicted: Relation[]): P
 	}
 	const total = gold.length;
 	const correct = correctSame + correctDifferent;
+	const abstentions = ambiguousSame + ambiguousDifferent;
 	const precisionDenominator = correctSame + falseSame;
 	const precision = precisionDenominator === 0 ? 0 : correctSame / precisionDenominator;
 	const sameTotal = correctSame + missedSame + ambiguousSame;
@@ -244,11 +248,13 @@ export function scoreRelations(gold: BinaryRelation[], predicted: Relation[]): P
 		ambiguousDifferent,
 		correct,
 		total,
+		abstentions,
+		accuracy: correct / total,
 		precision,
 		sensitivity,
 		specificity,
 		f1: precision + sensitivity === 0 ? 0 : (2 * precision * sensitivity) / (precision + sensitivity),
-		abstentionRate: (ambiguousSame + ambiguousDifferent) / total,
+		abstentionRate: abstentions / total,
 		sensitivityWilson95: wilsonInterval(correctSame, sameTotal),
 		specificityWilson95: wilsonInterval(correctDifferent, differentTotal),
 		accuracyWilson95: wilsonInterval(correct, total),
@@ -295,6 +301,8 @@ export function validateModelComposition(metadata: ExecutionMetadata): { arm: Ar
 	assert(metadata.blindCorpusSha256 === BLIND_CORPUS_SHA256, "Blind corpus hash mismatch");
 	assert(metadata.goldPairsSha256 === GOLD_PAIRS_SHA256, "Gold-pair hash mismatch");
 	assert(metadata.outputsMutuallyHiddenUntilFrozen, "Reviewer outputs were not mutually hidden");
+	assert(metadata.executionPreflightArtifact === "raw/execution-preflight.json", "Execution-preflight artifact path mismatch");
+	assert(/^[0-9a-f]{64}$/.test(metadata.executionPreflightArtifactSha256), "Execution-preflight artifact hash is invalid");
 	assert(metadata.invocations.length === 4, "Exactly four invocations are required");
 	const seen = new Set<string>();
 	const effectiveModels = { codex: [] as string[], claude: [] as string[] };
@@ -324,8 +332,10 @@ export function validateModelComposition(metadata: ExecutionMetadata): { arm: Ar
 			expectedModelSet(metadata.arm, invocation.reviewer).some((allowed) => sameSet(observed, allowed)),
 			`${key} effective model composition is not allowed`,
 		);
+		const expectedProvider = invocation.reviewer === "codex" ? "openai" : "firstParty";
 		for (const usage of invocation.modelUsage) {
 			assert(usage.model === usage.canonicalModel, `${key} model alias is not canonical`);
+			assert(usage.provider === expectedProvider, `${key} provider identity mismatch`);
 			assert(usage.inputTokens + usage.outputTokens > 0, `${key} model usage is empty`);
 		}
 		const sorted = [...observed].sort();
@@ -366,6 +376,90 @@ function numericRecordTotal(value: unknown): number {
 	return total;
 }
 
+function assertExactObjectKeys(value: Record<string, unknown>, expected: readonly string[], label: string): void {
+	const actual = Object.keys(value).sort();
+	const wanted = [...expected].sort();
+	assert(actual.length === wanted.length && actual.every((key, index) => key === wanted[index]), `${label} contains unrecognized fields`);
+}
+
+function assertNonNegativeInteger(value: unknown, label: string): asserts value is number {
+	assert(typeof value === "number" && Number.isInteger(value) && value >= 0, `${label} must be a nonnegative integer`);
+}
+
+export interface ParsedCodexEvents {
+	inputTokens: number;
+	outputTokens: number;
+	agentMessage: string;
+}
+
+export function parseCodexEvents(eventsText: string): ParsedCodexEvents {
+	const lines = eventsText.split("\n");
+	if (lines.at(-1) === "") lines.pop();
+	assert(lines.length >= 4 && lines.every((line) => line.length > 0), "Codex evidence must be nonempty JSONL without blank records");
+	const events = lines.map((line, index) => {
+		let event: unknown;
+		try {
+			event = JSON.parse(line) as unknown;
+		} catch {
+			throw new Error(`Codex event ${index} is not valid JSON`);
+		}
+		assert(isRecord(event) && typeof event.type === "string", `Codex event ${index} is not an object with a type`);
+		return event;
+	});
+
+	const thread = events[0];
+	assert(thread.type === "thread.started", "Codex evidence must start with thread.started");
+	assertExactObjectKeys(thread, ["type", "thread_id"], "Codex thread.started event");
+	assert(typeof thread.thread_id === "string" && thread.thread_id.length > 0, "Codex thread ID is missing");
+	const turnStarted = events[1];
+	assert(turnStarted.type === "turn.started", "Codex turn.started must follow thread.started");
+	assertExactObjectKeys(turnStarted, ["type"], "Codex turn.started event");
+
+	const turnCompleted = events.at(-1);
+	assert(turnCompleted !== undefined && turnCompleted.type === "turn.completed", "Codex evidence must end with turn.completed");
+	assertExactObjectKeys(turnCompleted, ["type", "usage"], "Codex turn.completed event");
+	assert(isRecord(turnCompleted.usage), "Codex completion is missing usage");
+	assertExactObjectKeys(
+		turnCompleted.usage,
+		["input_tokens", "cached_input_tokens", "cache_write_input_tokens", "output_tokens", "reasoning_output_tokens"],
+		"Codex usage",
+	);
+	for (const key of ["input_tokens", "cached_input_tokens", "cache_write_input_tokens", "output_tokens", "reasoning_output_tokens"] as const) {
+		assertNonNegativeInteger(turnCompleted.usage[key], `Codex usage ${key}`);
+	}
+	const inputTokens = turnCompleted.usage.input_tokens;
+	const outputTokens = turnCompleted.usage.output_tokens;
+	assertNonNegativeInteger(inputTokens, "Codex usage input_tokens");
+	assertNonNegativeInteger(outputTokens, "Codex usage output_tokens");
+
+	const itemEvents = events.slice(2, -1);
+	assert(itemEvents.length > 0, "Codex evidence contains no completed output item");
+	const itemIds = new Set<string>();
+	let agentMessage: string | undefined;
+	for (const [index, event] of itemEvents.entries()) {
+		assert(event.type === "item.completed", `Codex event ${index + 2} has unrecognized type: ${event.type}`);
+		assertExactObjectKeys(event, ["type", "item"], "Codex item.completed event");
+		assert(isRecord(event.item), "Codex completed item is not an object");
+		assertExactObjectKeys(event.item, ["id", "type", "text"], "Codex completed item");
+		assert(typeof event.item.id === "string" && event.item.id.length > 0, "Codex completed item ID is missing");
+		assert(!itemIds.has(event.item.id), `Codex item ID is duplicated: ${event.item.id}`);
+		itemIds.add(event.item.id);
+		assert(event.item.type === "reasoning" || event.item.type === "agent_message", `Codex completed item type is not allowed: ${String(event.item.type)}`);
+		assert(typeof event.item.text === "string" && event.item.text.length > 0, "Codex completed item text is missing");
+		if (event.item.type === "agent_message") {
+			assert(agentMessage === undefined, "Codex evidence contains more than one agent message");
+			assert(index === itemEvents.length - 1, "Codex agent message must be the final completed item");
+			agentMessage = event.item.text;
+		}
+	}
+	assert(agentMessage !== undefined, "Codex evidence contains no agent message");
+	return {
+		inputTokens,
+		outputTokens,
+		agentMessage,
+	};
+}
+
 function verifyCodexEvidence(
 	invocation: InvocationMetadata,
 	rawText: string,
@@ -376,27 +470,19 @@ function verifyCodexEvidence(
 	const raw = JSON.parse(rawText) as unknown;
 	assert(isDeepStrictEqual(raw, expectedResult), `Codex raw output differs from normalized ${invocation.condition} result`);
 	const eventsText = readAndVerify(executionRoot, invocation.eventsArtifact, invocation.eventsArtifactSha256);
-	let completedTurns = 0;
-	let inputTokens = 0;
-	let outputTokens = 0;
-	for (const line of eventsText.split("\n").filter((entry) => entry.trim().length > 0)) {
-		const event = JSON.parse(line) as unknown;
-		assert(isRecord(event) && typeof event.type === "string", "Invalid Codex event");
-		if (event.type === "item.completed") {
-			assert(isRecord(event.item) && typeof event.item.type === "string", "Invalid Codex item event");
-			assert(["agent_message", "error", "reasoning"].includes(event.item.type), `Codex used or emitted an unrecognized item type: ${event.item.type}`);
-		}
-		if (event.type === "turn.completed") {
-			assert(isRecord(event.usage), "Codex completion is missing usage");
-			assert(typeof event.usage.input_tokens === "number" && typeof event.usage.output_tokens === "number", "Codex usage is incomplete");
-			completedTurns += 1;
-			inputTokens += event.usage.input_tokens;
-			outputTokens += event.usage.output_tokens;
-		}
+	const parsed = parseCodexEvents(eventsText);
+	let eventResult: unknown;
+	try {
+		eventResult = JSON.parse(parsed.agentMessage) as unknown;
+	} catch {
+		throw new Error("Codex agent-message event is not valid JSON");
 	}
-	assert(completedTurns === 1, "Codex evidence must contain exactly one completed turn");
+	assert(isDeepStrictEqual(eventResult, expectedResult), `Codex agent-message event differs from normalized ${invocation.condition} result`);
 	assert(invocation.modelUsage.length === 1, "Codex must have one model-usage entry");
-	assert(invocation.modelUsage[0].inputTokens === inputTokens && invocation.modelUsage[0].outputTokens === outputTokens, "Codex token evidence mismatch");
+	assert(
+		invocation.modelUsage[0].inputTokens === parsed.inputTokens && invocation.modelUsage[0].outputTokens === parsed.outputTokens,
+		"Codex token evidence mismatch",
+	);
 }
 
 function verifyClaudeEvidence(invocation: InvocationMetadata, rawText: string, expectedResult: ReviewerResult): void {
@@ -433,9 +519,38 @@ function verifyClaudeEvidence(invocation: InvocationMetadata, rawText: string, e
 	assert(isDeepStrictEqual(rawModels, declaredModels), "Claude modelUsage metadata differs from the raw envelope");
 }
 
-function validateExecutionEvidence(metadata: ExecutionMetadata, input: NormalizedResults, executionRoot: string): void {
-	const seenArtifacts = new Set<string>();
+export function validateExecutionEvidence(
+	metadata: ExecutionMetadata,
+	input: NormalizedResults,
+	executionRoot: string,
+	experimentRoot: string,
+): void {
+	readAndVerify(executionRoot, metadata.executionPreflightArtifact, metadata.executionPreflightArtifactSha256);
+	const preflight = readAndValidateExecutionPreflight(
+		evidencePath(executionRoot, metadata.executionPreflightArtifact),
+		executionRoot,
+		experimentRoot,
+		metadata.preregistrationSha,
+	);
+	const seenArtifacts = new Set<string>([
+		metadata.executionPreflightArtifact,
+		preflight.actualHead.artifact,
+		preflight.cleanStatus.artifact,
+		preflight.cliVersions.codex.artifact,
+		preflight.cliVersions.claude.artifact,
+	]);
 	for (const invocation of metadata.invocations) {
+		const capturedVersion = invocation.reviewer === "codex" ? preflight.cliVersions.codex : preflight.cliVersions.claude;
+		assert(invocation.tool === capturedVersion.tool, `${invocation.condition}:${invocation.reviewer} tool differs from preflight evidence`);
+		assert(invocation.toolVersion === capturedVersion.version, `${invocation.condition}:${invocation.reviewer} tool version differs from preflight evidence`);
+		assert(
+			invocation.promptSha256 === preflight.promptSha256[invocation.condition],
+			`${invocation.condition}:${invocation.reviewer} prompt differs from preflight evidence`,
+		);
+		assert(
+			invocation.responseSchemaSha256 === preflight.responseSchemaSha256[invocation.condition],
+			`${invocation.condition}:${invocation.reviewer} response schema differs from preflight evidence`,
+		);
 		assert(!seenArtifacts.has(invocation.rawArtifact), `Raw artifact reused: ${invocation.rawArtifact}`);
 		seenArtifacts.add(invocation.rawArtifact);
 		if (invocation.eventsArtifact !== undefined) {
@@ -471,6 +586,17 @@ function explicitRelations(result: ReviewerResult): Relation[] {
 function exactAgreement(left: Relation[], right: Relation[]): number {
 	assert(left.length === right.length, "Agreement vectors differ in length");
 	return left.filter((value, index) => value === right[index]).length;
+}
+
+export function pairOutcomeIds(gold: GoldPair[], predicted: Relation[]): { failurePairIds: string[]; abstentionPairIds: string[] } {
+	assert(gold.length === predicted.length, "Pair outcome vectors differ in length");
+	const failurePairIds: string[] = [];
+	const abstentionPairIds: string[] = [];
+	for (let index = 0; index < gold.length; index += 1) {
+		if (predicted[index] === "AMBIGUOUS") abstentionPairIds.push(gold[index].pairId);
+		else if (predicted[index] !== gold[index].relation) failurePairIds.push(gold[index].pairId);
+	}
+	return { failurePairIds, abstentionPairIds };
 }
 
 function exactItemLabelAgreement(left: ReviewerResult, right: ReviewerResult): number {
@@ -539,6 +665,10 @@ export function evaluate(gold: GoldDocument, input: NormalizedResults, metadata:
 	const aClaude = scoreRelations(goldRelations, aClaudeRelations);
 	const bCodex = scoreRelations(goldRelations, bCodexRelations);
 	const bClaude = scoreRelations(goldRelations, bClaudeRelations);
+	const aCodexOutcomes = pairOutcomeIds(gold.pairs, aCodexRelations);
+	const aClaudeOutcomes = pairOutcomeIds(gold.pairs, aClaudeRelations);
+	const bCodexOutcomes = pairOutcomeIds(gold.pairs, bCodexRelations);
+	const bClaudeOutcomes = pairOutcomeIds(gold.pairs, bClaudeRelations);
 	const aPairAgreement = exactAgreement(aCodexRelations, aClaudeRelations);
 	const bPairAgreement = exactAgreement(bCodexRelations, bClaudeRelations);
 	const aItemLabelAgreement = exactItemLabelAgreement(input.conditions.A.codex, input.conditions.A.claude);
@@ -568,20 +698,30 @@ export function evaluate(gold: GoldDocument, input: NormalizedResults, metadata:
 				pass: conditionAPass,
 				interReviewerPairAgreement: { equal: aPairAgreement, total: 16, wilson95: wilsonInterval(aPairAgreement, 16) },
 				exactItemLabelAgreement: { equal: aItemLabelAgreement, total: 22, wilson95: wilsonInterval(aItemLabelAgreement, 22) },
-				codex: { pairScore: aCodex, itemConfidence: confidenceSummary(input.conditions.A.codex.classifications.map((item) => item.confidence)) },
-				claude: { pairScore: aClaude, itemConfidence: confidenceSummary(input.conditions.A.claude.classifications.map((item) => item.confidence)) },
+				codex: {
+					pairScore: aCodex,
+					...aCodexOutcomes,
+					itemConfidence: confidenceSummary(input.conditions.A.codex.classifications.map((item) => item.confidence)),
+				},
+				claude: {
+					pairScore: aClaude,
+					...aClaudeOutcomes,
+					itemConfidence: confidenceSummary(input.conditions.A.claude.classifications.map((item) => item.confidence)),
+				},
 			},
 			B: {
 				pass: conditionBPass,
 				interReviewerPairAgreement: { equal: bPairAgreement, total: 16, wilson95: wilsonInterval(bPairAgreement, 16) },
 				codex: {
 					pairScore: bCodex,
+					...bCodexOutcomes,
 					itemConfidence: confidenceSummary(input.conditions.B.codex.classifications.map((item) => item.confidence)),
 					pairConfidence: confidenceSummary(input.conditions.B.codex.pairs?.map((pair) => pair.confidence) ?? []),
 					pairCalibration: pairCalibration(goldRelations, input.conditions.B.codex),
 				},
 				claude: {
 					pairScore: bClaude,
+					...bClaudeOutcomes,
 					itemConfidence: confidenceSummary(input.conditions.B.claude.classifications.map((item) => item.confidence)),
 					pairConfidence: confidenceSummary(input.conditions.B.claude.pairs?.map((pair) => pair.confidence) ?? []),
 					pairCalibration: pairCalibration(goldRelations, input.conditions.B.claude),
@@ -601,7 +741,7 @@ function main(): void {
 	const gold = JSON.parse(readFileSync(goldPath, "utf8")) as GoldDocument;
 	const input = JSON.parse(readFileSync(inputPath, "utf8")) as NormalizedResults;
 	const metadata = JSON.parse(readFileSync(metadataPath, "utf8")) as ExecutionMetadata;
-	validateExecutionEvidence(metadata, input, dirname(metadataPath));
+	validateExecutionEvidence(metadata, input, dirname(metadataPath), import.meta.dirname);
 	writeFileSync(outputPath, `${JSON.stringify(evaluate(gold, input, metadata), null, 2)}\n`);
 }
 

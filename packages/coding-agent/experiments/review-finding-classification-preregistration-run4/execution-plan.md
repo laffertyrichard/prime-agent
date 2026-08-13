@@ -4,15 +4,19 @@ This document freezes future commands only. Do not run them from the preregistra
 
 ## Preflight
 
-Require a clean execution worktree at the authorized preregistration SHA. Verify the Run 3 and preregistration manifests, exact CLI versions (`codex-cli 0.146.0`, `Claude Code 2.1.228`), prompt/schema hashes, and absence of a preexisting `results` directory. Set:
+Start at the repository root with no `results` directory. Set the authorization and arm, then run the preflight capture before creating any execution artifact manually:
 
 ```bash
+REPO="$PWD"
 PREREG_SHA=<authorized-40-character-sha>
 ARM=RUN_A_CONTROL # or RUN_B_OPUS5 only when separately authorized
-EXP="$PWD/packages/coding-agent/experiments/review-finding-classification-preregistration-run4"
+EXP="$REPO/packages/coding-agent/experiments/review-finding-classification-preregistration-run4"
 RESULTS="$EXP/results"
-mkdir -p "$RESULTS/raw"
+npx tsx "$EXP/execution-preflight.ts" \
+  "$PREREG_SHA" "$REPO" "$EXP" "$RESULTS/raw"
 ```
+
+The preflight rejects an authorization SHA other than the actual HEAD, any tracked or untracked worktree change, altered prompt or response-schema bytes, a preexisting results directory, or CLI-version output other than the preregistered `codex-cli 0.146.0` and `Claude Code 2.1.228` outputs. It then captures the raw HEAD, empty porcelain status, exact CLI-version outputs, and prompt/schema hashes under `results/raw`; metadata and evaluation recursively verify those artifacts.
 
 For `RUN_A_CONTROL`, set `CLAUDE_MODEL=claude-opus-4-6`. For `RUN_B_OPUS5`, set `CLAUDE_MODEL=claude-opus-5`. Never reuse a session or raw directory across invocations or arms.
 
@@ -70,7 +74,7 @@ Before opening raw outputs, hash every file under `results/raw`, then build meta
 
 ```bash
 npx tsx "$EXP/build-execution-metadata.ts" \
-  "$ARM" "$PREREG_SHA" "$RESULTS" \
+  "$ARM" "$PREREG_SHA" "$REPO" "$EXP" "$RESULTS" \
   ATTEST_OUTPUTS_MUTUALLY_HIDDEN_UNTIL_FROZEN \
   "$RESULTS/execution-metadata.json"
 npx tsx "$EXP/normalize-results.ts" "$ARM" \

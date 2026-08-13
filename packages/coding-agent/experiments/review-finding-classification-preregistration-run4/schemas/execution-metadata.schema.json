@@ -10,6 +10,8 @@
     "corpusVersion",
     "blindCorpusSha256",
     "goldPairsSha256",
+    "executionPreflightArtifact",
+    "executionPreflightArtifactSha256",
     "invocations",
     "outputsMutuallyHiddenUntilFrozen"
   ],
@@ -60,6 +62,16 @@
       "enum": [
         true
       ]
+    },
+    "executionPreflightArtifact": {
+      "type": "string",
+      "enum": [
+        "raw/execution-preflight.json"
+      ]
+    },
+    "executionPreflightArtifactSha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
     },
     "invocations": {
       "type": "array",
@@ -150,7 +162,10 @@
                 },
                 "provider": {
                   "type": "string",
-                  "minLength": 1
+                  "enum": [
+                    "openai",
+                    "firstParty"
+                  ]
                 },
                 "inputTokens": {
                   "type": "integer",

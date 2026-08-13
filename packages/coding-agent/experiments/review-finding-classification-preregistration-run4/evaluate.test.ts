@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { normalizeRootClass, scoreRelations, validateModelComposition, wilsonInterval, type ExecutionMetadata } from "./evaluate.js";
+import {
+	normalizeRootClass,
+	pairOutcomeIds,
+	scoreRelations,
+	validateModelComposition,
+	wilsonInterval,
+	type ExecutionMetadata,
+} from "./evaluate.js";
 import { extractClaude, extractCodex, normalize } from "./normalize-results.js";
 
 const PROMPTS = {
@@ -29,7 +36,13 @@ function metadata(arm: "RUN_A_CONTROL" | "RUN_B_OPUS5", claudeModels: string[]):
 				...(reviewer === "codex"
 					? { eventsArtifact: `raw/${condition}-codex-events.jsonl`, eventsArtifactSha256: "c".repeat(64) }
 					: {}),
-				modelUsage: models.map((model) => ({ model, canonicalModel: model, provider: "firstParty", inputTokens: 1, outputTokens: 1 })),
+				modelUsage: models.map((model) => ({
+					model,
+					canonicalModel: model,
+					provider: reviewer === "codex" ? "openai" : "firstParty",
+					inputTokens: 1,
+					outputTokens: 1,
+				})),
 			};
 		}),
 	);
@@ -42,6 +55,8 @@ function metadata(arm: "RUN_A_CONTROL" | "RUN_B_OPUS5", claudeModels: string[]):
 		blindCorpusSha256: "b7b3f5cab0bc588d0a33f560275ff599fcef484287f07c078bc4b763b8043e9b",
 		goldPairsSha256: "5842ff5334d326252c0d9f7d4f0906ad5f1086333415c60ddf481fc18262695b",
 		outputsMutuallyHiddenUntilFrozen: true,
+		executionPreflightArtifact: "raw/execution-preflight.json",
+		executionPreflightArtifactSha256: "d".repeat(64),
 		invocations,
 	};
 }
@@ -76,6 +91,19 @@ describe("Run 4 preregistered evaluator", () => {
 			ambiguousDifferent: 1,
 			correct: 12,
 			total: 16,
+			abstentions: 2,
+			accuracy: 0.75,
+		});
+	});
+
+	it("emits failure and abstention pair IDs separately", () => {
+		const gold = [
+			{ pairId: "pair-1", leftItemId: "left-1", rightItemId: "right-1", relation: "SAME_ROOT" as const },
+			{ pairId: "pair-2", leftItemId: "left-2", rightItemId: "right-2", relation: "DIFFERENT_ROOT" as const },
+		];
+		expect(pairOutcomeIds(gold, ["DIFFERENT_ROOT", "AMBIGUOUS"])).toEqual({
+			failurePairIds: ["pair-1"],
+			abstentionPairIds: ["pair-2"],
 		});
 	});
 
@@ -94,6 +122,16 @@ describe("Run 4 preregistered evaluator", () => {
 		expect(() => validateModelComposition(metadata("RUN_B_OPUS5", ["claude-opus-5", "unknown-helper"]))).toThrow(
 			"effective model composition is not allowed",
 		);
+	});
+
+	it("rejects provider identities outside the reviewer-specific namespace", () => {
+		const invalidClaude = metadata("RUN_A_CONTROL", ["claude-opus-4-6"]);
+		invalidClaude.invocations.find((invocation) => invocation.reviewer === "claude")!.modelUsage[0].provider = "anthropic";
+		expect(() => validateModelComposition(invalidClaude)).toThrow("provider identity mismatch");
+
+		const invalidCodex = metadata("RUN_A_CONTROL", ["claude-opus-4-6"]);
+		invalidCodex.invocations.find((invocation) => invocation.reviewer === "codex")!.modelUsage[0].provider = "firstParty";
+		expect(() => validateModelComposition(invalidCodex)).toThrow("provider identity mismatch");
 	});
 
 	it("normalizes envelopes without semantic transformation", () => {

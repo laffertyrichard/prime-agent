@@ -4,7 +4,7 @@ export interface RlmPromptOptions {
 	cwd: string;
 	skillsDir?: string;
 	installedSkills?: string[];
-	messagesPath: string;
+	messagesPath?: string;
 	allowRecursion?: boolean;
 	depth?: number;
 	parentAgent?: string;
@@ -73,7 +73,11 @@ export function buildRlmPrompt(options: RlmPromptOptions): string {
 		"When you are done, stop calling tools and state your final answer.",
 		"",
 		`Working directory: ${cwd}`,
-		`Conversation log: ${messagesPath}`,
+		!messagesPath
+			? "Conversation log: not persisted"
+			: hasIpython
+				? "Conversation log: read the `RLM_SESSION_FILE` environment variable from IPython."
+				: `Conversation log: ${messagesPath}`,
 		`Recursive agent depth: ${depth}`,
 		`Pre-installed Python packages: ${DEFAULT_RLM_EXTRA_IMPORT_LABELS.join(", ")}.`,
 		"Install additional packages with `uv pip install <pkg>` (this is a uv-managed venv with no pip module).",

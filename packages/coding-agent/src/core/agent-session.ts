@@ -8904,6 +8904,10 @@ export class AgentSession {
 			RLM_MAX_DEPTH: String(this._rlmMaxDepth),
 			RLM_GLOBAL_HARNESS_STATE_DIR: getGlobalHarnessStateDir(),
 		};
+		const sessionFile = this.sessionManager.getSessionFile();
+		if (sessionFile) {
+			env.RLM_SESSION_FILE = sessionFile;
+		}
 		const rlmSessionDir = this._ensureRlmSessionDir();
 		if (rlmSessionDir) {
 			env.RLM_SESSION_DIR = rlmSessionDir;

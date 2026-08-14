@@ -53,7 +53,7 @@ describe("buildRlmPrompt", () => {
 				"When you are done, stop calling tools and state your final answer.",
 				"",
 				"Working directory: /repo",
-				"Conversation log: /repo/.pi/sessions/session.jsonl",
+				"Conversation log: read the `RLM_SESSION_FILE` environment variable from IPython.",
 				"Recursive agent depth: 0",
 				`Pre-installed Python packages: ${DEFAULT_RLM_EXTRA_IMPORT_LABELS.join(", ")}.`,
 				"Install additional packages with `uv pip install <pkg>` (this is a uv-managed venv with no pip module).",
@@ -94,10 +94,50 @@ describe("buildRlmPrompt", () => {
 			installedSkills: ["websearch"],
 		});
 
+		expect(prompt).toContain("Conversation log: read the `RLM_SESSION_FILE` environment variable from IPython.");
+		expect(prompt).not.toContain("/repo/.pi/sessions/session.jsonl");
 		expect(prompt).toContain("Installed Python skill modules (pre-imported): `websearch`.");
 		expect(prompt).toContain("A callable `rlm` is already in your global namespace");
 		expect(prompt).toContain("IPython is the agent's long-lived notebook");
 		expect(prompt).toContain("Each `%%bash` cell runs in a throw-away subshell");
+	});
+
+	test("keeps persisted conversation paths out of the cached prompt", () => {
+		const options = {
+			cwd: "/repo",
+			activeTools: ["ipython"],
+			allowRecursion: false,
+		};
+
+		const first = buildRlmPrompt({ ...options, messagesPath: "/sessions/first.jsonl" });
+		const second = buildRlmPrompt({ ...options, messagesPath: "/sessions/second.jsonl" });
+
+		expect(first).toBe(second);
+		expect(first).toContain("Conversation log: read the `RLM_SESSION_FILE` environment variable from IPython.");
+		expect(first).not.toContain("/sessions/first.jsonl");
+	});
+
+	test("keeps a clear marker when the conversation is not persisted", () => {
+		const prompt = buildRlmPrompt({
+			cwd: "/repo",
+			activeTools: ["ipython"],
+			allowRecursion: false,
+		});
+
+		expect(prompt).toContain("Conversation log: not persisted");
+		expect(prompt).not.toContain("RLM_SESSION_FILE");
+	});
+
+	test("keeps the literal conversation path when ipython is unavailable", () => {
+		const prompt = buildRlmPrompt({
+			cwd: "/repo",
+			messagesPath: "/sessions/session.jsonl",
+			activeTools: ["bash"],
+			allowRecursion: false,
+		});
+
+		expect(prompt).toContain("Conversation log: /sessions/session.jsonl");
+		expect(prompt).not.toContain("RLM_SESSION_FILE");
 	});
 
 	test("discovers requested models through a bounded authenticated host search", () => {
@@ -442,7 +482,8 @@ describe("buildSystemPrompt", () => {
 
 		expect(prompt).toContain("You are a general purpose agent that uses code to solve tasks.");
 		expect(prompt).toContain("Working directory: /repo");
-		expect(prompt).toContain("Conversation log: /repo/.pi/sessions/session.jsonl");
+		expect(prompt).toContain("Conversation log: read the `RLM_SESSION_FILE` environment variable from IPython.");
+		expect(prompt).not.toContain("/repo/.pi/sessions/session.jsonl");
 		expect(prompt).toContain("await rlm('sub-task')");
 		expect(prompt).toContain("returns at admission, not completion");
 		expect(prompt).toContain("Results arrive only through an available messaging capability or files");
